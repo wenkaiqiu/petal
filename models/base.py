@@ -5,6 +5,12 @@ class ProtocolNotSupport(Exception): pass
 
 
 class Model:
+    def __init__(self, logical_id):
+        self.logical_id = logical_id
+
+    def __str__(self):
+        return f'{type(self).__name__}'
+
     @classmethod
     def interface_type_set(cls):
         return set(filter(lambda x: issubclass(x, Interface),

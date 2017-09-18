@@ -1,4 +1,3 @@
-from abc import ABCMeta
 import logging
 from models import compatible, Model, InterfaceRJ45
 from models.fileds import InterfaceSFPP
@@ -8,7 +7,9 @@ logger = logging.getLogger('rules')
 logger.setLevel(logging.DEBUG)
 
 
-class BaseProtocol(ABCMeta): pass
+class BaseProtocol:
+    def __str__(self):
+        return f'{type(self).__name__}'
 
 
 class ProtocolIP(BaseProtocol):
@@ -17,8 +18,8 @@ class ProtocolIP(BaseProtocol):
 
 
 class ProtocolVLAN(BaseProtocol):
-    a = InterfaceRJ45()
-    b = InterfaceRJ45()
+    a = ProtocolIP()
+    b = ProtocolIP()
 
 
 class ProtocolStack(BaseProtocol): pass
@@ -28,10 +29,3 @@ class ProtocolStack(BaseProtocol): pass
 class CX310(Model):
     rj45 = InterfaceRJ45(count=32, downlink=True)
     sfpp = InterfaceSFPP(count=16, uplink=True)
-
-
-if __name__ == '__main__':
-    device = CX310()
-    logger.info(dir(device))
-    logger.info(device.support_protocols)
-    logger.info(device.interface_type_set())
