@@ -1,7 +1,5 @@
-from models.fileds import Interface
-
-
-class ProtocolNotSupport(Exception): pass
+from .interfaces import Interface
+from .protocols import BaseProtocol, ProtocolNotSupport
 
 
 class Model:
@@ -12,27 +10,23 @@ class Model:
         return f'{type(self).__name__}'
 
     @classmethod
-    def interface_type_set(cls):
+    def has(cls, interface):
+        return interface in cls.interfaces()
+
+    @classmethod
+    def interfaces(cls):
         return set(filter(lambda x: issubclass(x, Interface),
                           map(lambda x: type(getattr(cls, x)),
                               filter(lambda x: not x.startswith('__'),
                                      cls.__dict__.keys()))))
 
 
-def compatible(*protocols):
-    def wrap(model):
+def compatible(*protocols: BaseProtocol):
+    def wrap(model: Model):
         name = 'required_interface_set'
-        if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interface_type_set())),
+        if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interfaces())),
                    protocols)): raise ProtocolNotSupport()
         setattr(model, 'support_protocols', protocols)
         return model
-
-    return wrap
-
-
-def require(*interface):
-    def wrap(protocol):
-        protocol.required_interface_set = set(interface)
-        return protocol
 
     return wrap

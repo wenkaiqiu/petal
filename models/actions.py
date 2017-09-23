@@ -1,6 +1,6 @@
 import logging
 
-logging.basicConfig(format='%(asctime)s %(filename)-10s %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('actions')
 logger.setLevel(logging.DEBUG)
 
