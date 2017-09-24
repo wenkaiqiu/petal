@@ -1,7 +1,9 @@
 import logging
 
+import itertools
+
 from contrib.rules import CX310, ProtocolTrunk, ProtocolIP
-from models.actions import link, group, op
+from models.actions import group, op
 from models.base import list_all_registered
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
@@ -17,3 +19,4 @@ op(ProtocolIP, group(cx310_1, cx310_2), cx310_3)
 logger.info(ProtocolTrunk.interfaces())
 logger.info(ProtocolTrunk.interfaces())
 logger.info(f'registered device: {list_all_registered()}')
+

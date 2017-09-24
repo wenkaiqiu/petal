@@ -23,6 +23,9 @@ def list_all_registered():
     return __global_register
 
 
+class OperableTrait: pass
+
+
 class ModelType(type):
     def __str__(cls):
         return f'<Model: {cls.__name__}>'
@@ -31,7 +34,7 @@ class ModelType(type):
         return f'<Model: {cls.__name__}>'
 
 
-class Model(metaclass=ModelType):
+class Model(OperableTrait, metaclass=ModelType):
     def __new__(cls, *args, **kwargs):
         _register_model(cls, args[0])
         return cls
@@ -62,7 +65,7 @@ def compatible(*protocols: Protocol):
     return wrap
 
 
-class ModelGroup:
+class ModelGroup(OperableTrait):
     def __init__(self, *args):
         self.group = list(args)
 

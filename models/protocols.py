@@ -15,9 +15,6 @@ class Protocol(metaclass=ProtocolType):
                 filter(lambda attr: issubclass(type(getattr(cls, attr)), Interface), dir(cls)))
         )
 
-    def __str__(self):
-        return f'{type(self).__name__}'
-
     # noinspection PyUnusedLocal
     @classmethod
     def validate(cls, model):
@@ -27,9 +24,16 @@ class Protocol(metaclass=ProtocolType):
         """
         return True
 
+    @classmethod
+    def op(cls, arith_list): raise NotImplemented()
+
 
 class ProtocolIP(Protocol):
     a = InterfaceRJ45()
+
+    @classmethod
+    def op(cls, arith_list):
+        print(f'op on {arith_list}')
 
 
 class ProtocolVLAN(Protocol):
