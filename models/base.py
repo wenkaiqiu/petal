@@ -1,14 +1,22 @@
+import logging
+
 from .interfaces import Interface
 from .protocols import Protocol, ProtocolNotSupport
 
+logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logger = logging.getLogger('model_base')
+logger.setLevel(logging.DEBUG)
+
+# TODO: Use trie latter for better performance.
 __global_register = set()
 
 
 def _register_model(cls: object, model_id):
     global __global_register
-    identifier = f'{cls.__name__}_{model_id}'
+    identifier = f'{cls.__name__}>>{model_id}'
     if identifier in __global_register: raise ValueError(f'model {identifier} already registered.')
     __global_register.add(identifier)
+    logger.info(f'register model {identifier} success')
 
 
 def list_all_registered():
@@ -52,3 +60,14 @@ def compatible(*protocols: Protocol):
         return model
 
     return wrap
+
+
+class ModelGroup:
+    def __init__(self, *args):
+        self.group = list(args)
+
+    def __str__(self):
+        return f'<Group: {", ".join(map(str, self.group))}>'
+
+    def __repr__(self):
+        return f'<Group: {", ".join(map(str, self.group))}>'

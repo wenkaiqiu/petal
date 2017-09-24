@@ -5,7 +5,8 @@ class InterfaceType(type):
 
 
 class Interface(metaclass=InterfaceType):
-    def __init__(self, *args, **kwargs): pass
+    def __init__(self, *args, **kwargs):
+        self.bundle = 'count' in kwargs
 
 
 class InterfaceRJ45(Interface): pass
