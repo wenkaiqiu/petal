@@ -2,8 +2,12 @@ from models.interfaces import InterfaceRJ45, Interface
 from collections import Counter
 
 
-class BaseProtocol:
+class ProtocolType(type):
+    def __str__(cls):
+        return f'<Protocol: {cls.__name__}>'
 
+
+class Protocol(metaclass=ProtocolType):
     @classmethod
     def interfaces(cls):
         return Counter(
@@ -24,15 +28,15 @@ class BaseProtocol:
         return True
 
 
-class ProtocolIP(BaseProtocol):
+class ProtocolIP(Protocol):
     a = InterfaceRJ45()
 
 
-class ProtocolVLAN(BaseProtocol):
+class ProtocolVLAN(Protocol):
     a = ProtocolIP()
 
 
-class ProtocolTrunk(BaseProtocol):
+class ProtocolTrunk(Protocol):
     a = InterfaceRJ45()
     b = InterfaceRJ45()
 

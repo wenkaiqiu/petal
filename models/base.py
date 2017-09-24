@@ -1,7 +1,5 @@
-from typing import Type
-
 from .interfaces import Interface
-from .protocols import BaseProtocol, ProtocolNotSupport
+from .protocols import Protocol, ProtocolNotSupport
 
 __global_register = set()
 
@@ -17,26 +15,21 @@ def list_all_registered():
     return __global_register
 
 
-class ModelType(Type):
+class ModelType(type):
     def __str__(cls):
-        return f'<{cls.__name__}>'
+        return f'<Model: {cls.__name__}>'
 
     def __repr__(cls):
-        return f'<{cls.__name__}>'
+        return f'<Model: {cls.__name__}>'
 
 
-class Model:
-    __metaclass__ = ModelType
-
+class Model(metaclass=ModelType):
     def __new__(cls, *args, **kwargs):
         _register_model(cls, args[0])
         return cls
 
     def __init__(self, logical_id):
         self.logical_id = logical_id
-
-    def __str__(self):
-        return f'{type(self).__name__}'
 
     @classmethod
     def has(cls, interface):
@@ -50,7 +43,7 @@ class Model:
                                      cls.__dict__.keys()))))
 
 
-def compatible(*protocols: BaseProtocol):
+def compatible(*protocols: Protocol):
     def wrap(model: Model):
         name = 'required_interface_set'
         if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interfaces())),

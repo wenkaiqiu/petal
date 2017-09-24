@@ -2,7 +2,7 @@ import logging
 
 from contrib.rules import CX310, ProtocolTrunk, ProtocolIP
 from models.actions import link, group
-from models.base import list_all_registered
+from models.base import list_all_registered, Model
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('manifest')
@@ -17,4 +17,3 @@ link(group(cx310_1, cx310_2), cx310_3, ProtocolIP)
 logger.info(ProtocolTrunk.interfaces())
 logger.info(ProtocolTrunk.interfaces())
 logger.info(list_all_registered())
-logger.info(CX310.__repr__())
