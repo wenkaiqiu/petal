@@ -3,6 +3,7 @@ from collections import Counter
 
 
 class BaseProtocol:
+
     @classmethod
     def interfaces(cls):
         return Counter(

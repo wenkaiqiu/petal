@@ -1,8 +1,37 @@
+from typing import Type
+
 from .interfaces import Interface
 from .protocols import BaseProtocol, ProtocolNotSupport
 
+__global_register = set()
+
+
+def _register_model(cls: object, model_id):
+    global __global_register
+    identifier = f'{cls.__name__}_{model_id}'
+    if identifier in __global_register: raise ValueError(f'model {identifier} already registered.')
+    __global_register.add(identifier)
+
+
+def list_all_registered():
+    return __global_register
+
+
+class ModelType(Type):
+    def __str__(cls):
+        return f'<{cls.__name__}>'
+
+    def __repr__(cls):
+        return f'<{cls.__name__}>'
+
 
 class Model:
+    __metaclass__ = ModelType
+
+    def __new__(cls, *args, **kwargs):
+        _register_model(cls, args[0])
+        return cls
+
     def __init__(self, logical_id):
         self.logical_id = logical_id
 
