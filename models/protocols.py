@@ -46,3 +46,6 @@ class ProtocolTrunk(Protocol):
 
 
 class ProtocolNotSupport(Exception): pass
+
+
+class InterfaceNotExist(Exception): pass

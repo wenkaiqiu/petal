@@ -1,7 +1,7 @@
 import logging
 
 from .interfaces import Interface
-from .protocols import Protocol, ProtocolNotSupport
+from .protocols import Protocol, ProtocolNotSupport, InterfaceNotExist
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('model_base')
@@ -54,12 +54,15 @@ class Model(OperableTrait, metaclass=ModelType):
                                      cls.__dict__.keys()))))
 
 
-def compatible(*protocols: Protocol):
+def compatible(*protocols: Protocol, interface_type: str):
     def wrap(model: Model):
-        name = 'required_interface_set'
-        if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interfaces())),
-                   protocols)): raise ProtocolNotSupport()
-        setattr(model, 'support_protocols', protocols)
+        if not any(map(lambda p: interface_type in p, map(lambda x: x.__name__, model.interfaces()))):
+            raise InterfaceNotExist()
+        if not hasattr(model, 'support_protocols'):
+            setattr(model, 'support_protocols', {})
+        getattr(model, 'support_protocols')[interface_type] = protocols
+        logger.info(f"<{interface_type}> on <{model.__name__}> support "
+                    f"{set(map(lambda x: x.__name__, getattr(model, 'support_protocols')[interface_type]))}")
         return model
 
     return wrap
