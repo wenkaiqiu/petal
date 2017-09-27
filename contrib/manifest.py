@@ -16,7 +16,9 @@ cx310_3 = CX310('1323')
 
 op(ProtocolTrunk, cx310_1, cx310_2, )
 op(ProtocolIP, group(cx310_1, cx310_2), cx310_3)
-logger.info(ProtocolTrunk.interfaces())
-logger.info(ProtocolTrunk.interfaces())
+# logger.info(ProtocolTrunk.interfaces())
+# logger.info(ProtocolTrunk.interfaces())
 logger.info(f'registered device: {list_all_registered()}')
 
+logger.info(f'<{CX310.rj45.__class__.__name__}> in <CX310> has attrs <{CX310.rj45.attr}>')
+logger.info(f'<{CX310.sfpp.__class__.__name__}> in <CX310> has attrs <{CX310.sfpp.attr}>')

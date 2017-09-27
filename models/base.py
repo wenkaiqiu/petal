@@ -1,7 +1,8 @@
 import logging
+from functools import reduce
 
 from .interfaces import Interface
-from .protocols import Protocol, ProtocolNotSupport, InterfaceNotExist
+from .protocols import Protocol, InterfaceNotExist
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('model_base')
@@ -48,6 +49,21 @@ class Model(OperableTrait, metaclass=ModelType):
 
     @classmethod
     def interfaces(cls):
+        """
+        获取Model中的所有Interface对象
+        :return: set(<Interface>)
+        """
+        return set(filter(lambda x: issubclass(type(x), Interface),
+                          map(lambda x: getattr(cls, x),
+                              filter(lambda x: not x.startswith('__'),
+                                     cls.__dict__.keys()))))
+
+    @classmethod
+    def interface_types(cls):
+        """
+        获取Model中的所有Interface类型
+        :return: set(<InterfaceType>)
+        """
         return set(filter(lambda x: issubclass(x, Interface),
                           map(lambda x: type(getattr(cls, x)),
                               filter(lambda x: not x.startswith('__'),
@@ -56,13 +72,18 @@ class Model(OperableTrait, metaclass=ModelType):
 
 def compatible(*protocols: Protocol, interface_type: str):
     def wrap(model: Model):
-        if not any(map(lambda p: interface_type in p, map(lambda x: x.__name__, model.interfaces()))):
+        interfaces_in_model = model.interfaces()
+        if len(interfaces_in_model) == 0:
             raise InterfaceNotExist()
+        # 注册各Interface支持的协议类型
         if not hasattr(model, 'support_protocols'):
             setattr(model, 'support_protocols', {})
         getattr(model, 'support_protocols')[interface_type] = protocols
-        logger.info(f"<{interface_type}> on <{model.__name__}> support "
-                    f"{set(map(lambda x: x.__name__, getattr(model, 'support_protocols')[interface_type]))}")
+        logger.info(f'<{interface_type}> on <{model.__name__}> support '
+                    f'{set(map(lambda x: x.__name__, getattr(model, "support_protocols")[interface_type]))}')
+        # 向各Interface对象注册协议支持的属性
+        for interface in interfaces_in_model:
+            [interface.init_attr(x) for x in reduce(lambda a, b: a + b, map(lambda p: p.attrs, protocols))]
         return model
 
     return wrap

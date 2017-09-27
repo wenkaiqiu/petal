@@ -8,12 +8,13 @@ class ProtocolType(type):
 
 
 class Protocol(metaclass=ProtocolType):
-    @classmethod
-    def interfaces(cls):
-        return Counter(
-            map(lambda attr: type(getattr(cls, attr)),
-                filter(lambda attr: issubclass(type(getattr(cls, attr)), Interface), dir(cls)))
-        )
+    # todo：感觉没用了
+    # @classmethod
+    # def interfaces(cls):
+    #     return Counter(
+    #         map(lambda attr: type(getattr(cls, attr)),
+    #             filter(lambda attr: issubclass(type(getattr(cls, attr)), Interface), dir(cls)))
+    #     )
 
     # noinspection PyUnusedLocal
     @classmethod
@@ -29,7 +30,7 @@ class Protocol(metaclass=ProtocolType):
 
 
 class ProtocolIP(Protocol):
-    a = InterfaceRJ45()
+    attrs = ['bootproto', 'broadcast', 'ipaddr', 'netmask', 'network']
 
     @classmethod
     def op(cls, arith_list):
@@ -37,12 +38,13 @@ class ProtocolIP(Protocol):
 
 
 class ProtocolVLAN(Protocol):
-    a = ProtocolIP()
+    attrs = []
+    pass
 
 
 class ProtocolTrunk(Protocol):
-    a = InterfaceRJ45()
-    b = InterfaceRJ45()
+    attrs = []
+    pass
 
 
 class ProtocolNotSupport(Exception): pass
