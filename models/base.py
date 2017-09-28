@@ -1,9 +1,8 @@
 import logging
-from functools import reduce
 
 from models.fields import Field
-from .interfaces import Interface
 from .protocols import Protocol, InterfaceNotExist
+from .interfaces import *
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('model_base')
@@ -54,10 +53,11 @@ class Model(OperableTrait, metaclass=ModelType):
         获取Model中的所有Interface对象
         :return: set(<Interface>)
         """
-        return set(filter(lambda x: issubclass(type(x), Interface),
-                          map(lambda x: getattr(cls, x),
-                              filter(lambda x: not x.startswith('__'),
-                                     cls.__dict__.keys()))))
+        # return set(filter(lambda x: issubclass(type(x), Interface),
+        #                   map(lambda x: getattr(cls, x),
+        #                       filter(lambda x: not x.startswith('__'),
+        #                              cls.__dict__.keys()))))
+        return cls.interface
 
     @classmethod
     def interface_types(cls):
@@ -65,10 +65,11 @@ class Model(OperableTrait, metaclass=ModelType):
         获取Model中的所有Interface类型
         :return: set(<InterfaceType>)
         """
-        return set(filter(lambda x: issubclass(x, Interface),
-                          map(lambda x: type(getattr(cls, x)),
-                              filter(lambda x: not x.startswith('__'),
-                                     cls.__dict__.keys()))))
+        # return set(filter(lambda x: issubclass(x, Interface),
+        #                   map(lambda x: type(getattr(cls, x)),
+        #                       filter(lambda x: not x.startswith('__'),
+        #                              cls.__dict__.keys()))))
+        return set(map(lambda x: type(x), cls.interface))
 
 
 def compatible(*protocols: Protocol, interface_type: str):
@@ -91,6 +92,27 @@ def compatible(*protocols: Protocol, interface_type: str):
         return model
 
     return wrap
+
+
+def register_interface(interfaces):
+    def register(model: Model):
+        model.interface = []
+        for item in interfaces:
+            if item.get('subcard_number'):
+                len_port = len(item['port_number'])
+                for i in range(item["num"]):
+                    index_1 = i // len_port
+                    index_2 = i % len_port
+                    temp = item.copy()
+                    temp['subcard_number'] = item['subcard_number'][index_1]
+                    temp['port_number'] = item['port_number'][index_2]
+                    model.interface.append(eval(item['type'] + f"({temp})"))
+            else:
+                for i in range(item["num"]):
+                    temp = item.copy()
+                    model.interface.append(eval(item['type'] + f"({temp})"))
+        return model
+    return register
 
 
 class ModelGroup(OperableTrait):
