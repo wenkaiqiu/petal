@@ -75,7 +75,7 @@ class Model(OperableTrait, metaclass=ModelType):
 def compatible(*protocols: Protocol, interface_type: str):
     def wrap(model: Model):
         # 检查接口类型
-        interfaces_in_model = set(filter(lambda x: type(x).__name__==interface_type, model.interfaces()))
+        interfaces_in_model = set(filter(lambda x: type(x).__name__ == interface_type, model.interfaces()))
         if len(interfaces_in_model) == 0:
             raise InterfaceNotExist()
         # 注册各Interface支持的协议类型

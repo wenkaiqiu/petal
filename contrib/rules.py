@@ -48,13 +48,6 @@ CX310_port_description = [
 @compatible(ProtocolIP, ProtocolVLAN, ProtocolTrunk, interface_type='InterfaceSFPP')
 @register_interface(CX310_port_description)
 class CX310(Model):
-    rj45 = InterfaceRJ45(count=32, uplink=True)
-    sfpp = InterfaceSFPP(count=16, uplink=True)
-
     def __init__(self, logical_id, slot_id):
-        print("ccccccc")
         super().__init__(logical_id)
-        print("ccccccc")
-        print(type(self.interface))
-        print(__class__.interface)
         self.slot_id = slot_id

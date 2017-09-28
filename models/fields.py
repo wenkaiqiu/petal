@@ -48,6 +48,11 @@ class Field:
     def _get_default_value(self):
         pass
 
+    def set_value(self, value):
+        pass
+
+    def get_value(self):
+        pass
 
 class CharField(Field):
     def _get_default_value(self):

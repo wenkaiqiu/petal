@@ -7,29 +7,31 @@ class InterfaceType(type):
 class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
         self.bundle = 'count' in kwargs
+        meta = {}
         self.base = {}
         self.attr = {}
-        if kwargs.get('name'):
-            self.base['name'] = kwargs['name']
-        if kwargs.get('speed'):
-            self.base['speed'] = kwargs['speeed']
-        if kwargs.get('subcard_number'):
-            self.base['subcard_number'] = kwargs['subcard_number']
-        if kwargs.get('port_number'):
-            self.base['port_number'] = kwargs['port_number']
+        if meta.get('name'):
+            self.base['name'] = meta['name']
+        if meta.get('speed'):
+            self.base['speed'] = meta['speeed']
+        if meta.get('subcard_number'):
+            self.base['subcard_number'] = meta['subcard_number']
+        if meta.get('port_number'):
+            self.base['port_number'] = meta['port_number']
 
     def getattr(self, attr_name):
         if not (attr_name in self.attr.keys()):
             raise AttrNotExist
-        return self.attr[attr_name]
+        return self.attr[attr_name].get_value()
 
     def setattr(self, attr_name, value):
         if not (attr_name in self.attr.keys()):
             raise AttrNotExist
-        self.attr[attr_name] = value
+        self.attr[attr_name].set_value(value)
 
-    def init_attr(self, attr_name, default=""):
-        self.attr[attr_name] = default
+    def init_attr(self, attr_name, field=None):
+        self.attr[attr_name] = field
+        print(self.getattr(attr_name))
 
 
 class InterfaceRJ45(Interface): pass
