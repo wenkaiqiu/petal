@@ -1,10 +1,11 @@
-from models.interfaces import InterfaceRJ45, Interface
-from collections import Counter
 from . import fields
-BOOTPROTO_CHOICE=[
+
+BOOTPROTO_CHOICE = [
     (1, 'none'),
     (2, 'static')
 ]
+
+
 class ProtocolType(type):
     def __str__(cls):
         return f'<Protocol: {cls.__name__}>'

@@ -7,7 +7,16 @@ class InterfaceType(type):
 class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
         self.bundle = 'count' in kwargs
+        self.base = {}
         self.attr = {}
+        if kwargs.get('name'):
+            self.base['name'] = kwargs['name']
+        if kwargs.get('speed'):
+            self.base['speed'] = kwargs['speeed']
+        if kwargs.get('subcard_number'):
+            self.base['subcard_number'] = kwargs['subcard_number']
+        if kwargs.get('port_number'):
+            self.base['port_number'] = kwargs['port_number']
 
     def getattr(self, attr_name):
         if not (attr_name in self.attr.keys()):
@@ -27,6 +36,9 @@ class InterfaceRJ45(Interface): pass
 
 
 class InterfaceSFPP(Interface): pass
+
+
+class InterfaceInternal(Interface): pass
 
 
 class AttrNotExist(Exception): pass
