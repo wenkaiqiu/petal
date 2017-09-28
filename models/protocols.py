@@ -1,7 +1,10 @@
 from models.interfaces import InterfaceRJ45, Interface
 from collections import Counter
-
-
+from . import fields
+BOOTPROTO_CHOICE=[
+    (1, 'none'),
+    (2, 'static')
+]
 class ProtocolType(type):
     def __str__(cls):
         return f'<Protocol: {cls.__name__}>'
@@ -30,7 +33,11 @@ class Protocol(metaclass=ProtocolType):
 
 
 class ProtocolIP(Protocol):
-    attrs = ['bootproto', 'broadcast', 'ipaddr', 'netmask', 'network']
+    bootproto = fields.CharField(choices=BOOTPROTO_CHOICE)
+    broadcast = fields.IPField()
+    ipaddr = fields.IPField()
+    netmask = fields.IPField()
+    network = fields.IPField()
 
     @classmethod
     def op(cls, arith_list):
@@ -38,12 +45,10 @@ class ProtocolIP(Protocol):
 
 
 class ProtocolVLAN(Protocol):
-    attrs = []
     pass
 
 
 class ProtocolTrunk(Protocol):
-    attrs = []
     pass
 
 

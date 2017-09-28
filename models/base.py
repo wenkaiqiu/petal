@@ -1,6 +1,7 @@
 import logging
 from functools import reduce
 
+from models.fields import Field
 from .interfaces import Interface
 from .protocols import Protocol, InterfaceNotExist
 
@@ -72,7 +73,8 @@ class Model(OperableTrait, metaclass=ModelType):
 
 def compatible(*protocols: Protocol, interface_type: str):
     def wrap(model: Model):
-        interfaces_in_model = model.interfaces()
+        # 检查接口类型
+        interfaces_in_model = set(filter(lambda x: type(x).__name__==interface_type, model.interfaces()))
         if len(interfaces_in_model) == 0:
             raise InterfaceNotExist()
         # 注册各Interface支持的协议类型
@@ -83,7 +85,9 @@ def compatible(*protocols: Protocol, interface_type: str):
                     f'{set(map(lambda x: x.__name__, getattr(model, "support_protocols")[interface_type]))}')
         # 向各Interface对象注册协议支持的属性
         for interface in interfaces_in_model:
-            [interface.init_attr(x) for x in reduce(lambda a, b: a + b, map(lambda p: p.attrs, protocols))]
+            for protocol in protocols:
+                [interface.init_attr(x, getattr(protocol, x))
+                 for x in filter(lambda attr: issubclass(type(getattr(protocol, attr)), Field), protocol.__dict__.keys())]
         return model
 
     return wrap
