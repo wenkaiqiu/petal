@@ -1,8 +1,7 @@
 import logging
 
-from models.fields import Field
-from .protocols import Protocol, InterfaceNotExist
-from .interfaces import *
+from .interfaces import Interface
+from .protocols import Protocol, ProtocolNotSupport
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('model_base')
@@ -15,7 +14,8 @@ __global_register = set()
 def _register_model(cls: object, model_id):
     global __global_register
     identifier = f'{cls.__name__}>>{model_id}'
-    if identifier in __global_register: raise ValueError(f'model {identifier} already registered.')
+    if identifier in __global_register:
+        raise ValueError(f'model {identifier} already registered.')
     __global_register.add(identifier)
     logger.info(f'register model {identifier} success')
 
@@ -24,7 +24,8 @@ def list_all_registered():
     return __global_register
 
 
-class OperableTrait: pass
+class OperableTrait:
+    pass
 
 
 class ModelType(type):
@@ -38,14 +39,14 @@ class ModelType(type):
 class Model(OperableTrait, metaclass=ModelType):
     def __new__(cls, *args, **kwargs):
         _register_model(cls, args[0])
-        return cls
+        return super().__new__(cls)
 
     def __init__(self, logical_id):
         self.logical_id = logical_id
 
     @classmethod
     def has(cls, interface):
-        return interface in cls.interfaces()
+        return interface in cls.interface_types()
 
     @classmethod
     def interfaces(cls):
@@ -53,11 +54,10 @@ class Model(OperableTrait, metaclass=ModelType):
         获取Model中的所有Interface对象
         :return: set(<Interface>)
         """
-        # return set(filter(lambda x: issubclass(type(x), Interface),
-        #                   map(lambda x: getattr(cls, x),
-        #                       filter(lambda x: not x.startswith('__'),
-        #                              cls.__dict__.keys()))))
-        return cls.interface
+        return list(filter(lambda x: issubclass(type(x), Interface),
+                           map(lambda x: getattr(cls, x),
+                               filter(lambda x: not x.startswith('__'),
+                                      cls.__dict__.keys()))))
 
     @classmethod
     def interface_types(cls):
@@ -65,54 +65,24 @@ class Model(OperableTrait, metaclass=ModelType):
         获取Model中的所有Interface类型
         :return: set(<InterfaceType>)
         """
-        # return set(filter(lambda x: issubclass(x, Interface),
-        #                   map(lambda x: type(getattr(cls, x)),
-        #                       filter(lambda x: not x.startswith('__'),
-        #                              cls.__dict__.keys()))))
-        return set(map(lambda x: type(x), cls.interface))
+        return set(filter(lambda x: issubclass(x, Interface),
+                          map(lambda x: type(getattr(cls, x)),
+                              filter(lambda x: not x.startswith('__'),
+                                     cls.__dict__.keys()))))
+
+    def update_interface(self, **kwargs):
+        pass
 
 
-def compatible(*protocols: Protocol, interface_type: str):
+def compatible(*protocols: Protocol):
     def wrap(model: Model):
-        # 检查接口类型
-        interfaces_in_model = set(filter(lambda x: type(x).__name__ == interface_type, model.interfaces()))
-        if len(interfaces_in_model) == 0:
-            raise InterfaceNotExist()
-        # 注册各Interface支持的协议类型
-        if not hasattr(model, 'support_protocols'):
-            setattr(model, 'support_protocols', {})
-        getattr(model, 'support_protocols')[interface_type] = protocols
-        logger.info(f'<{interface_type}> on <{model.__name__}> support '
-                    f'{set(map(lambda x: x.__name__, getattr(model, "support_protocols")[interface_type]))}')
-        # 向各Interface对象注册协议支持的属性
-        for interface in interfaces_in_model:
-            for protocol in protocols:
-                [interface.init_attr(x, getattr(protocol, x))
-                 for x in filter(lambda attr: issubclass(type(getattr(protocol, attr)), Field), protocol.__dict__.keys())]
+        # name = 'required_interface_set'
+        # if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interfaces())),
+        #            protocols)): raise ProtocolNotSupport()
+        setattr(model, 'support_protocols', protocols)
         return model
 
     return wrap
-
-
-def register_interface(interfaces):
-    def register(model: Model):
-        model.interface = []
-        for item in interfaces:
-            if item.get('subcard_number'):
-                len_port = len(item['port_number'])
-                for i in range(item["num"]):
-                    index_1 = i // len_port
-                    index_2 = i % len_port
-                    temp = item.copy()
-                    temp['subcard_number'] = item['subcard_number'][index_1]
-                    temp['port_number'] = item['port_number'][index_2]
-                    model.interface.append(eval(item['type'] + f"({temp})"))
-            else:
-                for i in range(item["num"]):
-                    temp = item.copy()
-                    model.interface.append(eval(item['type'] + f"({temp})"))
-        return model
-    return register
 
 
 class ModelGroup(OperableTrait):
