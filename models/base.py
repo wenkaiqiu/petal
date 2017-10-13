@@ -70,7 +70,7 @@ class Model(OperableTrait, metaclass=ModelType):
                               filter(lambda x: not x.startswith('__'),
                                      cls.__dict__.keys()))))
 
-    def update_interface(self, **kwargs):
+    def update_attr_to_interface(self, **kwargs):
         pass
 
 
