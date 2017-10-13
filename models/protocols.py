@@ -15,14 +15,6 @@ class ProtocolType(type):
 
 class Protocol(metaclass=ProtocolType):
     @classmethod
-    def interfaces(cls):
-        return Counter(
-            map(lambda attr: type(getattr(cls, attr)),
-                filter(lambda attr: issubclass(type(getattr(cls, attr)), Interface), dir(cls)))
-        )
-
-    # noinspection PyUnusedLocal
-    @classmethod
     def validate(cls, model):
         """
         自定义协议和模型检查流程，在接口检查后自动调用

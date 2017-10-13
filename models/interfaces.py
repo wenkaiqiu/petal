@@ -4,10 +4,6 @@ class InterfaceType(type):
     def __repr__(cls): return f'<Interface: {cls.__name__}>'
 
 
-class Port:
-    pass
-
-
 class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
         self.bundle = 'count' in kwargs
