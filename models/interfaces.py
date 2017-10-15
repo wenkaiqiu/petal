@@ -4,10 +4,6 @@ class InterfaceType(type):
     def __repr__(cls): return f'<Interface: {cls.__name__}>'
 
 
-class Port:
-    pass
-
-
 class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
         self.bundle = 'count' in kwargs
@@ -19,6 +15,17 @@ class Interface(metaclass=InterfaceType):
         len_port_number = self.port_number if type(self.port_number) == int else len(self.port_number)
         self.ports = [{'subcard_number': (base + i // len_port_number), 'port_number': (i % len_port_number + 1)}
                       for i in range(self.count)]
+
+    def get_interface(self, subcard_number, port_number):
+        if type(self.subcard_number) is int:
+            if subcard_number == self.subcard_number:
+                return self.ports[port_number - 1]
+        elif type(self.subcard_number) is range:
+            if subcard_number in self.subcard_number:
+                len_port_number = self.port_number if type(self.port_number) == int else len(self.port_number)
+                index = (subcard_number - self.subcard_number[0]) * len_port_number + port_number - 1
+                return self.ports[index]
+        return None
 
 
 class InterfaceRJ45(Interface):

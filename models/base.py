@@ -70,15 +70,12 @@ class Model(OperableTrait, metaclass=ModelType):
                               filter(lambda x: not x.startswith('__'),
                                      cls.__dict__.keys()))))
 
-    def update_interface(self, **kwargs):
+    def update_attr_to_interface(self, **kwargs):
         pass
 
 
 def compatible(*protocols: Protocol):
     def wrap(model: Model):
-        # name = 'required_interface_set'
-        # if any(map(lambda p: (hasattr(p, name) and not getattr(p, name).issubset(model.interfaces())),
-        #            protocols)): raise ProtocolNotSupport()
         setattr(model, 'support_protocols', protocols)
         return model
 

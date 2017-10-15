@@ -1,7 +1,11 @@
+import logging
 from collections import Counter
 from functools import reduce
-
 from models.interfaces import Interface
+
+logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logger = logging.getLogger('protocols')
+logger.setLevel(logging.DEBUG)
 
 
 class ProtocolType(type):
@@ -10,14 +14,6 @@ class ProtocolType(type):
 
 
 class Protocol(metaclass=ProtocolType):
-    @classmethod
-    def interfaces(cls):
-        return Counter(
-            map(lambda attr: type(getattr(cls, attr)),
-                filter(lambda attr: issubclass(type(getattr(cls, attr)), Interface), dir(cls)))
-        )
-
-    # noinspection PyUnusedLocal
     @classmethod
     def validate(cls, model):
         """
@@ -53,27 +49,31 @@ class ProtocolTrunk(Protocol):
 class ProtocolStack(Protocol):
     @classmethod
     def op(cls, arith_list, **kwargs):
-        print(f'param: {kwargs}')
-        param = kwargs['params']
-        count = 0
-        for arith in arith_list:
-            # 设置stack属性
+        logger.info(f'param in <ProtocolStack>: {kwargs}')
+        param_list = kwargs['params']
+
+        for arith, param in map(lambda x, y: (x, y), arith_list, param_list):
+            # print(arith, param)
+            # todo: 添加try-catch处理
+            if not cls._check_protocol_support(arith):
+                raise ValueError(f"device {arith} do not support {cls}")
+            # 设置设备的stack属性
             if not hasattr(arith, 'stack'):
-                setattr(arith, 'stack', cls.init_param(arith))
-            arith.stack.update(param[count])
+                setattr(arith, 'stack', cls.init_attrs(arith))
+            arith.stack.update(param)
             # 设置interface属性
-            # 指定参数时
-            if 'interface' in param[count] and 'stack_port' in param[count]:
+            # 1.指定参数时
+            if 'interface' in param and 'stack_port' in param:
                 # 两层map，第一层获得（stack接口，业务接口列表）列表，第二层获得（（stack接口，业务接口）列表
-                list1 = map(lambda x, y: list(map(lambda z: (z, x), y)),
-                            param[count]['stack_port'], param[count]['interface'])
+                list1 = map(lambda x, y: map(lambda z: (z, x), y),
+                            param['stack_port'], param['interface'])
                 list2 = reduce(lambda x, y: x + y, list1)  # 求值,合并列表
-                for item in list2:
-                    arith.update_interface(port_id=item[0], stack_port=item[1])
-            count += 1
+                for interface_id, stack_port in list2:
+                    # print(interface_id, stack_port)
+                    arith.update_attr_to_interface(interface_id=interface_id, stack_port=stack_port)
 
     @classmethod
-    def init_param(cls, arith):
+    def init_attrs(cls, arith):
         return {
             'enable': True,
             'domain_id': None,
@@ -81,5 +81,10 @@ class ProtocolStack(Protocol):
             'priority': 100
         }
 
+    @classmethod
+    def _check_protocol_support(cls, model):
+        return cls in model.support_protocols
 
-class ProtocolNotSupport(Exception): pass
+
+class ProtocolNotSupport(Exception):
+    pass
