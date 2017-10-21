@@ -1,0 +1,39 @@
+{
+  "devices": [
+    {
+      "type": "CX310",
+      "logical_id": "1321",
+      "slot_id": "2"
+    },
+    {
+      "type": "CX310",
+      "logical_id": "1322",
+      "slot_id": "3"
+    }
+  ],
+  "operations": [
+    {
+      "type": "ProtocolStack",
+      "device": [
+        "1321",
+        "1322"
+      ],
+      "params": [
+        {
+          "domain_id": 10,
+          "member_id": 2,
+          "priority": 150,
+          "stack_port": [1],
+          "interface": [["18/1"]]
+        },
+        {
+          "domain_id": 10,
+          "member_id": 3,
+          "priority": 150,
+          "stack_port": [1],
+          "interface": [["18/1"]]
+        }
+      ]
+    }
+  ]
+}

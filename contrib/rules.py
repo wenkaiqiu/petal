@@ -19,7 +19,7 @@ class CX310(Model):
     interface_ge = InterfaceInternal(count=2, speed='1', subcard_number=19, port_number=range(1, 3))
 
     def __init__(self, *args, **kwargs):
-        super().__init__(args[0])
+        super().__init__(kwargs['logical_id'])
         self.slot_id = kwargs['slot_id'] if 'slot_id' in kwargs else None
         if self.slot_id is None:
             raise ValueError("slot_id is need for init of <CX310>")
@@ -42,3 +42,8 @@ class CX310(Model):
         interface = filter(lambda x: x is not None,
                            map(lambda y: y.get_interface(subcard_number, port_number), self.interfaces()))
         return next(interface)
+
+    def device_config(self):
+        pass
+    def interface_config(self):
+        pass

@@ -38,7 +38,7 @@ class ModelType(type):
 
 class Model(OperableTrait, metaclass=ModelType):
     def __new__(cls, *args, **kwargs):
-        _register_model(cls, args[0])
+        _register_model(cls, kwargs['logical_id'])
         return super().__new__(cls)
 
     def __init__(self, logical_id):
