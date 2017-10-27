@@ -1,0 +1,29 @@
+{
+  "T_Device": {
+    "id": true,
+    "uuid": true,
+    "name": true,
+    "model_type": true,
+    "description": true,
+    "parent_id": true,
+    "space": false
+  },
+  "T_Link": {
+    "id": true,
+    "name": true,
+    "device_id_a": true,
+    "device_id_b": true,
+    "port_a": true,
+    "port_b": true,
+    "link_type": true,
+    "usage": true,
+    "band_width": false,
+    "length": false
+  },
+  "T_Operation": {
+    "type": true,
+    "devices": true,
+    "params": true
+  }
+
+}

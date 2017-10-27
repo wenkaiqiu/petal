@@ -1,1 +1,1 @@
-from .base import Model, compatible
+from .models import Model

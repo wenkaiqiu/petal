@@ -8,14 +8,21 @@ logger = logging.getLogger('protocols')
 logger.setLevel(logging.DEBUG)
 
 
-class ProtocolType(type):
+class OperableTrait:
+    @classmethod
+    def op(cls, *arith_list, **kwargs): raise NotImplemented()
+
+
+class FunctionType(type):
     def __str__(cls):
         return f'<Protocol: {cls.__name__}>'
 
 
-class Protocol(metaclass=ProtocolType):
+class Function(OperableTrait, metaclass=FunctionType):
+    dependencies = []
+
     @classmethod
-    def validate(cls, model):
+    def validate(cls, devices):
         """
         自定义协议和模型检查流程，在接口检查后自动调用
         :return: 检查通过返回真，否则 raise对应错误(推荐) 或者 返回False
@@ -23,10 +30,15 @@ class Protocol(metaclass=ProtocolType):
         return True
 
     @classmethod
-    def op(cls, arith_list): raise NotImplemented()
+    def _check_protocol_support(cls, device):
+        return cls.name in device.support_functions
+
+    # @classmethod
+    # def _check_dependencies(cls, device):
+    #     for
 
 
-class ProtocolIP(Protocol):
+class FunctionIP(Function):
     attrs = ['bootproto', 'broadcast', 'ipaddr', 'netmask', 'network']
 
     @classmethod
@@ -34,26 +46,29 @@ class ProtocolIP(Protocol):
         print(f'op on {arith_list}')
 
 
-class ProtocolVLAN(Protocol):
+class FunctionVLAN(Function):
     @classmethod
     def op(cls, arith_list):
         print(f'op on {arith_list}')
 
 
-class ProtocolTrunk(Protocol):
+class FunctionTrunk(Function):
     @classmethod
     def op(cls, arith_list):
         print(f'op on {arith_list}')
 
 
-class ProtocolStack(Protocol):
+class FunctionStack(Function):
+    name = "stack"
+
     @classmethod
-    def op(cls, arith_list, **kwargs):
-        logger.info(f'param in <ProtocolStack>: {kwargs}')
+    def op(cls, *arith_list, **kwargs):
+        logger.info(f'param in <FunctionStack>: {kwargs}')
         param_list = kwargs['params']
-
+        print("----------")
+        print(arith_list)
         for arith, param in map(lambda x, y: (x, y), arith_list, param_list):
-            # print(arith, param)
+            print(arith, param)
             # todo: 添加try-catch处理
             if not cls._check_protocol_support(arith):
                 raise ValueError(f"device {arith} do not support {cls}")
@@ -82,8 +97,12 @@ class ProtocolStack(Protocol):
         }
 
     @classmethod
-    def _check_protocol_support(cls, model):
-        return cls in model.support_protocols
+    def validate(cls, devices):
+        super().validate(devices)
+        if not cls._check_protocol_support(devices):
+            raise ProtocolNotSupport("not support FunctionStack")
+
+
 
 
 class ProtocolNotSupport(Exception):

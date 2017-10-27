@@ -1,0 +1,7 @@
+{
+  "id": true,
+  "uuid": true,
+  "name": true,
+  "model_type": true,
+  "description": true
+}

@@ -1,3 +1,10 @@
+import logging
+
+logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logger = logging.getLogger('interfaces')
+logger.setLevel(logging.DEBUG)
+
+
 class InterfaceType(type):
     def __str__(cls): return f'<Interface: {cls.__name__}>'
 
@@ -6,35 +13,99 @@ class InterfaceType(type):
 
 class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
-        self.bundle = 'count' in kwargs
-        self.count = kwargs['count'] if 'count' in kwargs else 1
-        self.speed = kwargs['speed'] if 'speed' in kwargs else None
-        self.subcard_number = kwargs['subcard_number'] if 'subcard_number' in kwargs else 0  # int or range
-        self.port_number = kwargs['port_number'] if 'port_number' in kwargs else 1
-        base = self.subcard_number if type(self.subcard_number) == int else self.subcard_number[0]
-        len_port_number = self.port_number if type(self.port_number) == int else len(self.port_number)
-        self.ports = [{'subcard_number': (base + i // len_port_number), 'port_number': (i % len_port_number + 1)}
-                      for i in range(self.count)]
-
-    def get_interface(self, subcard_number, port_number):
-        if type(self.subcard_number) is int:
-            if subcard_number == self.subcard_number:
-                return self.ports[port_number - 1]
-        elif type(self.subcard_number) is range:
-            if subcard_number in self.subcard_number:
-                len_port_number = self.port_number if type(self.port_number) == int else len(self.port_number)
-                index = (subcard_number - self.subcard_number[0]) * len_port_number + port_number - 1
-                return self.ports[index]
-        return None
+        # logger.info(f"init {self.__class__}")
+        # logger.info(f"interface info: <{kwargs}>")
+        self.count = kwargs['count']
+        self.type = kwargs['type']
+        self.interface_type = kwargs['interface_type']
+        self.speed = kwargs['speed']
+        self.subcard_number = kwargs['subcard_number']
+        self.port_number = kwargs['port_number']
+        self.slot_id = kwargs['slot_id']
+        self.name = kwargs["name"] + self.slot_id + "/" + str(self.subcard_number) + "/" + str(self.port_number)  # 10GE1/0/47
 
 
-class InterfaceRJ45(Interface):
+class PhysicalInterface(Interface):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class EternetInterface(PhysicalInterface):
     pass
 
 
-class InterfaceSFPP(Interface):
+class FCInterface(PhysicalInterface):
     pass
 
 
-class InterfaceInternal(Interface):
+class FunctionInterface(Interface):
     pass
+
+
+class InterfaceManager:
+    # 注册已有接口模型
+    __global_register = {
+        "Ethernet": EternetInterface,
+        "FC": FCInterface
+    }
+
+    @classmethod
+    def _check_interface_info(cls, interface_info):
+        lack = []
+        for item in cls.conf:
+            if item not in interface_info:
+                lack.append(item)
+        return lack
+
+    @classmethod
+    def _get_interface_type(cls, type):
+        return cls.__global_register.get(type, None)
+
+    @classmethod
+    def set_conf(cls, conf):
+        cls.conf = list(filter(lambda x: conf[x], conf))
+        logger.info("<InterfaceManager> set_conf")
+
+    @classmethod
+    def register_interface_to_device(cls, interface_info, device):
+        lack = cls._check_interface_info(interface_info)
+        if lack:
+            raise AttributeError(f"<register_interface_to_device> lack attr {lack} in interface_info")
+        # init device
+        if not hasattr(device, "interfaces"):
+            setattr(device, "interfaces", {})
+        device_interfaces = getattr(device, "interfaces")
+        logger.info(f"register {interface_info['type']} interface to {type(device)}")
+        interface_info.update({"slot_id": device.slot_id[0]})
+        interfaces = cls.generate_interface(interface_info)
+        for interface in interfaces:
+            device_interfaces.update({interface.name: interface})
+        # for item in device_interfaces:
+        #     print({item: device_interfaces[item].__dict__})
+
+    @classmethod
+    def generate_interface(cls, interface_info):
+        i_type = interface_info["type"]
+        model = cls._get_interface_type(i_type)
+        # FC端口（MX）无子板号
+        # len_subcard = len(interface_info["subcard_number"])
+        # len_port = len(interface_info["port_number"])
+        # if interface_info["count"] != len_port*len_subcard:
+        #     raise ValueError("Error value in interface_info[\"count\"]")
+
+        interfaces = []
+        new_info = interface_info.copy()
+        for i in interface_info["subcard_number"]:
+            for j in interface_info["port_number"]:
+                new_info.update({"subcard_number": i, "port_number": j})
+                interfaces.append(model(**new_info))
+        return interfaces
+
+    @classmethod
+    def list_all_registered_in_device(cls, device):
+        return device.interfaces
+
+    @classmethod
+    def get_interface_in_device(cls, interface_name, device):
+        interface = filter(lambda x: x.name == interface_name, device.interfaces)
+        return interface.__next__
