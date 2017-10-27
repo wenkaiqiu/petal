@@ -1,0 +1,28 @@
+[
+  {
+    "model_type": "chasis",
+    "name": "E9000",
+    "category": "---------",
+    "properties": {
+      "name": true,
+      "id": true,
+      "description": true,
+      "parent_id": false
+    }
+  },
+  {
+    "model_type": "switch",
+    "name": "CX311",
+    "category": "---------",
+    "properties": {
+      "name": true,
+      "id": true,
+      "description": true,
+      "uuid": true,
+      "parent_id": false,
+      "slot_id": true,
+      "support_functions": true,
+      "ports": true
+    }
+  }
+]
