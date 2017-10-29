@@ -17,19 +17,28 @@ def link(device_a: Device, device_b: Device, link_info):
 
 
 def _check_link(*lst):
-    return True
+    device_1 = lst[0]
+    device_2 = lst[1]
+    # print("-----------check_link--------------")
+    # print(device_2.id)
+    # print(device_1.links)
+    # return True
+    if device_2.id in device_1.links:
+        return True
+    else:
+        return False
 
 
 def op(func: OperableTrait, *arith_list, **kwargs):
-    print("1111111111111")
-    print(arith_list)
     lst = [arith.group if isinstance(arith, DeviceGroup) else [arith] for arith in arith_list]
-    print(lst)
-    for p in product(*lst):
-        if not _check_link(*lst):
+    params = kwargs["params"]
+    for index, p in enumerate(product(*lst)):
+        if not _check_link(*p):
             return False
-        func.op(p[0], **kwargs)
-        func.op(p[1], **kwargs)
+        tag1 = func.op(p[0], **(params[index][0]))
+        tag2 = func.op(p[1], **(params[index][1]))
+        if not tag1 or not tag2:
+            return False
         logger.info(f'operate {func} on {p}')
     return True  # 出错时返回False
 

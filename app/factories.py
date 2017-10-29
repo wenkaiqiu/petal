@@ -2,7 +2,7 @@ import logging
 from functools import reduce
 
 from app.database import Database
-from models.actions import link, op
+from models.actions import link, op, group
 from models.devices import DeviceGroup
 from models.functions import FunctionStack
 from models.models import ModelManager
@@ -91,11 +91,11 @@ class OperationFactory:
 
     def generate(self, operation_info, devices):
         logger.info("<OperationFactory> generate operation instance")
-        print(operation_info['devices'])
+        print("operation_info['devices']: " + str(operation_info['devices']))
         # 获取设备实例
         op_devices = list(map(
-            lambda x: devices.get(x) if not isinstance(x, list) else DeviceGroup(
-                list(map(lambda y: devices.get(y), x))),
+            lambda x: devices.get(x) if not isinstance(x, list) else group(
+                *list(map(lambda y: devices.get(y), x))),
             operation_info['devices']))
         for device in reduce(lambda a, b: a + b,
                              map(lambda y: [y] if not isinstance(y, DeviceGroup) else y.group, op_devices)):

@@ -12,6 +12,9 @@ class InterfaceType(type):
 
 
 class Interface(metaclass=InterfaceType):
+    def __repr__(self):
+        return f'{self.name.replace("GE", "GE ")}'
+
     def __init__(self, *args, **kwargs):
         # logger.info(f"init {self.__class__}")
         # logger.info(f"interface info: <{kwargs}>")
@@ -22,7 +25,14 @@ class Interface(metaclass=InterfaceType):
         self.subcard_number = kwargs['subcard_number']
         self.port_number = kwargs['port_number']
         self.slot_id = kwargs['slot_id']
-        self.name = kwargs["name"] + self.slot_id + "/" + str(self.subcard_number) + "/" + str(self.port_number)  # 10GE1/0/47
+        self.name = kwargs["name"]+ self.slot_id + "/" + str(self.subcard_number) + "/" + str(self.port_number)  # 10GE1/0/47
+        self.attrs = {}
+
+    def set_attr(self, attr_name, value):
+        if attr_name not in self.attrs:
+            self.attrs.update({attr_name: value})
+        else:
+            self.attrs[attr_name] = value
 
 
 class PhysicalInterface(Interface):

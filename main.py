@@ -1,5 +1,6 @@
 import json
 import logging
+from functools import reduce
 
 from app.database import Database
 from app.factories import DeviceFactory, LinkFactory, OperationFactory
@@ -101,9 +102,20 @@ for operation_info in operations_info:
 operation_validator = OperationValidator()
 op_failure = operation_validator.validate(operations)
 
-# generator = ConfigurationGenerator()
-# configs = generator.generate(devices)
-#
-# for config in configs:
-#     with open(f"./config-{config.name}", "w") as output:
-#         output.write(config.content)
+generator = ConfigurationGenerator()
+configs = generator.generate(devices.values())
+
+for config in configs:
+    # print(config)
+    for name, content in config.items():
+        # print(content)
+        with open(f"./output/config-{name}", "w") as output:
+            if not content:
+                output.close()
+            else:
+                for item in content:
+                    # print(item)
+                    res = map(lambda a: a + "\n", reduce(lambda x, y: x + y, item.values()))
+                    for line in res:
+                        output.write(line)
+            output.close()

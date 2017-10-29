@@ -4,7 +4,8 @@
     "uuid": "E9000",
     "name": "E9000",
     "model_type": "E9000",
-    "description": "E9000"
+    "description": "E9000",
+    "support_functions": []
   },
   {
     "id": "2",
