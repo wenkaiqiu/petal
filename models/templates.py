@@ -9,7 +9,7 @@ logger = logging.getLogger('models')
 logger.setLevel(logging.DEBUG)
 
 
-class ModelType(type):
+class TemplateType(type):
     def __str__(cls):
         return f'<Model: {cls.__name__}>'
 
@@ -17,7 +17,7 @@ class ModelType(type):
         return f'<Model: {cls.__name__}>'
 
 
-class Model(metaclass=ModelType):
+class Template(metaclass=TemplateType):
     @classmethod
     def set_device_conf(cls, device_conf):
         logger.info("configure <Model>")
@@ -55,7 +55,7 @@ class Model(metaclass=ModelType):
         pass
 
 
-class ChasisModel(Model):
+class ChasisTemplate(Template):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -71,7 +71,7 @@ class ChasisModel(Model):
         return device
 
 
-class SwitchModel(Model):
+class SwitchTemplate(Template):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -110,8 +110,8 @@ class SwitchModel(Model):
 
 # 注册已有设备模型
 __global_register = {
-    "chasis": ChasisModel,
-    "switch": SwitchModel
+    "chasis": ChasisTemplate,
+    "switch": SwitchTemplate
 }
 
 

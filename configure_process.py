@@ -9,7 +9,7 @@ from app.parser import Parser
 from app.validators import OperationValidator
 from models.devices import DeviceManager
 from models.interfaces import InterfaceManager
-from models.models import ModelManager, Model
+from models.templates import ModelManager, Template
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('main')
@@ -53,7 +53,7 @@ logger.info("configure <Model> start")
 device_conf_path = "./conf/device.json"
 with open(device_conf_path, "r") as device_conf_json:
     device_conf = json.load(device_conf_json)
-    Model.set_device_conf(device_conf)
+    Template.set_device_conf(device_conf)
 logger.info("configure <Model> end")
 
 # 配置Interface
@@ -119,3 +119,14 @@ for config in configs:
                     for line in res:
                         output.write(line)
             output.close()
+
+post_r = generator.genarate_topo(devices.values())
+print(post_r)
+
+import requests
+r = requests.post("http://127.0.0.1:5000/request", data={"topo_json": json.dumps(post_r)})
+print(r.text)
+
+import webbrowser
+webbrowser.open("http://127.0.0.1:5000/render/" + str(json.loads(r.text)["result"]))
+#

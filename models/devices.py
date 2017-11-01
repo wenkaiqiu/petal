@@ -11,6 +11,7 @@ class Device:
         self.uuid = kwargs["uuid"]
         self.name = kwargs["name"]
         self.model_type = kwargs["model_type"]
+        self.parent_id = kwargs["parent_id"]
         self.links = {}
 
     def link(self, link_to, link_info):
@@ -23,6 +24,23 @@ class Device:
             "usage": link_info["usage"]
         }
         self.links.update({link['to_id']: link})
+
+    def get_attrs_json(self):
+        json = {}
+        # 添加基础属性
+        json.update({
+            "id": self.id,
+            "uuid": self.uuid,
+            "name": self.name,
+            "model_type": self.model_type
+        })
+        # 添加接口属性
+        interfaces = getattr(self, "interfaces", None)
+        if interfaces:
+            json.update({"interfaces": []})
+            for interface in interfaces.values():
+                json["interfaces"].append(interface.name)
+        return json
 
 
 class DeviceGroup:

@@ -5,7 +5,7 @@ from app.database import Database
 from models.actions import link, op, group
 from models.devices import DeviceGroup
 from models.functions import FunctionStack
-from models.models import ModelManager
+from models.templates import ModelManager
 from utils.exceptions import error_string
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
@@ -35,6 +35,7 @@ class DeviceFactory:
         model_name = device_info["model_name"]
         # todo: 可能需要处理异常
         device_detail = self.get_device_detail(device_info)
+        device_detail.update({"parent_id": device_info["parent_id"]})
         try:
             device = ModelManager.get_model(model_name).generate(device_detail)
         except AttributeError as e:
