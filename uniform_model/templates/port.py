@@ -1,17 +1,19 @@
 import logging
 
+from uniform_model import Device
+
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('interfaces')
+logger = logging.getLogger('uniform_model.devices.port')
 logger.setLevel(logging.DEBUG)
 
 
-class InterfaceType(type):
-    def __str__(cls): return f'<Interface: {cls.__name__}>'
+class Port(Device):
+    """
+    交换模块下的端口
+    """
+    def __repr__(self):
+        return f'{self.name.replace("GE", "GE ")}'
 
-    def __repr__(cls): return f'<Interface: {cls.__name__}>'
-
-
-class Interface(metaclass=InterfaceType):
     def __init__(self, *args, **kwargs):
         # logger.info(f"init {self.__class__}")
         # logger.info(f"interface info: <{kwargs}>")
@@ -22,32 +24,17 @@ class Interface(metaclass=InterfaceType):
         self.subcard_number = kwargs['subcard_number']
         self.port_number = kwargs['port_number']
         self.slot_id = kwargs['slot_id']
-        self.name = kwargs["name"] + self.slot_id + "/" + str(self.subcard_number) + "/" + str(self.port_number)  # 10GE1/0/47
+        self.name = kwargs["name"]+ self.slot_id + "/" + str(self.subcard_number) + "/" + str(self.port_number)  # 10GE1/0/47
+        self.attrs = {}
 
-
-class PhysicalInterface(Interface):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class EternetInterface(PhysicalInterface):
-    pass
-
-
-class FCInterface(PhysicalInterface):
-    pass
-
-
-class FunctionInterface(Interface):
-    pass
+    def set_attr(self, attr_name, value):
+        if attr_name not in self.attrs:
+            self.attrs.update({attr_name: value})
+        else:
+            self.attrs[attr_name] = value
 
 
 class InterfaceManager:
-    # 注册已有接口模型
-    __global_register = {
-        "Ethernet": EternetInterface,
-        "FC": FCInterface
-    }
 
     @classmethod
     def _check_interface_info(cls, interface_info):

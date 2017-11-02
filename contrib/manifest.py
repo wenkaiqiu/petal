@@ -2,7 +2,7 @@
 #
 # from contrib.rules import CX310, FunctionIP
 # from models.actions import op
-# from models.models import list_all_registered
+# from uniform_model.uniform_model import list_all_registered
 # from models.functions import FunctionStack
 #
 # logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')

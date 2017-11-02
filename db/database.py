@@ -15,10 +15,10 @@ class Database:
 
     @classmethod
     def get_models(cls):
-        with open("./mock/models.json") as models_json:
+        with open("./mock/uniform_model.json") as models_json:
             models = json.load(models_json)
 
-        logger.info(f"get models: {models}")
+        logger.info(f"get uniform_model: {uniform_model}")
         return models
 
     @classmethod
