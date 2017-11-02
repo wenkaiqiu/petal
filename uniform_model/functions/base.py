@@ -1,9 +1,4 @@
 import logging
-from jinja2 import Environment, PackageLoader, select_autoescape
-
-env = Environment(
-    loader=PackageLoader('.', 'templates'),
-)
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('uniform_model.functions.base')
@@ -31,7 +26,7 @@ class Function(OperableTrait, metaclass=FunctionType):
         """
         try:
             if not cls._check_protocol_support(device):
-                raise ProtocolNotSupport(f"device {device.id} not support FunctionStack")
+                raise ProtocolNotSupport(f'device {device.id} not support FunctionStack')
             if not cls._check_dependencies(device):
                 return False
         except ProtocolNotSupport as e:
@@ -45,14 +40,12 @@ class Function(OperableTrait, metaclass=FunctionType):
 
     @classmethod
     def _check_dependencies(cls, device):
-        for dependency in cls.dependencies:
-            if not getattr(device, dependency).enable:
-                return False
-        return True
+        return all(getattr(device, dependency).enable
+                   for dependency in cls.dependencies)
 
-    def generate_conf(self):
-        pass
+    def generate_conf(self): raise NotImplementedError()
+
+    def generate_revoke_conf(self): raise NotImplementedError()
 
 
-class ProtocolNotSupport(Exception):
-    pass
+class ProtocolNotSupport(Exception): pass

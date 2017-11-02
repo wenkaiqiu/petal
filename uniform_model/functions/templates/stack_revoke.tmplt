@@ -11,8 +11,8 @@ interface stack-port {{ device.member_id }}/{{ port_id }}
 
 {% for port_id, interface in device.stack_port.items() %}
 interface {{ interface[1:-1] }}
-port mode stack
-stack-port {{ device.member_id }}/{{ port_id }}
+undo port mode stack
+undo stack-port {{ device.member_id }}/{{ port_id }}
 commit
 quit
 {% endfor %}
