@@ -1,6 +1,7 @@
 import logging
+from jinja2 import Template
 
-from uniform_model.functions.base import Function
+from uniform_model.functions.base import Function, env
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('uniform_model.functions.stack')
@@ -89,23 +90,7 @@ class FunctionStack(Function):
         self.stack_port = {}
 
     def generate_conf(self):
-        output = []
-        # todo: 是否需要进行检查？
-        output.append("stack")
-        output.append("stack member " + str(self.member_id) + " priority " + str(self.priority))
-        output.append("stack member " + str(self.member_id) + " domain " + str(self.domain_id))
-        output.append("quit")
-        output.append("commit")
-        # 创建堆叠端口
-        output.append("system-view")
-        for port_id in self.stack_port:
-            output.append("interface stack-port " + str(self.member_id) + "/" + str(port_id))
-        # 配置业务口为堆叠物理端口，将业务口加入堆叠端口
-        for port_id, interface in self.stack_port.items():
-            # print("interface "+repr(interface)[1:-1])
-            output.append("interface "+repr(interface)[1:-1])
-            output.append("port mode stack")
-            output.append("stack-port "+str(self.member_id) + "/" + str(port_id))
-            output.append("commit")
-            output.append("quit")
-        return output
+        template = env.get_template('stack.tmplt')
+        result = template.render(device=self)
+        print(result)
+        return result.split('\n')

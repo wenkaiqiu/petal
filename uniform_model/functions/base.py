@@ -1,4 +1,9 @@
 import logging
+from jinja2 import Environment, PackageLoader, select_autoescape
+
+env = Environment(
+    loader=PackageLoader('.', 'templates'),
+)
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('uniform_model.functions.base')

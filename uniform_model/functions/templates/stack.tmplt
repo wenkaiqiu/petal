@@ -1,0 +1,20 @@
+stack
+stack member {{ device.member_id }} priority {{ device.priority }}
+stack member {{ device.member_id }} domain {{ device.domain_id }}
+quit
+commit
+system-view
+
+{% for port_id in device.stack_port %}
+interface stack-port {{ device.member_id }}/{{ port_id }}
+{% endfor %}
+
+{% for port_id, interface in device.stack_port.items() %}
+interface {{ interface[1:-1] }}
+{% endfor %}
+
+port mode stack
+
+stack-port {{ device.member_id }}/{{ port_id }}
+commit
+quit
