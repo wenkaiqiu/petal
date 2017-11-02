@@ -1,17 +1,16 @@
 import logging
 
+from uniform_model import Device
+
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('interfaces')
+logger = logging.getLogger('uniform_model.devices.port')
 logger.setLevel(logging.DEBUG)
 
 
-class InterfaceType(type):
-    def __str__(cls): return f'<Interface: {cls.__name__}>'
-
-    def __repr__(cls): return f'<Interface: {cls.__name__}>'
-
-
-class Interface(metaclass=InterfaceType):
+class Port(Device):
+    """
+    交换模块下的端口
+    """
     def __repr__(self):
         return f'{self.name.replace("GE", "GE ")}'
 
@@ -35,29 +34,7 @@ class Interface(metaclass=InterfaceType):
             self.attrs[attr_name] = value
 
 
-class PhysicalInterface(Interface):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class EternetInterface(PhysicalInterface):
-    pass
-
-
-class FCInterface(PhysicalInterface):
-    pass
-
-
-class FunctionInterface(Interface):
-    pass
-
-
 class InterfaceManager:
-    # 注册已有接口模型
-    __global_register = {
-        "Ethernet": EternetInterface,
-        "FC": FCInterface
-    }
 
     @classmethod
     def _check_interface_info(cls, interface_info):

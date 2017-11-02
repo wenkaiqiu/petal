@@ -1,4 +1,4 @@
-from solver import Solver
+from app.solver import Solver
 
-solver = Solver('models')
+solver = Solver('uniform_model')
 solver.solve('manifest', 'requirements')

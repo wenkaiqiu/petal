@@ -1,11 +1,17 @@
 import logging
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('devices')
+logger = logging.getLogger('uniform_model.devices.device')
 logger.setLevel(logging.DEBUG)
 
 
 class Device:
+    """
+    Device（设备实例的类型）。设备实例对应一个实际的物理单元（同时对应设备数据库的一条记录）。
+    程序中所有设备实例都是Device类型，由Template生成。不同Template会对初始设备实例进行加工，注入对应Template所应有的属性和方法。
+    如一个CX310设备实例由SwitchTemplate注入Switch共有的属性和方法方法，故不再设子类，由model属性区分设备类型。
+    从属性上来说，device含有设备数据库中的model，device，wire，part，space和status的所有信息。
+    """
     def __init__(self, *args, **kwargs):
         self.id = kwargs["id"]
         self.uuid = kwargs["uuid"]
@@ -41,34 +47,3 @@ class Device:
             for interface in interfaces.values():
                 json["interfaces"].append(interface.name)
         return json
-
-
-class DeviceGroup:
-    def __init__(self, *args):
-        self.group = list(args)
-
-    def __str__(self):
-        return f'<Group: {", ".join(map(str, self.group))}>'
-
-    def __repr__(self):
-        return f'<Group: {", ".join(map(str, self.group))}>'
-
-
-class DeviceManager:
-    """
-    管理已注册的设备实例，与ModelManager不同，不负责设备实例化。设备实例化由相应Model负责
-    """
-    __registered_devices = {}
-
-    @classmethod
-    def register_device(cls, deivce):
-        cls.__registered_devices.update({deivce.id: deivce})
-        logger.info(f'register Device <{deivce.id}> success')
-
-    @classmethod
-    def list_all_registered(cls):
-        return cls.__registered_devices
-
-    @classmethod
-    def get_device(cls, device_id):
-        return cls.__registered_devices.get(device_id, None)
