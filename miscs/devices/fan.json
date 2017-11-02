@@ -1,0 +1,33 @@
+{
+	"T_Model": {
+		"Model": true,
+		"Manufacturer": true,
+		"LowerThresholdFatal":true,
+		"LowerThresholdCritical":true,
+		"LowerThresholdNonCritical": true,
+		"UpperThresholdFatal": true,
+		"UpperThresholdCritical": true,
+		"UpperThresholdNonCritical": true
+	},
+	"T_Device": {
+		"Id": true,
+		"Name": true,
+		"Description": true,
+		"Sku":true,
+		"SerialNumber":true,
+		"PartNumber":true,
+		"SparePartNumber":true,
+		"AssetTag":true,
+		"IndicatorLED":true,
+		"ReadingUnits":true,
+		"PhysicalContext":true,
+		"MemberId": true
+	},
+	"T_Status": {
+		"Status": {
+			"State": true,
+			"HealthRollup": true,
+			"Health": true
+		}
+	}
+}

@@ -1,6 +1,7 @@
 import logging
 
-from uniform_model.functions.base import Function
+from .base import Function
+from .utils import render
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('uniform_model.functions.stack')
@@ -22,14 +23,12 @@ class FunctionStack(Function):
         logger.info(f"running <FunctionStack> op")
         device = arith_list[0]
         # 检验依赖关系
-        if not cls.validate(device):
-            return False
+        if not cls.validate(device): return False
         device_stack = getattr(device, cls.name)
         # print("--------op-------------")
         # print(device_stack.__dict__)
         # print(dict(filter(lambda k: not k[0].startswith("__"), device.__dict__.items())))
         logger.info(f'param in <FunctionStack>: {kwargs}')
-
         # 设置设备的stack属性
         device_stack.init_attrs(device)
         device_stack.set_attrs(kwargs)
@@ -39,8 +38,7 @@ class FunctionStack(Function):
                 port_id = item["port_id"]
                 port_name = item["physical_port"]
                 port = device.interfaces.get(port_name, None)
-                if port is None:
-                    raise ValueError(f"{port_name} is not in device <{device.id}>")
+                if port is None: raise ValueError(f"{port_name} is not in device <{device.id}>")
                 device_stack.set_stack_port(port_id, port)
                 port.set_attr("mode", "stack")
         device_stack.enable = True
@@ -57,17 +55,14 @@ class FunctionStack(Function):
 
     def set_attrs(self, params):
         """
-        配置参数, stack_port参赌配置
+        配置参数, stack_port参数配置
         :param params:
         :return:
         """
-        for item in params:
-            if item == "domain_id":
-                self.domain_id = params[item]
-            elif item == "member_id":
-                self.member_id = params[item]
-            elif item == "priority":
-                self.priority = params[item]
+        for param in {'domain', 'member_id', 'priority'}:
+            # noinspection PyBroadException
+            try: setattr(self, param, params[param])
+            except Exception: pass
 
     def set_stack_port(self, port_id, physical_port):
         """
@@ -89,23 +84,7 @@ class FunctionStack(Function):
         self.stack_port = {}
 
     def generate_conf(self):
-        output = []
-        # todo: 是否需要进行检查？
-        output.append("stack")
-        output.append("stack member " + str(self.member_id) + " priority " + str(self.priority))
-        output.append("stack member " + str(self.member_id) + " domain " + str(self.domain_id))
-        output.append("quit")
-        output.append("commit")
-        # 创建堆叠端口
-        output.append("system-view")
-        for port_id in self.stack_port:
-            output.append("interface stack-port " + str(self.member_id) + "/" + str(port_id))
-        # 配置业务口为堆叠物理端口，将业务口加入堆叠端口
-        for port_id, interface in self.stack_port.items():
-            # print("interface "+repr(interface)[1:-1])
-            output.append("interface "+repr(interface)[1:-1])
-            output.append("port mode stack")
-            output.append("stack-port "+str(self.member_id) + "/" + str(port_id))
-            output.append("commit")
-            output.append("quit")
-        return output
+        return render('stack', device=self)
+
+    def generate_revoke_conf(self):
+        return render('stack_revoke', device=self)

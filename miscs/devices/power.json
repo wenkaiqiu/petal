@@ -1,0 +1,16 @@
+{
+	"T_Model": {
+	},
+	"T_Device": {
+		"Id": true,
+		"Name": true,
+		"Description": true
+	},
+	"T_Status": {
+		"Status": {
+			"State": true,
+			"HealthRollup": true,
+			"Health": true
+		}
+	}
+}

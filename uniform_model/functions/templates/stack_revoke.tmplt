@@ -1,0 +1,13 @@
+stack
+stack member {{ device.member_id }} priority {{ device.priority }}
+stack member {{ device.member_id }} domain {{ device.domain_id }}
+quit
+commit
+
+system-view
+interface stack-port {{ device.member_id }}/{{ device.stack_port }}
+interface {{ device.interface[1:-1] }}
+undo port mode stack
+undo stack-port {{ device.member_id }}/{{ device.stack_port }}
+commit
+quit
