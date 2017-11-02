@@ -1,0 +1,26 @@
+{
+	"T_Model": {
+		"Model": true,
+		"Manufacturer": true
+	},
+	"T_Device": {
+		"Id": true,
+		"Name": true,
+		"Description": true,
+		"MemberId": true,
+		"FirmwareVersion": true,
+		"SpeedGbps": true,
+		"Sku":true,
+		"SerialNumber":true,
+		"PartNumber":true,
+		"SparePartNumber":true,
+		"AssetTag":true
+	},
+	"T_Status": {
+		"Status": {
+			"State":true,
+			"HealthRollup":true,
+			"Health":true
+		}
+	}
+}

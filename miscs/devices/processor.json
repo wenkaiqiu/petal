@@ -1,0 +1,31 @@
+{
+	"T_Model": {
+		"ProcessorType": true,
+		"ProcessorArchitecture": true,
+		"Manufacturer": true,
+		"Model": true,
+		"InstructionSet": true,
+		"MaxSpeedMHz": true, 
+		"TotalCores": true,
+		"TotalThreads": true
+	},
+	"T_Device": {
+		"Name": true,
+		"Id": true,
+		"ProcessorId": true,
+		"Socket": true,
+		"Description": true,
+		"Sku":true,
+		"SerialNumber":true,
+		"PartNumber":true,
+		"SparePartNumber":true,
+		"AssetTag":true
+	},
+	"T_Status": {
+		"Status": {
+			"State": true,
+			"HealthRollup": true,
+			"Health": true
+		}
+	}
+}
