@@ -3,16 +3,11 @@ stack member {{ device.member_id }} priority {{ device.priority }}
 stack member {{ device.member_id }} domain {{ device.domain_id }}
 quit
 commit
+
 system-view
-
-{% for port_id in device.stack_port %}
-interface stack-port {{ device.member_id }}/{{ port_id }}
-{% endfor %}
-
-{% for port_id, interface in device.stack_port.items() %}
-interface {{ interface[1:-1] }}
+interface stack-port {{ device.member_id }}/{{ device.stack_port }}
+interface {{ device.interface[1:-1] }}
 undo port mode stack
-undo stack-port {{ device.member_id }}/{{ port_id }}
+undo stack-port {{ device.member_id }}/{{ device.stack_port }}
 commit
 quit
-{% endfor %}
