@@ -44,9 +44,8 @@ class JSON(Database):
 
     @classmethod
     def get_device_detail(cls, device_id):
-        with open(cls.json_path["models"]) as devices_json:
+        with open(cls.json_path["devices"]) as devices_json:
             devices = json.load(devices_json)
-
         device = list(filter(lambda x: x["id"] == device_id, devices))[0]
         logger.info(f"get device: {device}")
         return device

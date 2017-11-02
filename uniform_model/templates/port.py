@@ -35,7 +35,11 @@ class Port(Device):
 
 
 class InterfaceManager:
-
+    # 注册已有接口模型
+    __global_register = {
+        "Ethernet": Port,
+        "FC": Port
+    }
     @classmethod
     def _check_interface_info(cls, interface_info):
         lack = []

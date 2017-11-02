@@ -1,3 +1,3 @@
 from app.configure_process import processor
 
-processor("./mock/input_1")
+processor("./mock/input_1.json")

@@ -1,5 +1,6 @@
 import logging
 
+from uniform_model.templates.port import InterfaceManager
 from .base import Template
 from ..devices.device import Device
 # from ..interfaces import InterfaceManager
@@ -25,10 +26,13 @@ class SwitchTemplate(Template):
         device = Device(**device_info)
         logger.info(f"set attrs of {self.__class__} device")
         for item in filter(lambda x: x not in self.device_conf, self.properties):
-            if item == "support_functions":
-                self._init_functions(device, device_info[item])
-            elif item == "ports":
+            if item == "ports":
                 self._init_ports(device, device_info[item])
+            elif item == "support_functions":
+                print("-----------------------------------------")
+                print(device.model_type)
+                setattr(device, "functions_list", [])
+            #     self._init_functions(device, device_info[item])
             setattr(device, item, device_info[item])
             logger.info(f"set attr <{item}> for {self.__class__}: {getattr(device, item)}")
         return device

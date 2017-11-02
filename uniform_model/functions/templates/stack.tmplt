@@ -3,11 +3,21 @@ stack member {{ this.member_id }} priority {{ this.priority }}
 stack member {{ this.member_id }} domain {{ this.domain_id }}
 quit
 commit
-
 system-view
-interface stack-port {{ this.member_id }}/{{ this.stack_port }}
-interface {{ this.interface[1:-1] }}
+{% for port in this.stack_port %}
+interface stack-port {{ this.member_id }}/{{ port['port_id'] }}
+quit
+{% endfor %}
+commit
+{% for port in this.stack_port %}
+{% for pport in port['physical_port'] %}
+interface {{ pport|replace('GE', 'GE ')}}
 port mode stack
-stack-port {{ this.member_id }}/{{ this.stack_port }}
+stack-port {{ this.member_id }}/{{ port['port_id'] }}
 commit
 quit
+{% endfor %}
+{% endfor %}
+
+
+

@@ -28,34 +28,34 @@ class Entity:
 
 
 class FunctionNew:
-    def generate_conf(self): return render('stack', **self.entities)
+    def generate_conf(self): return render('stack', **self._entities)
 
-    def generate_revoke_conf(self): return render('stack_revoke', **self.entities)
+    def generate_revoke_conf(self): return render('stack_revoke', **self._entities)
 
     name = str()
     entities = dict()
     inner_rules = tuple()
     intra_rules = tuple()
     vals = set()
-    __entities = dict(this=dict())
+    _entities = dict(this=dict())
 
     def __init__(self, *args, **kwargs):
         # entity check
         if not all((
                 # TODO: check not required
                 all(name in kwargs and entity.validate(kwargs[name])
-                    for name, entity in self.entities
+                    for name, entity in self.entities.items()
                     if entity.required),
                 all(val in kwargs for val in self.vals)
         )): raise Exception()
 
         # fill vals
-        for key in self.vals: self.__entities['this'][key] = kwargs[key]
+        for key in self.vals: self._entities['this'][key] = kwargs[key]
 
 
 class FunctionStack(FunctionNew):
     name = "stack"
-    vals = {'domain_id', 'priority', 'port_id', 'physical_port'}
+    vals = {'domain_id', 'member_id', 'priority', 'stack_port'}
     entities = {
         'device': Entity('device', ('interface', 'slot_id'), ()),
     }
@@ -66,7 +66,9 @@ class FunctionStack(FunctionNew):
     )
 
     def __init__(self, *args, **kwargs):
+        print(kwargs)
         super(FunctionStack, self).__init__(*args, **kwargs)
-        self.__entities['this']['member_id'] = kwargs['device'].slot_id
-        self.__entities['this']['port_id'] = kwargs['port_id']
-        self.__entities['this']['port_name'] = kwargs["physical_port"]
+        self._entities['this']['member_id'] = kwargs['device'].slot_id[0]
+        self._entities['this']['domain_id'] = kwargs['domain_id']
+        self._entities['this']['priority'] = kwargs['priority']
+        self._entities['this']['stack_port'] = kwargs['stack_port']

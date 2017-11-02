@@ -31,7 +31,9 @@ map_operation = {
 }
 class Parser:
     """
-    解析网络规划表，并将内容提取转换为程序内部格式
+    解析网络规划表，并将内容提取转换为程序内部格式。
+    parser.conf文件记录了解析器可解析的字段，字段名对应规划表内容。
+    上部三个map记录了输入字段到程序内部使用字段的映射
     """
     def __init__(self, conf):
         self.device_conf, self.link_conf, self.operation_conf = self._set_conf(conf)

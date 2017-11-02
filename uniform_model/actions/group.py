@@ -1,4 +1,4 @@
-from uniform_model import DeviceGroup
+from ..devices import DeviceGroup
 
 
 def group(*devices):
