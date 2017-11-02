@@ -2,11 +2,12 @@ import json
 import logging
 from functools import reduce
 
-# from app.factories import DeviceFactory, LinkFactory, OperationFactory
+from app.factories import DatabaseFactory
+# from app.factories import DeviceFactory, LinkFactory, OperationFactory, DatabaseFactory
 # from app.generator import ConfigurationGenerator
 from app.parser import Parser
+
 # from app.validators import OperationValidator
-from db.database import Database
 # from uniform_model import TemplateManager
 # from uniform_model.templates.port import InterfaceManager
 # from uniform_model.templates import Template
@@ -15,10 +16,13 @@ logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('app.configure_process')
 logger.setLevel(logging.DEBUG)
 
+import os
+project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
+
 # 配置文件路径集合
 conf_path = {
-    "parser": "../conf/parser.json",
-    "database": "../conf/database.json"
+    "database": project_path + "\conf\database.json",
+    "parser": project_path + "\conf\parser.json"
 }
 
 
@@ -30,8 +34,9 @@ def configure_database():
     logger.info("configure <database> start")
     with open(conf_path["database"], "r") as database_conf_file:
         database_conf = json.load(database_conf_file)
-        Database.set_conf(database_conf)
+        database = DatabaseFactory().generate(conf=database_conf)
     logger.info("configure <database> end")
+    return database
 
 
 def configure_parser():
@@ -42,8 +47,9 @@ def configure_parser():
     logger.info("configure <parser> start")
     with open(conf_path["parser"], 'r') as parser_conf_file:
         parser_conf = json.load(parser_conf_file)
-    parser = Parser(parser_conf)
+        parser = Parser(parser_conf)
     logger.info("configure <parser> end")
+    return parser
 
 
 def configure_template():
@@ -162,7 +168,7 @@ def generate_topo():
 
 
 def processor(input_path):
-    configure_database()
+    database = configure_database()
     # configure_parser()
     # configure_template()
     # configure_device()

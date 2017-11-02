@@ -1,10 +1,9 @@
 {
-  "db_lib_version": "1.0",
-  "db_host": "10.254.239.78",
+  "db_version": "10.0",
+  "db_host": "127.0.0.1",
   "db_port": "5432",
   "db_user": "postgres",
   "db_pass": "postgres",
-  "db_type": "postgres",
-  "db_name": "wangjian",
-  "db_sslmode": "disable"
+  "db_type": "postgresql",
+  "db_name": "wangjian"
 }

@@ -1,29 +1,42 @@
 import json
 import logging
+import os
+
+from .base import Database
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('database')
+logger = logging.getLogger('db.json')
 logger.setLevel(logging.DEBUG)
 
 
-class Database:
+project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
+
+
+class JSON(Database):
+    """
+    目前仅用于mock，故固定文件路径
+    """
+    json_path = {
+        "models": project_path + "\contrib\mock\models.json",
+        "devices": project_path + "\contrib\mock\devices.json",
+    }
+
     @classmethod
     def set_conf(cls, conf):
-        logger.info("<Database> set_conf")
-        # todo: 完善, 包括database.json
-        pass
+        logger.info("<JSON> set_conf")
 
     @classmethod
     def get_models(cls):
-        with open("./mock/uniform_model.json") as models_json:
+        print("---------")
+        with open(cls.json_path["models"]) as models_json:
             models = json.load(models_json)
 
-        logger.info(f"get uniform_model: {uniform_model}")
+        logger.info(f"get model: {models}")
         return models
 
     @classmethod
     def get_all_device_detail(cls):
-        with open("./mock/devices.json") as devices_json:
+        with open(cls.json_path["devices"]) as devices_json:
             devices = json.load(devices_json)
 
         logger.info(f"get devices: {devices}")
@@ -31,7 +44,7 @@ class Database:
 
     @classmethod
     def get_device_detail(cls, device_id):
-        with open("./mock/devices.json") as devices_json:
+        with open(cls.json_path["models"]) as devices_json:
             devices = json.load(devices_json)
 
         device = list(filter(lambda x: x["id"] == device_id, devices))[0]
