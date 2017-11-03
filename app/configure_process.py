@@ -96,10 +96,10 @@ def parse_input(parser, input_path):
     return devices_info, links_info, operations_info
 
 
-def instantiate_device(devices_info, database):
+def instantiate_device(devices_info, database, tag):
     # 设备实例化
     logger.info("init device instances")
-    device_factory = DeviceFactory(database)
+    device_factory = DeviceFactory(database, tag)
     devices = {}
     devices_failure = []
     for device_info in devices_info:
@@ -154,7 +154,7 @@ def generate_configuration(devices):
                     output.close()
                 else:
                     for item in content:
-                        print(item)
+                        # print(item)
                         # res = map(lambda a: a + "\n", reduce(lambda x, y: x + y, item.values()))
                         for line in item:
                             output.write(line)
@@ -165,25 +165,25 @@ def generate_topo(devices):
     post_r = generator.genarate_topo(devices.values())
     print(post_r)
 
-    # import requests
-    # r = requests.post("http://127.0.0.1:5000/request", data={"topo_json": json.dumps(post_r)})
-    # print(r.text)
-    #
-    # import webbrowser
-    # webbrowser.open("http://127.0.0.1:5000/render/" + str(json.loads(r.text)["result"]))
+    import requests
+    r = requests.post("http://127.0.0.1:5000/request", data={"topo_json": json.dumps(post_r)})
+    print(r.text)
+
+    import webbrowser
+    webbrowser.open("http://127.0.0.1:5000/render/" + str(json.loads(r.text)["result"]))
 
 
-def processor(input_path):
+def processor(input_path, tag=False):
     database = configure_database()
     parser = configure_parser()
     configure_template()
     configure_device()
     configure_interface()
     devices_info, links_info, operations_info = parse_input(parser, input_path)
-    devices = instantiate_device(devices_info, database)
+    devices = instantiate_device(devices_info, database, tag)
     print("current registed device: " + str(DeviceManager.list_all_registered()))
     links = instantiate_link(links_info, devices)
     operations = instantiate_op(operations_info, devices)
     validate_op(operations)
     generate_configuration(devices)
-    # generate_topo(devices)
+    generate_topo(devices)

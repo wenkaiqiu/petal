@@ -18,6 +18,3 @@ commit
 quit
 {% endfor %}
 {% endfor %}
-
-
-

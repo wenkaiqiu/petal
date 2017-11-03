@@ -29,8 +29,6 @@ class SwitchTemplate(Template):
             if item == "ports":
                 self._init_ports(device, device_info[item])
             elif item == "support_functions":
-                print("-----------------------------------------")
-                print(device.model_type)
                 setattr(device, "functions_list", [])
             #     self._init_functions(device, device_info[item])
             setattr(device, item, device_info[item])

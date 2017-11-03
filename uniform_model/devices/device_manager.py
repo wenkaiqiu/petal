@@ -7,7 +7,7 @@ logger.setLevel(logging.DEBUG)
 
 class DeviceManager:
     """
-    管理已注册的设备实例，与ModelManager不同，不负责设备实例化。设备实例化由相应Model负责
+    管理已注册的设备实例，与TemplateManager不同，不负责设备实例化。设备实例化由相应Model负责
     """
     __registered_devices = {}
 

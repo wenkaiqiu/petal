@@ -1,7 +1,8 @@
 import logging
 
+from uniform_model.functions.stack import FunctionStack
+from uniform_model.functions.trunk import FunctionTrunk
 from ..factories.base import Factory
-from uniform_model.functions.stack_new import FunctionStack
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('app.factories.function_factory')
@@ -10,7 +11,8 @@ logger.setLevel(logging.DEBUG)
 
 class FunctionFactory(Factory):
     __registed_functions = {
-        "stack": FunctionStack
+        "stack": FunctionStack,
+        "trunk": FunctionTrunk
     }
 
     @classmethod

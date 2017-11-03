@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "device_id": "2",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 2,
+      "priority": 150,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE2/18/1"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "device_id": "3",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 3,
+      "priority": 100,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE3/18/1"
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,6 +1,6 @@
 import logging
 
-from uniform_model.devices.device import Device
+from ..devices.device import Device
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
 logger = logging.getLogger('uniform_model.actions.link')

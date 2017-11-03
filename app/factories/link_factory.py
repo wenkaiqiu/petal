@@ -15,6 +15,7 @@ class LinkFactory(Factory):
 
     def generate(self, link_info, devices):
         logger.info("<LinkFactory> generate link instance")
+        print(link_info)
         device_a = devices.get(link_info['device_id_a'])
         device_b = devices.get(link_info['device_id_b'])
 

@@ -70,10 +70,12 @@ class Parser:
         return new_devices
 
     def _parse_links(self, links):
+        # print(links)
         new_links = []
         for link in links:
-            new_link = map(lambda conf: (map_link[conf], link[conf]), self.link_conf)
+            new_link = map(lambda conf: (map_link[conf], link[conf]), filter(lambda x: x in self.link_conf, link))
             new_links.append(dict(new_link))
+        # print(new_links)
         return new_links
 
     def _parse_operations(self, operations):

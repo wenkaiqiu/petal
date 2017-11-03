@@ -1,2 +1,2 @@
-from .base import OperableTrait
-from .stack_new import FunctionStack
+from .base_old import OperableTrait
+from .stack import FunctionStack

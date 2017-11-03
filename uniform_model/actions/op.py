@@ -14,10 +14,12 @@ def op(func: OperableTrait, *arith_list, **kwargs):
     lst = [arith.group if isinstance(arith, DeviceGroup) else [arith] for arith in arith_list]
     params = kwargs["params"]
     for index, p in enumerate(reduce(lambda a,b: a+b, lst)):
-        print(p)
-        print(params[index])
+        # print(p)
+        print("---------op-----------")
+        print(p.functions_list)
         params[index].update({"device": p})
         p.functions_list.append(func(**params[index]))
+        print(p.functions_list)
         # p.functions_list.append()
         # if not _check_link(*p):
         #     return False

@@ -1,90 +1,72 @@
 import logging
 
-from .base import Function
 from .utils import render
+from uniform_model.functions.base import FunctionNew
+from uniform_model.base import Statement, When, Need, Entity
 
 logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('uniform_model.functions.stack')
+logger = logging.getLogger('uniform_model.functions.stack_new')
 logger.setLevel(logging.DEBUG)
 
 
-class FunctionStack(Function):
+class FunctionStack(FunctionNew):
     name = "stack"
-    dependencies = []
+    vals = {'domain_id': True, 'member_id': True, 'priority': True, 'stack_port': True}
+    # todo: 可不可以检查dict？还是只能写对象？
+    entities = {
+        'device': Entity('device', ('interface', 'slot_id'), ()),
+    }
+    inner_rules = (
+        Need('a.priority in range(0, 255)'),
+    )
+    intra_rules = (
+        When('type(a) is type(b)',
+             When('a.domain_id == b.domain_id',
+                  Need('a.port_id != b.port_id'),
+                  Statement(True)),
+             Statement(True)),
 
-    @classmethod
-    def op(cls, *arith_list, **kwargs):
-        """
-        执行配置操作
-        :param arith_list: 待配置设备列表，注：目前仅涉及配置单设备情况，见actions里的处理
-        :param kwargs:
-        :return:
-        """
-        logger.info(f"running <FunctionStack> op")
-        device = arith_list[0]
-        # 检验依赖关系
-        if not cls.validate(device): return False
-        device_stack = getattr(device, cls.name)
-        # print("--------op-------------")
-        # print(device_stack.__dict__)
-        # print(dict(filter(lambda k: not k[0].startswith("__"), device.__dict__.items())))
-        logger.info(f'param in <FunctionStack>: {kwargs}')
-        # 设置设备的stack属性
-        device_stack.init_attrs(device)
-        device_stack.set_attrs(kwargs)
-        # 设置interface属性
-        if "stack_port" in kwargs:
-            for item in kwargs["stack_port"]:
-                port_id = item["port_id"]
-                port_name = item["physical_port"]
-                port = device.interfaces.get(port_name, None)
-                if port is None: raise ValueError(f"{port_name} is not in device <{device.id}>")
-                device_stack.set_stack_port(port_id, port)
-                port.set_attr("mode", "stack")
-        device_stack.enable = True
-        # print(device_stack.__dict__)
-        return True
+        When('type(a) is type(b)',
+             When('a.domain_id == b.domain_id',
+                  Need('a.priority != b.priority'),
+                  Statement(True)),
+             Statement(True)),
+    )
 
-    @classmethod
-    def validate(cls, device):
-        tag = super().validate(device)
-        return tag
+    def _infer_value(self, **kwargs):
+        # 俩个作用，一是默认值设置，二是推断缺失属性
+        new_kwargs=kwargs
+        for key in filter(lambda x: x not in new_kwargs, self.vals):
+            if key == 'member_id':
+                new_kwargs.update({'member_id': kwargs['device'].slot_id[0]})
+            elif key == 'priority':
+                new_kwargs.update({'priority': 100})
+        return new_kwargs
 
-    def init_attrs(self, device):
-        self.member_id = device.slot_id
+    def __init__(self, *args, **kwargs):
+        new_kwargs = self._infer_value(**kwargs)
+        super(FunctionStack, self).__init__(*args, **new_kwargs)
+        # 参数填写的通用方法已在父类init方法中实现,此处填写特别配置即可
+        # self._entities['this']['member_id'] = kwargs['device'].slot_id[0]
 
-    def set_attrs(self, params):
-        """
-        配置参数, stack_port参数配置
-        :param params:
-        :return:
-        """
-        for param in {'domain', 'member_id', 'priority'}:
-            # noinspection PyBroadException
-            try: setattr(self, param, params[param])
-            except Exception: pass
 
-    def set_stack_port(self, port_id, physical_port):
-        """
-        添加物理端口到stack端口
-        :param port_id: string类型
-        :param physical_port:
-        :return:
-        """
-        if port_id in self.stack_port:
-            self.stack_port[port_id].append(physical_port)
-        else:
-            self.stack_port.update({port_id: [physical_port]})
+def main():
+    class A: pass
 
-    def __init__(self):
-        self.enable = False
-        self.domain_id = None
-        self.member_id = None
-        self.priority = 100
-        self.stack_port = {}
+    a = A()
+    a.slot_id = '32'
+    a.interface = '32'
+    function_stack = FunctionStack(device=a, domain_id=12, priority=123, stack_port={'port_id':'32', 'physical_port':'32'})
+    print(function_stack._entities)
+    conf = function_stack.generate_conf()
+    print(conf)
+    print(function_stack.generate_revoke_conf())
+    b = A()
+    b.slot_id = '33'
+    b.interface = '33'
+    function_stack_b = FunctionStack(device=b, domain_id=12, priority=123, port_id=32, physical_port=32)
+    function_stack.intra_check(function_stack_b)
 
-    def generate_conf(self):
-        return render('stack', device=self)
 
-    def generate_revoke_conf(self):
-        return render('stack_revoke', device=self)
+if __name__ == '__main__':
+    main()

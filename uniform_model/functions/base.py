@@ -1,51 +1,48 @@
-import logging
-
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
-logger = logging.getLogger('uniform_model.functions.base')
-logger.setLevel(logging.DEBUG)
+from uniform_model.functions.utils import render
 
 
-class OperableTrait:
-    @classmethod
-    def op(cls, *arith_list, **kwargs): raise NotImplemented()
+class FunctionNew:
+    def generate_conf(self): return render(self.name, **self._entities)
 
+    def generate_revoke_conf(self): return render(f'{self.name}_revoke', **self._entities)
 
-class FunctionType(type):
-    def __str__(cls):
-        return f'<Protocol: {cls.__name__}>'
+    name = str()
+    entities = dict()
+    inner_rules = tuple()
+    intra_rules = tuple()
+    vals = set()
 
+    def __init__(self, *args, **kwargs):
+        self.tag = False
+        self._entities = dict(this=dict())  # 用于存放属性
+        # entity check, entity可用于推断缺失属性
+        if not all((
+                # TODO: check not required
+                all(name in kwargs and entity.validate(kwargs[name])
+                    for name, entity in self.entities.items()
+                    if entity.required),
+        )): raise Exception()
+        # 推断缺失属性
+        kwargs = self._infer_value(**kwargs)
+        # val check
+        if not all(val in kwargs for val in self.vals if self.vals[val]): raise Exception()
 
-class Function(OperableTrait, metaclass=FunctionType):
-    dependencies = []
+        # fill vals
+        for key in self.vals: self._entities['this'][key] = kwargs[key]
+        if not (self._inner_check()): raise Exception('内部检查失败')
 
-    @classmethod
-    def validate(cls, device):
-        """
-        自定义协议和模型检查流程，在接口检查后自动调用
-        :return: 检查通过返回真，否则 raise对应错误(推荐) 或者 返回False
-        """
-        try:
-            if not cls._check_protocol_support(device):
-                raise ProtocolNotSupport(f'device {device.id} not support FunctionStack')
-            if not cls._check_dependencies(device):
-                return False
-        except ProtocolNotSupport as e:
-            print(e)
-            return False
-        return True
+    def _infer_value(self, **kwargs): pass
 
-    @classmethod
-    def _check_protocol_support(cls, device):
-        return cls.name in device.support_functions
+    def _inner_check(self):
+        # inner check
+        # print("_inner_check")
+        # for rule in self.inner_rules:
+        #     print(rule.apply(self, None))
+        return all(rule.apply(self, None) for rule in self.inner_rules)
 
-    @classmethod
-    def _check_dependencies(cls, device):
-        return all(getattr(device, dependency).enable
-                   for dependency in cls.dependencies)
+    def intra_check(self, other):
+        return all(rule.apply(self, other) for rule in self.intra_rules)
 
-    def generate_conf(self): raise NotImplementedError()
-
-    def generate_revoke_conf(self): raise NotImplementedError()
-
-
-class ProtocolNotSupport(Exception): pass
+    def __getattr__(self, name):
+        try: return self.__dict__[name]
+        except KeyError: return self._entities['this'].get(name)

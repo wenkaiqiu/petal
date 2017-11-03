@@ -27,7 +27,7 @@ class Device:
             "to_id": link_to.id,
             "to": link_to,
             "link_type": link_info["link_type"],
-            "usage": link_info["usage"]
+            "usage": link_info["usage"] if "usage" in link_info.keys() else ""
         }
         self.links.update({link['to_id']: link})
 

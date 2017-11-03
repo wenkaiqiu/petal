@@ -1,0 +1,75 @@
+{
+  "devices": [
+    {
+      "id": "1",
+      "uuid": "E9000",
+      "name": "E9000",
+      "model_type": "E9000",
+      "description": "E9000",
+      "parent_id": ""
+    },
+    {
+      "id": "2",
+      "slot_id": "2X",
+      "uuid": "CX311_2X",
+      "name": "CX311_2X",
+      "model_type": "CX311",
+      "description": "CX311",
+      "parent_id": "1"
+    },
+    {
+      "id": "3",
+      "slot_id": "3X",
+      "uuid": "CX311_3X",
+      "name": "CX311_3X",
+      "model_type": "CX311",
+      "description": "CX311",
+      "parent_id": "1"
+    }
+  ],
+  "links": [
+    {
+      "id": "1",
+      "name": "2<->3",
+      "device_id_a": "2",
+      "device_id_b": "3",
+      "port_a": "40GE2/18/1",
+      "port_b": "40GE3/18/1",
+      "link_type": "Optical",
+      "usage": "Stack"
+    }
+  ],
+  "operations": [
+    {
+      "type": "stack",
+      "devices": [
+        "2",
+        "3"
+      ],
+      "params": [
+          {
+            "domain_id": 10,
+            "member_id": 2,
+            "priority": 150,
+            "stack_port": [
+              {
+                "port_id": "1",
+                "physical_port": ["40GE2/18/1"]
+              }
+            ]
+          },
+          {
+            "domain_id": 10,
+            "member_id": 3,
+            "priority": 100,
+            "stack_port": [
+              {
+                "port_id": "1",
+                "physical_port": ["40GE3/18/1"]
+              }
+            ]
+          }
+      ]
+    }
+  ]
+}

@@ -1,13 +1,10 @@
-stack
-stack member {{ device.member_id }} priority {{ device.priority }}
-stack member {{ device.member_id }} domain {{ device.domain_id }}
-quit
-commit
-
-system-view
-interface stack-port {{ device.member_id }}/{{ device.stack_port }}
-interface {{ device.interface[1:-1] }}
+{% for port in this.stack_port %}
+{% for pport in port['physical_port'] %}
+interface {{ pport|replace('GE', 'GE ')}}
+undo stack-port {{ this.member_id }}/{{ port['port_id'] }}
 undo port mode stack
-undo stack-port {{ device.member_id }}/{{ device.stack_port }}
-commit
 quit
+{% endfor %}
+{% endfor %}
+save
+reboot

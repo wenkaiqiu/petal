@@ -1,0 +1,15 @@
+{% if this.number %}
+system-view
+assign foword eth-trunk mode {{ this.number }}
+commit
+{% endif %}
+
+{% for port in this.trunk_port %}
+system-view
+interface eth-trunk {{ port.trunk_id }}
+mode {{ this.mode }}
+{% for pport in port['physical_port'] %}
+trunkport {{ pport|replace('GE', 'GE ')}}
+{% endfor %}
+{% endfor %}
+commit

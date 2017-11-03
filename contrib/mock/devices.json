@@ -14,15 +14,37 @@
     "name": "CX311_2X",
     "model_type": "CX311",
     "description": "CX311",
-    "support_functions": ["stack"],
+    "support_functions": [
+      "stack",
+      "trunk"
+    ],
     "ports": [
       {
         "type": "Ethernet",
         "interface_type": "SFPP",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [17],
-        "port_number":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+        "subcard_number": [
+          17
+        ],
+        "port_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
         "count": 16
       },
       {
@@ -31,7 +53,7 @@
         "name": "8G",
         "speed": "8G",
         "subcard_number": [],
-        "port_number":[],
+        "port_number": [],
         "count": 8
       },
       {
@@ -39,8 +61,28 @@
         "interface_type": "internal",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-        "port_number":[1, 2],
+        "subcard_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "port_number": [
+          1,
+          2
+        ],
         "count": 32
       },
       {
@@ -48,8 +90,12 @@
         "interface_type": "internal",
         "name": "40GE",
         "speed": "40G",
-        "subcard_number": [18],
-        "port_number":[1],
+        "subcard_number": [
+          18
+        ],
+        "port_number": [
+          1
+        ],
         "count": 1
       },
       {
@@ -57,8 +103,13 @@
         "interface_type": "internal",
         "name": "GE",
         "speed": "1G",
-        "subcard_number": [19],
-        "port_number":[1, 2],
+        "subcard_number": [
+          19
+        ],
+        "port_number": [
+          1,
+          2
+        ],
         "count": 2
       },
       {
@@ -66,8 +117,19 @@
         "interface_type": "internal",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [20],
-        "port_number":[1, 2, 3, 4, 5, 6, 7, 8],
+        "subcard_number": [
+          20
+        ],
+        "port_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
         "count": 8
       }
     ]
@@ -79,15 +141,37 @@
     "name": "CX311_3X",
     "model_type": "CX311",
     "description": "CX311",
-    "support_functions": ["stack"],
+    "support_functions": [
+      "stack",
+      "trunk"
+    ],
     "ports": [
       {
         "type": "Ethernet",
         "interface_type": "SFPP",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [17],
-        "port_number":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+        "subcard_number": [
+          17
+        ],
+        "port_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
         "count": 16
       },
       {
@@ -96,7 +180,7 @@
         "name": "8G",
         "speed": "8G",
         "subcard_number": [],
-        "port_number":[],
+        "port_number": [],
         "count": 8
       },
       {
@@ -104,8 +188,28 @@
         "interface_type": "internal",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-        "port_number":[1, 2],
+        "subcard_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "port_number": [
+          1,
+          2
+        ],
         "count": 32
       },
       {
@@ -113,8 +217,12 @@
         "interface_type": "internal",
         "name": "40GE",
         "speed": "40G",
-        "subcard_number": [18],
-        "port_number":[1],
+        "subcard_number": [
+          18
+        ],
+        "port_number": [
+          1
+        ],
         "count": 1
       },
       {
@@ -122,8 +230,13 @@
         "interface_type": "internal",
         "name": "GE",
         "speed": "1G",
-        "subcard_number": [19],
-        "port_number":[1, 2],
+        "subcard_number": [
+          19
+        ],
+        "port_number": [
+          1,
+          2
+        ],
         "count": 2
       },
       {
@@ -131,10 +244,165 @@
         "interface_type": "internal",
         "name": "10GE",
         "speed": "10G",
-        "subcard_number": [20],
-        "port_number":[1, 2, 3, 4, 5, 6, 7, 8],
+        "subcard_number": [
+          20
+        ],
+        "port_number": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
         "count": 8
       }
     ]
+  },
+  {
+    "id": "11",
+    "uuid": "IO_1",
+    "name": "IO_1",
+    "model_type": "IO",
+    "description": "IO",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "12",
+    "uuid": "CPU_1",
+    "name": "CPU_1",
+    "model_type": "CPU",
+    "description": "CPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "13",
+    "uuid": "CPU_2",
+    "name": "CPU_2",
+    "model_type": "CPU",
+    "description": "CPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "14",
+    "uuid": "IOH",
+    "name": "IOH",
+    "model_type": "IO",
+    "description": "IO",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "15",
+    "uuid": "IO_3",
+    "name": "IO_3",
+    "model_type": "IO",
+    "description": "IO",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "16",
+    "uuid": "IO_4",
+    "name": "IO_4",
+    "model_type": "IO",
+    "description": "IO",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "17",
+    "uuid": "Flash",
+    "name": "Flash",
+    "model_type": "Flash",
+    "description": "Flash",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "18",
+    "uuid": "PCIe_SW_1",
+    "name": "PCIe_SW_1",
+    "model_type": "PCIe_SW",
+    "description": "PCIe_SW",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "19",
+    "uuid": "PCIe_SW_2",
+    "name": "PCIe_SW_2",
+    "model_type": "PCIe_SW",
+    "description": "PCIe_SW",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "110",
+    "uuid": "GPU_1",
+    "name": "GPU_1",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "111",
+    "uuid": "GPU_2",
+    "name": "GPU_2",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "112",
+    "uuid": "GPU_3",
+    "name": "GPU_3",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "113",
+    "uuid": "GPU_4",
+    "name": "GPU_4",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "114",
+    "uuid": "GPU_5",
+    "name": "GPU_5",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "115",
+    "uuid": "GPU_6",
+    "name": "GPU_6",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "116",
+    "uuid": "GPU_7",
+    "name": "GPU_7",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "117",
+    "uuid": "GPU_8",
+    "name": "GPU_8",
+    "model_type": "GPU",
+    "description": "GPU",
+    "parent_id": "G5500"
+  },
+  {
+    "id": "G5500",
+    "uuid": "G5500",
+    "name": "G5500",
+    "model_type": "G5500",
+    "description": "G5500",
+    "parent_id": ""
   }
 ]

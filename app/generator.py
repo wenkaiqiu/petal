@@ -5,9 +5,9 @@ class ConfigurationGenerator:
     def __init__(self):
         pass
 
-    def _check_circle(self, function_list, device):
+    def _check_circle(self, functions_list, device):
         in_degrees = []
-        for func in function_list:
+        for func in functions_list:
             in_degrees.append(len(getattr(device, func).dependencies))
         if 0 in in_degrees:
             return False
@@ -17,19 +17,28 @@ class ConfigurationGenerator:
     def generate(self, devices):
         output = []  # 存放全部设备的配置信息
         for device in devices:
+            print(device.id)
             loc_output = []  # 存放单个设备的配置信息
-            print(device.__dict__)
-            function_list = getattr(device, "functions_list", None)
-            if function_list is not None:
+            functions_list = getattr(device, "functions_list", None)
+            if functions_list is not None:
+                print(device.id, functions_list)
                 for item in device.functions_list:
-                    test = item.generate_conf()
-                    print("222222222")
-                    print(test)
-                    print("222222222")
-                    print(item)
+                    # print(item._entities)
+                    print(id(item))
+                    print("---------generate-----------------")
+                    print(item.tag)
+                    if item.tag:
+                        test = item.generate_revoke_conf()
+                    else:
+                        test = item.generate_conf()
+                    # print("222222222")
+                    # print(item)
+                    # print(dir(item))
+                    # print(item._entities)
+                    # print("222222222")
                     loc_output.append(test)
-            #     temp_list = function_list.copy()  # 作为队列使用
-            #     if self._check_circle(function_list, device):
+            #     temp_list = functions_list.copy()  # 作为队列使用
+            #     if self._check_circle(functions_list, device):
             #         raise ValueError(f"exit circle in function dependencies of model <{device.model_type}>'")
             #     while temp_list:
             #         func = temp_list.pop(0)
@@ -54,8 +63,8 @@ class ConfigurationGenerator:
             #         else:
             #             loc_output.append({func: func_instance.generate_conf()})
             output.append({device.name: loc_output})
-        print("1111111111111111111111")
-        print(output)
+        # print("1111111111111111111111")
+        # print(output)
         return output
 
     def genarate_topo(self, devices):

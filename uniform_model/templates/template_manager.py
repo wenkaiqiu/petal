@@ -1,6 +1,9 @@
 import logging
 from itertools import chain
 
+from uniform_model.templates.other import OtherTemplate
+from uniform_model.templates.processor import ProcessorTemplate
+from uniform_model.templates.storage import StorageTemplate
 from .chassis import ChassisTemplate
 from .switch import SwitchTemplate
 
@@ -10,8 +13,11 @@ logger.setLevel(logging.DEBUG)
 
 # 注册已有设备模型
 __global_register = {
-    "chasis": ChassisTemplate,
-    "switch": SwitchTemplate
+    'chasis': ChassisTemplate,
+    'switch': SwitchTemplate,
+    'processor': ProcessorTemplate,
+    'other': OtherTemplate,
+    'storage': StorageTemplate
 }
 
 
@@ -32,9 +38,9 @@ class TemplateManager:
         if "model_type" not in model_info:
             raise NameError("<model_type> is needed in model_info")
         model_type = model_info["model_type"]
-        for item in chain(cls.conf["base"], cls.conf[model_type]):
-            if item not in model_info:
-                raise NameError(f"<{item}> is needed in model_info")
+        # for item in chain(cls.conf["base"], cls.conf[model_type]):
+        #     if item not in model_info:
+        #         raise NameError(f"<{item}> is needed in model_info")
 
     @classmethod
     def set_conf(cls, conf):
