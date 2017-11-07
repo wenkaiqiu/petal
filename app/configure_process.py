@@ -21,11 +21,12 @@ project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
 
 # 配置文件路径集合
 conf_path = {
-    "database": project_path + "\conf\database.json",
-    "device": project_path + "\conf\device.json",
-    "interface": project_path + "\conf\interface.json",
-    "model": project_path + "\conf\model.json",
-    "parser": project_path + "\conf\parser.json"
+    "database": project_path + "\\conf\\database.json",
+    "device": project_path + "\\conf\\device.json",
+    "interface": project_path + "\\conf\\interface.json",
+    "model": project_path + "\\conf\\model.json",
+    "parser": project_path + "\\conf\\parser.json",
+    "visualization": project_path + "\\conf\\visualization.json",
 }
 
 
@@ -166,11 +167,13 @@ def generate_topo(devices):
     print(post_r)
 
     import requests
-    r = requests.post("http://127.0.0.1:5000/request", data={"topo_json": json.dumps(post_r)})
+    with open(conf_path["visualization"], "r") as path_file:
+        path = json.load(path_file)["base_url"]
+    r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
     print(r.text)
 
     import webbrowser
-    webbrowser.open("http://127.0.0.1:5000/render/" + str(json.loads(r.text)["result"]))
+    webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
 
 
 def processor(input_path, tag=False):

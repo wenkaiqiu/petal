@@ -1,3 +1,4 @@
+# 将业务端口从stack端口中取消
 {% for port in this.stack_port %}
 {% for pport in port['physical_port'] %}
 interface {{ pport|replace('GE', 'GE ')}}

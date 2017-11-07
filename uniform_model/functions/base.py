@@ -10,7 +10,8 @@ class FunctionNew:
     entities = dict()
     inner_rules = tuple()
     intra_rules = tuple()
-    vals = set()
+    vals = dict()
+    sort_rules = tuple()
 
     def __init__(self, *args, **kwargs):
         self.tag = False

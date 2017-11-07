@@ -10,28 +10,26 @@ logger.setLevel(logging.DEBUG)
 
 
 class FunctionStack(FunctionNew):
-    name = "stack"
-    vals = {'domain_id': True, 'member_id': True, 'priority': True, 'stack_port': True}
-    # todo: 可不可以检查dict？还是只能写对象？
+    name = "stack"  # 功能名称
+    vals = {'domain_id': True, 'member_id': True, 'priority': True, 'stack_port': True}  # key表示功能属性，value表示是否必须
     entities = {
         'device': Entity('device', ('interface', 'slot_id'), ()),
-    }
+    }   # 对配置对象的约束条件Entity('约束名称', ('属性集',), ('方法集',)),
     inner_rules = (
         Need('a.priority in range(0, 255)'),
-    )
+    )   # 内部约束，约束功能的取值和类型
     intra_rules = (
         When('type(a) is type(b)',
              When('a.domain_id == b.domain_id',
                   Need('a.port_id != b.port_id'),
                   Statement(True)),
-             Statement(True)),
-
-        When('type(a) is type(b)',
-             When('a.domain_id == b.domain_id',
-                  Need('a.priority != b.priority'),
-                  Statement(True)),
-             Statement(True)),
-    )
+             Statement(True))
+    )   # 外部约束，约束功能与功能间关系
+    sort_rules = (
+        When('type(a) is IP',
+             Statement(True),
+             Statement(False))
+    )   # 拓扑约束，决定配置生成的先后顺序
 
     def _infer_value(self, **kwargs):
         # 俩个作用，一是默认值设置，二是推断缺失属性

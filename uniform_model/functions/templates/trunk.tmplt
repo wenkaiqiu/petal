@@ -1,13 +1,15 @@
 {% if this.number %}
+# 配置链路聚合组数目
 system-view
 assign foword eth-trunk mode {{ this.number }}
 commit
 {% endif %}
-
+# 配置trunk端口
 {% for port in this.trunk_port %}
 system-view
 interface eth-trunk {{ port.trunk_id }}
 mode {{ this.mode }}
+# 将业务端口加入trunk端口
 {% for pport in port['physical_port'] %}
 trunkport {{ pport|replace('GE', 'GE ')}}
 {% endfor %}

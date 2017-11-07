@@ -1,14 +1,18 @@
-stack
-stack member {{ this.member_id }} priority {{ this.priority }}
-stack member {{ this.member_id }} domain {{ this.domain_id }}
+# 配置设备stack属性
+stack  # 进入stack视图
+stack member {{ this.member_id }} priority {{ this.priority }}  # 配置stack的优先度
+stack member {{ this.member_id }} domain {{ this.domain_id }}  # 配置stack的domain id
 quit
 commit
+# 进入系统视图
 system-view
+# 配置每个stack端口
 {% for port in this.stack_port %}
-interface stack-port {{ this.member_id }}/{{ port['port_id'] }}
+interface stack-port {{ this.member_id }}/{{ port['port_id'] }}  # 配置stack端口名
 quit
 {% endfor %}
 commit
+# 将业务端口加入stack端口
 {% for port in this.stack_port %}
 {% for pport in port['physical_port'] %}
 interface {{ pport|replace('GE', 'GE ')}}
