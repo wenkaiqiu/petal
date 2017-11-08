@@ -80,7 +80,7 @@ class Database(metaclass=abc.ABCMeta):
         """
         用于配置初始化时，获取全部连接信息
         :return: dict('id', 'name', 'device_id_a', 'device_id_b', 'port_a', 'port_b', 'link_type', 'usage', 'bandwidth',
-                        'unit')[]
+                        'unit', 'length')[]
         """
         raise NotImplementedError
 
@@ -90,7 +90,7 @@ class Database(metaclass=abc.ABCMeta):
         添加设备的连接信息
         :param params: 要添加的连接信息
                         dict('id', 'name', 'device_id_a', 'device_id_b', 'port_a', 'port_b', 'link_type', 'usage',
-                         'bandwidth', 'unit')
+                         'bandwidth', 'unit', 'length')
         :return: None
         """
         raise NotImplementedError
@@ -102,7 +102,7 @@ class Database(metaclass=abc.ABCMeta):
         :param device_id: 设备ID
         :param params: 要添加的连接信息
                         dict('id', 'name', 'device_id_a', 'device_id_b', 'port_a', 'port_b', 'link_type', 'usage',
-                         'bandwidth', 'unit')
+                         'bandwidth', 'unit', 'length')
         :return: None
         """
         raise NotImplementedError
