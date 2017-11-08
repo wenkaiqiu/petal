@@ -13,8 +13,9 @@ project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
 
 class JSON(Database):
     """
-    目前仅用于mock，故固定文件路径
+    用于访问JSON文件的数据库类，实现抽象父类Database定义的接口
     """
+    # 目前仅用于mock，故固定文件路径，而不是从conf文件读取
     json_path = {
         "models": project_path + "\contrib\mock\models.json",
         "devices": project_path + "\contrib\mock\devices.json",
@@ -23,6 +24,7 @@ class JSON(Database):
 
     @classmethod
     def set_conf(cls, conf):
+        # 对JSON类无用，故仅打印
         logger.info("<JSON> set_conf")
 
     @classmethod

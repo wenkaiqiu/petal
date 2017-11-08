@@ -35,7 +35,7 @@ class DeviceFactory(Factory):
         device_detail = self.get_device_detail(device_info)
         device_detail.update({"parent_id": device_info["parent_id"]})
         # try:
-        device = TemplateManager.get_model(model_name).generate(device_detail)
+        device = TemplateManager.get_model(model_name).generate_device(device_detail)
         if not hasattr(device, "functions_list"):
             setattr(device, "functions_list", [])
         if self.tag:

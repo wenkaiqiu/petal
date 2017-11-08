@@ -1,2 +1,1 @@
-from .json import JSON
-from .postgresql import PostgreSQL
+from .database_factory import DatabaseFactory

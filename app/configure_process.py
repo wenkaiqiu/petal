@@ -1,9 +1,7 @@
 import json
 import logging
-from functools import reduce
-
-# from .factories import DatabaseFactory
-from app.factories import DeviceFactory, LinkFactory, OperationFactory, DatabaseFactory
+from db import DatabaseFactory
+from app.factories import DeviceFactory, LinkFactory, OperationFactory
 from app.generator import ConfigurationGenerator
 from .parser import Parser
 
@@ -32,13 +30,14 @@ conf_path = {
 
 def configure_database():
     """
-    配置数据库基础信息
+    配置数据库基础信息,使用不同的接口。
     :return: database
     """
+    # todo: Maybe：Restful API或直接操作数据库
     logger.info("configure <database> start")
     with open(conf_path["database"], "r") as database_conf_file:
         database_conf = json.load(database_conf_file)
-        database = DatabaseFactory().generate(conf=database_conf)
+        database = DatabaseFactory.get_database(conf=database_conf)
     logger.info("configure <database> end")
     return database
 
@@ -166,14 +165,14 @@ def generate_topo(devices):
     post_r = generator.genarate_topo(devices.values())
     print(post_r)
 
-    import requests
-    with open(conf_path["visualization"], "r") as path_file:
-        path = json.load(path_file)["base_url"]
-    r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
-    print(r.text)
-
-    import webbrowser
-    webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
+    # import requests
+    # with open(conf_path["visualization"], "r") as path_file:
+    #     path = json.load(path_file)["base_url"]
+    # r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
+    # print(r.text)
+    #
+    # import webbrowser
+    # webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
 
 
 def processor(input_path, tag=False):

@@ -9,10 +9,18 @@ logger.setLevel(logging.DEBUG)
 
 
 class PostgreSQL(Database):
-    conn = None
+    """
+    用于访问PostgreSQL的数据库类，实现抽象父类Database定义的接口
+    """
+    _conn = None  # sql连接
 
     @classmethod
     def set_conf(cls, conf):
+        """
+        读取数据库配置信息，创建与数据库的连接
+        :param conf:
+        :return:
+        """
         logger.info("<PostgreSQL> set_conf")
         params = {
             "database": conf["db_name"],
@@ -23,11 +31,11 @@ class PostgreSQL(Database):
         }
         logger.info("<PostgreSQL> try to connect PostgreSQL")
         try:
-            cls.conn = psycopg2.connect(**params)
+            cls._conn = psycopg2.connect(**params)
             logger.info("<Database> connect success")
         except Exception as e:
             logger.warning("<Database> connect failed")
-            cls.conn.close()
+            cls._conn.close()
             print(e)
 
     # todo: 实现抽象类Database的相应方法

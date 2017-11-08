@@ -38,7 +38,7 @@ class SwitchTemplate(Template):
     def _init_functions(self, device, functions_name):
         logger.info(f"set functions of {self.__class__} device")
         for item in functions_name:
-            function_instance = self.function_factory.generate(item)
+            function_instance = self.function_factory.get_database(item)
             if function_instance is not None:
                 setattr(device, item, function_instance)
 

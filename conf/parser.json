@@ -17,7 +17,7 @@
     "port_b": true,
     "link_type": true,
     "usage": true,
-    "band_width": false,
+    "bandwidth": false,
     "length": false
   },
   "T_Operation": {

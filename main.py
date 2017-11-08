@@ -17,5 +17,5 @@ if __name__ == "__main__":
 
         processor(args[0])
     else:
-        print("param can't be None")
+        print("Error: param can't be None")
         exit()
