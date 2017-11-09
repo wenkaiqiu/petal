@@ -12,22 +12,20 @@ logger.setLevel(logging.DEBUG)
 
 class OperationFactory(Factory):
     """
-    生成op函数，验证device是否支持该operation
+    生成op函数,流程如下：
+    1. 根据配置参数中的设备ID获取设备实例,并检查是否存在
+    2. 检查功能是否已实现
     """
 
     def generate(self, operation_info, devices):
-        logger.info("<OperationFactory> generate operation instance")
-        print("operation_info['devices']: " + str(operation_info['devices']))
-        # 获取设备实例
-        op_devices = list(map(
-            lambda x: devices.get(x) if not isinstance(x, list) else group(
-                *list(map(lambda y: devices.get(y), x))),
-            operation_info['devices']))
-        for device in reduce(lambda a, b: a + b,
-                             map(lambda y: [y] if not isinstance(y, DeviceGroup) else y.group, op_devices)):
-            if device is None:
-                return None, f"device which id is {operation_info['device_id_a']} is not exit"
-        model = FunctionFactory.get_function_model(operation_info["type"])
-        if model is None:
-            return None, operation_info["type"]
-        return lambda: op(model, *op_devices, **operation_info), None
+        logger.info('<OperationFactory> generate operation instance')
+        # 1.获取设备实例
+        op_devices = [devices.get(device_id, None) for device_id in operation_info['devices']]
+        if any(device is None for device in op_devices):
+            logger.error(f'device id is not exist in {operation_info}')
+            raise Exception(f'device id is not exist in {operation_info}')
+        func = FunctionFactory.get_function_model(operation_info["type"])
+        if func is None:
+            logger.error(f'function type is not exist in {operation_info}')
+            raise Exception(f'function type is not exist in {operation_info}')
+        return lambda: op(func, *op_devices, **operation_info)

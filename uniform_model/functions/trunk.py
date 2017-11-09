@@ -39,7 +39,7 @@ class FunctionTrunk(Function):
         # 返回是协议配置端口否冲突。todo: 规则检查无法检测具体是哪条规则冲突，待解决。包括intra_rules和inner_rules
         return all(
             not bool(set(a['physical_port']).intersection(set(b['physical_port'])))
-            for a,b in product(self.trunk_port, b.stack_port))
+            for a, b in product(self.trunk_port, b.stack_port))
 
         # 为实现消除冲突，通过raise ConflictError来指示冲突对象
         # for x, y in product(self.trunk_port, b.stack_port):
