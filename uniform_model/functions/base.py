@@ -14,7 +14,7 @@ class Function:
     sort_rules = tuple()
 
     def __init__(self, *args, **kwargs):
-        self.tag = False
+        self.tag = False    # 用于撤销配置
         self._entities = dict(this=dict())  # 用于存放属性
         # 1.entity check, entity可用于推断缺失属性
         if not all((

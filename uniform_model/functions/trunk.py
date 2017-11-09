@@ -36,15 +36,15 @@ class FunctionTrunk(Function):
         return all(int(port['trunk_id']) in range(0, int(self.number)) for port in self.trunk_port)
 
     def _check_conflict_function(self, b):
-        # 返回是否冲突。无法检测冲突
-        # return all(
-        #     not bool(set(a['physical_port']).intersection(set(b['physical_port'])))
-        #     for a,b in product(self.trunk_port, b.stack_port))
+        # 返回是协议配置端口否冲突。todo: 规则检查无法检测具体是哪条规则冲突，待解决。包括intra_rules和inner_rules
+        return all(
+            not bool(set(a['physical_port']).intersection(set(b['physical_port'])))
+            for a,b in product(self.trunk_port, b.stack_port))
 
         # 为实现消除冲突，通过raise ConflictError来指示冲突对象
-        for x, y in product(self.trunk_port, b.stack_port):
-            if bool(set(x['physical_port']).intersection(set(y['physical_port']))):
-                raise ConflictError(**{'conflict_function': b})
+        # for x, y in product(self.trunk_port, b.stack_port):
+        #     if bool(set(x['physical_port']).intersection(set(y['physical_port']))):
+        #         raise ConflictError(**{'conflict_function': b})
 
     def _infer_value(self, **kwargs):
         return kwargs

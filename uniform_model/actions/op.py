@@ -10,45 +10,43 @@ logger.setLevel(logging.DEBUG)
 
 
 def op(func, *arith_list, **kwargs):
-    # lst = [arith.group if isinstance(arith, DeviceGroup) else [arith] for arith in arith_list]
-    # params = kwargs["params"]
-    # for index, p in enumerate(reduce(lambda a,b: a+b, lst)):
-    #     # print(p)
-    #     print("---------op-----------")
-    #     print(p.functions_list)
-    #     params[index].update({"device": p})
-    #     new_func = func(**params[index])
-    #     try:
-    #         for func in p.functions_list:
-    #             res = new_func.intra_check(func)
-    #             print(res)
-    #     except ConflictError as e:
-    #         func = e.conflict_function
-    #         print(func)
-    #         func.tag = True
-    #         print(func.tag)
-    #     p.functions_list.append(func(**params[index]))
-    #     print(p.functions_list)
-    #     # p.functions_list.append()
-    #     # if not _check_link(*p):
-    #     #     return False
-    #     # tag1 = func.op(p[0], **(params[index][0]))
-    #     # tag2 = func.op(p[1], **(params[index][1]))
-    #     # if not tag1 or not tag2:
-    #     #     return False
-    #
-    #     # logger.info(f'operate {func} on {p}')
+    """
+    配置操作时的流程如下：
+    遍历设备列表：
+        1. 实例化function
+        2. 检查与设备内的其他功能的依赖冲突.若冲突，则对冲突的功能进行标记，以便进行撤销（由于涉及的规则为检测端口冲突，故解决操作为撤销冲突配置，其他操作未来丰富）
+        3. 将实例化function添加到设备功能列表
+    :param func: 方法名
+    :param arith_list: 设备列表
+    :param kwargs: 参数字典
+    :return:
+    """
+    logger.info('<op> start op')
+    params = kwargs["params"]
+    for index, p in enumerate(arith_list):
+        print(f'<op> configure function <{kwargs["type"]} in {p.model.category} device {p.id}>')
+        params[index].update({'device': p})
+        new_func = func(**params[index])    # 实例化function
+        # 检查与设备内的其他功能的依赖冲突
+        for func in p.functions_list:
+            logger.info(f'<op> check {type(new_func)} and {type(func)}')
+            res = new_func.intra_check(func)
+            logger.info(f'<op> check result is {res}')
+            if not res:
+                logger.warning(f'<op> There is a conflict between {new_func.__dict__} and {func.__dict__}')
+                func.tag = True
+
+        p.functions.append(new_func)
+        logger.info('<op> end op')
     return True  # 出错时返回False
 
 
 def _check_link(*lst):
+    # todo: 是否需要检查连接或路径，待确认
+    logger.info("<op> check link")
     device_1 = lst[0]
     device_2 = lst[1]
-    # print("-----------check_link--------------")
-    # print(device_2.id)
-    # print(device_1.links)
-    # return True
-    if device_2.id in device_1.links:
+    if all(device_2.id in (link.device_id_a, link.device_id_b) for link in device_1.links):
         return True
     else:
         return False
