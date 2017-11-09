@@ -1,12 +1,27 @@
 import logging
 
-from app.factories.base import Factory
-from uniform_model import TemplateManager
+from uniform_model.devices.templates import OtherTemplate, ChassisTemplate, SwitchTemplate, ProcessorTemplate, StorageTemplate
 from uniform_model.functions.function_factory import FunctionFactory
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
-logger = logging.getLogger('app.factories.device_factory')
+logger = logging.getLogger('uniform_model.devices.device_factory')
 logger.setLevel(logging.DEBUG)
+
+
+# 注册已有设备模型
+__global_register = {
+    'chasis': ChassisTemplate,
+    'switch': SwitchTemplate,
+    'processor': ProcessorTemplate,
+    'other': OtherTemplate,
+    'storage': StorageTemplate
+}
+
+
+# 获取设备模型，若不存在，返回None
+def _get_model_type(model_type):
+    global __global_register
+    return __global_register.get(model_type, None)
 
 
 class DeviceFactory(Factory):

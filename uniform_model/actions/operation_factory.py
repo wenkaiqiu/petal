@@ -6,7 +6,7 @@ from uniform_model import group, DeviceGroup, op
 from uniform_model.functions.function_factory import FunctionFactory
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
-logger = logging.getLogger('app.factories.operation_factory')
+logger = logging.getLogger('uniform_model.actions.operation_factory')
 logger.setLevel(logging.DEBUG)
 
 

@@ -5,7 +5,7 @@ from uniform_model.functions.trunk import FunctionTrunk
 from uniform_model.functions.vlan import FunctionVLAN
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
-logger = logging.getLogger('app.factories.function_factory')
+logger = logging.getLogger('uniform_model.functions.function_factory')
 logger.setLevel(logging.DEBUG)
 
 

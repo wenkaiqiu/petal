@@ -28,35 +28,21 @@ class Device:
         self._entities = dict(this=dict())  # 用于保存基本属性
         self.model = None
         self.space = None
-        self.status = dict()
-        self.links = []
+        self.status = None
+        self.links = []         # 为实现检查，故需实现接口
         self.functions = []
 
         # val check
-        if not all(val in kwargs for val in self.vals if self.vals[val]): raise KeyError(
-            'lack necessary attribute of device')
+        if not all(val in kwargs for val in self.vals if self.vals[val]):
+            raise KeyError('lack necessary attribute of device')
 
         # fill vals
-        for key in self.vals: self._entities['this'][key] = kwargs[key]
+        for key in self.vals: self._entities[key] = kwargs[key]
         if not (self._inner_check()): raise Exception('内部检查失败')
 
     def _inner_check(self):
         # inner check
         return all(rule.apply(self, None) for rule in self.inner_rules)
-
-    def _check_link(self, link):
-        """
-        检查连接是否重复或冲突
-        :param link:
-        :return:
-        """
-    def add_link(self, link: Link):
-        """
-        添加链接
-        :param link: Link类型对象
-        :return:
-        """
-        self.links.append(link)
 
     def to_json(self):
         json = {}
@@ -79,4 +65,4 @@ class Device:
         try:
             return self.__dict__[name]
         except KeyError:
-            return self._entities['this'].get(name)
+            return self._entities.get(name)

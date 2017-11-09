@@ -7,7 +7,7 @@ logger = logging.getLogger('uniform_model.devices.port')
 logger.setLevel(logging.DEBUG)
 
 
-class Port(Device):
+class PortTemplate(Device):
     """
     交换模块下的端口
     """
@@ -37,8 +37,8 @@ class Port(Device):
 class InterfaceManager:
     # 注册已有接口模型
     __global_register = {
-        "Ethernet": Port,
-        "FC": Port
+        "Ethernet": PortTemplate,
+        "FC": PortTemplate
     }
     @classmethod
     def _check_interface_info(cls, interface_info):
