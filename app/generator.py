@@ -83,7 +83,7 @@ class ConfigurationGenerator:
                 "id": device.name,
                 "label": device.model_type,
                 "group": "#ccc",
-                "attrs": device.get_attrs_json(),
+                "attrs": device.to_json(),
             })
             for link in device.links.values():
                 if loc_json.get("links", None) is None:

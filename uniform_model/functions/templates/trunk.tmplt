@@ -8,7 +8,11 @@ commit
 {% for port in this.trunk_port %}
 system-view
 interface eth-trunk {{ port.trunk_id }}
+{% if this.mode %}
 mode {{ this.mode }}
+{% else %}
+mode manual
+{% endif %}
 # 将业务端口加入trunk端口
 {% for pport in port['physical_port'] %}
 trunkport {{ pport|replace('GE', 'GE ')}}

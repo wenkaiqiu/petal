@@ -1,14 +1,14 @@
 import json
 import logging
-from db import DatabaseFactory
+
 from app.factories import DeviceFactory, LinkFactory, OperationFactory
 from app.generator import ConfigurationGenerator
-from .parser import Parser
-
 from app.validators import OperationValidator
-from uniform_model import TemplateManager, DeviceManager
-from uniform_model.templates.port import InterfaceManager
-from uniform_model.templates import Template
+from db import DatabaseFactory
+from uniform_model import TemplateManager
+from uniform_model.devices.templates import InterfaceManager
+from uniform_model.devices.templates import Template
+from .parser import Parser
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.configure_process')
@@ -178,9 +178,6 @@ def generate_topo(devices):
 def processor(input_path, tag=False):
     database = configure_database()
     parser = configure_parser()
-    # configure_template()
-    # configure_device()
-    # configure_interface()
     try:
         devices_info, links_info, operations_info = parse_input(parser, input_path)
     except KeyError as e:
@@ -188,6 +185,9 @@ def processor(input_path, tag=False):
         for item in e.args[1]:
             logger.error(item)
         raise
+    # configure_template()
+    # configure_device()
+    # configure_interface()
     # devices = instantiate_device(devices_info, database, tag)
     # print("current registed device: " + str(DeviceManager.list_all_registered()))
     # links = instantiate_link(links_info, devices)

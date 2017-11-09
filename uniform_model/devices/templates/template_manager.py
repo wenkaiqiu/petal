@@ -1,9 +1,8 @@
 import logging
-from itertools import chain
 
-from uniform_model.templates.other import OtherTemplate
-from uniform_model.templates.processor import ProcessorTemplate
-from uniform_model.templates.storage import StorageTemplate
+from uniform_model.devices.templates import OtherTemplate
+from uniform_model.devices.templates import ProcessorTemplate
+from uniform_model.devices.templates import StorageTemplate
 from .chassis import ChassisTemplate
 from .switch import SwitchTemplate
 

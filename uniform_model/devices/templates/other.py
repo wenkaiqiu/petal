@@ -1,7 +1,7 @@
 import logging
 
 from .base import Template
-from ..devices.device import Device
+from uniform_model.devices.device import Device
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.templates.other')

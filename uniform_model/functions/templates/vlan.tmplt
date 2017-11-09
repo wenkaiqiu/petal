@@ -1,0 +1,27 @@
+# 创建VLAN
+system-view
+vlan {{ this.vlan_id }}
+quit
+commit
+{% if this.vlan_type == 'interface' %}
+# 配置基于接口的VLAN
+{% for pport in this.ports %}
+interface {{ pport.port_id|replace('GE', 'GE ')}}
+# 配置以太网接口属性
+port link-type {{ pport.link_type }}
+{% if pport.priority %}
+# 配置端口优先级
+port priority {{ pport.priority }}
+{% endif %}
+# 加入接口到VLAN
+{% if pport.link_type == 'access' %}
+port default vlan {{ this.vlan_id }}
+{% elif pport.link_type == 'trunk'%}
+port trunk allow-pass vlan {{ this.vlan_id }}
+{% elif pport.link_type == 'hybrid' %}
+port hybrid untagged vlan {{ this.vlan_id }}
+{% endif %}
+quit
+commit
+{% endfor %}
+{% endif %}

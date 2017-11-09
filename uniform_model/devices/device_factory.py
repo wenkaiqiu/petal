@@ -1,8 +1,8 @@
 import logging
 
-from app.factories.function_factory import FunctionFactory
 from app.factories.base import Factory
 from uniform_model import TemplateManager
+from uniform_model.functions.function_factory import FunctionFactory
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.factories.device_factory')

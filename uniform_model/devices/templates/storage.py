@@ -1,5 +1,5 @@
 from .base import Template
-from ..devices import Device
+from uniform_model.devices import Device
 
 
 class StorageTemplate(Template):

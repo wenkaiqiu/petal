@@ -1,5 +1,5 @@
 from uniform_model.devices import Device
-from uniform_model.templates.base import Template
+from uniform_model.devices.templates import Template
 
 
 class ProcessorTemplate(Template):

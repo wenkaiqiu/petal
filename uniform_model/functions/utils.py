@@ -3,7 +3,6 @@ from jinja2 import Environment, PackageLoader
 env = Environment(
     loader=PackageLoader('uniform_model.functions', 'templates'),
     trim_blocks=True,
-    lstrip_blocks=True,
 )
 
 

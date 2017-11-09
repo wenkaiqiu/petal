@@ -1,3 +1,10 @@
+import logging
+
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
+logger = logging.getLogger('uniform_model.actions.link')
+logger.setLevel(logging.DEBUG)
+
+
 class Link:
     def __init__(self, **kwargs):
         self.link_type = kwargs['link_type']

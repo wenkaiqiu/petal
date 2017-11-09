@@ -1,8 +1,9 @@
 import logging
 
-from uniform_model.templates.port import InterfaceManager
+from uniform_model.devices.device import Device
+from uniform_model.devices.templates import InterfaceManager
 from .base import Template
-from ..devices.device import Device
+
 # from ..interfaces import InterfaceManager
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')

@@ -1,0 +1,6 @@
+{% if this.vlan_type == 'interface' %}
+# 创建VLAN
+system-view
+assign foword eth-trunk mode {{ this.number }}
+commit
+{% endif %}

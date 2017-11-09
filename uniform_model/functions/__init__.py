@@ -1,2 +1,2 @@
-from .base_old import OperableTrait
-from .stack import FunctionStack
+from uniform_model.functions.exceptions import ConflictError
+from uniform_model.functions.function_factory import FunctionFactory
