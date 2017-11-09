@@ -4,7 +4,7 @@ import os
 
 from .base import Database
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('db.json')
 logger.setLevel(logging.DEBUG)
 

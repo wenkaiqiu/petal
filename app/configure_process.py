@@ -10,7 +10,7 @@ from uniform_model import TemplateManager, DeviceManager
 from uniform_model.templates.port import InterfaceManager
 from uniform_model.templates import Template
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.configure_process')
 logger.setLevel(logging.DEBUG)
 
@@ -88,11 +88,11 @@ def configure_interface():
 def parse_input(parser, input_path):
     # 读取网络规划表并解析
     # 配置解析器
-    logger.info("loading <input> start")
+    logger.info("loading <panning table> start")
     with open(input_path, 'r') as input_json:
         input = json.load(input_json)
         devices_info, links_info, operations_info = parser.parse_input(input)
-    logger.info("loading <input> end")
+    logger.info("loading <panning table> end")
     return devices_info, links_info, operations_info
 
 
@@ -178,14 +178,20 @@ def generate_topo(devices):
 def processor(input_path, tag=False):
     database = configure_database()
     parser = configure_parser()
-    configure_template()
-    configure_device()
-    configure_interface()
-    devices_info, links_info, operations_info = parse_input(parser, input_path)
-    devices = instantiate_device(devices_info, database, tag)
-    print("current registed device: " + str(DeviceManager.list_all_registered()))
-    links = instantiate_link(links_info, devices)
-    operations = instantiate_op(operations_info, devices)
-    validate_op(operations)
-    generate_configuration(devices)
-    generate_topo(devices)
+    # configure_template()
+    # configure_device()
+    # configure_interface()
+    try:
+        devices_info, links_info, operations_info = parse_input(parser, input_path)
+    except KeyError as e:
+        logger.error(e.args[0] + ' Details:')
+        for item in e.args[1]:
+            logger.error(item)
+        raise
+    # devices = instantiate_device(devices_info, database, tag)
+    # print("current registed device: " + str(DeviceManager.list_all_registered()))
+    # links = instantiate_link(links_info, devices)
+    # operations = instantiate_op(operations_info, devices)
+    # validate_op(operations)
+    # generate_configuration(devices)
+    # generate_topo(devices)

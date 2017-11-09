@@ -5,7 +5,7 @@ from uniform_model import FunctionStack
 from uniform_model.functions.base import FunctionNew
 from uniform_model.base import Statement, When, Need, Entity
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.functions.trunk')
 logger.setLevel(logging.DEBUG)
 

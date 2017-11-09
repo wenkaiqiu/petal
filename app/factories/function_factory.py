@@ -4,7 +4,7 @@ from uniform_model.functions.stack import FunctionStack
 from uniform_model.functions.trunk import FunctionTrunk
 from ..factories.base import Factory
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.factories.function_factory')
 logger.setLevel(logging.DEBUG)
 

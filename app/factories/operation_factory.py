@@ -5,7 +5,7 @@ from app.factories.base import Factory
 from app.factories.function_factory import FunctionFactory
 from uniform_model import group, DeviceGroup, op
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.factories.operation_factory')
 logger.setLevel(logging.DEBUG)
 

@@ -7,7 +7,7 @@ from uniform_model.templates.storage import StorageTemplate
 from .chassis import ChassisTemplate
 from .switch import SwitchTemplate
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.templates.template_manager')
 logger.setLevel(logging.DEBUG)
 

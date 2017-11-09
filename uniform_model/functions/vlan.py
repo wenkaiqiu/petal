@@ -4,7 +4,7 @@ from uniform_model.functions.base_old import Function
 from uniform_model.functions.base import FunctionNew
 from uniform_model.base import Statement, When, Need, Entity
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.functions.vlan')
 logger.setLevel(logging.DEBUG)
 

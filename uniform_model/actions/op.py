@@ -5,7 +5,7 @@ from itertools import product
 from ..devices import DeviceGroup
 from ..functions import OperableTrait
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.actions.op')
 logger.setLevel(logging.DEBUG)
 

@@ -2,7 +2,7 @@ import logging
 
 from ..devices.device_manager import DeviceManager
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.templates.base')
 logger.setLevel(logging.DEBUG)
 

@@ -5,7 +5,7 @@ from .base import Template
 from ..devices.device import Device
 # from ..interfaces import InterfaceManager
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.templates.switch')
 logger.setLevel(logging.DEBUG)
 

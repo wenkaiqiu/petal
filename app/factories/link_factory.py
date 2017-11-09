@@ -3,7 +3,7 @@ import logging
 from app.factories.base import Factory
 from uniform_model import link
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.factories.link_factory')
 logger.setLevel(logging.DEBUG)
 

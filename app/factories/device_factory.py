@@ -4,7 +4,7 @@ from app.factories.function_factory import FunctionFactory
 from app.factories.base import Factory
 from uniform_model import TemplateManager
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('app.factories.device_factory')
 logger.setLevel(logging.DEBUG)
 

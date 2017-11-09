@@ -41,7 +41,6 @@
   ],
   "operations": [
     {
-      "type": "stack",
       "devices": [ "2", "3"],
       "params": [
           {

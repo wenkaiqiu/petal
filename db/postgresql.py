@@ -3,7 +3,7 @@ import psycopg2
 
 from .base import Database
 
-logging.basicConfig(format='%(asctime)s <%(name)s> %(message)s')
+logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('db.postgresql')
 logger.setLevel(logging.DEBUG)
 
