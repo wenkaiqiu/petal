@@ -1,8 +1,0 @@
-{
-  "id": true,
-  "uuid": true,
-  "name": true,
-  "model_type": true,
-  "description": true,
-  "parent_id": true
-}

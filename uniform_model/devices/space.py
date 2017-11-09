@@ -17,13 +17,13 @@ class Space:
         'x': True,              # 相对于父设备的x坐标
         'y': True,              # 相对于父设备的y坐标
         'z': True,              # 相对于父设备的z坐标
-        'data_center': True,    # 数据中心
+        'data_center': False,    # 数据中心
     }
     inner_rules = tuple()
 
     def __init__(self, **kwargs):
         logger.info('<Space> init Space object')
-        self._entities = dict(this=dict())
+        self._entities = dict()
         # 1.val check
         if not all(val in kwargs for val in self.vals if self.vals[val]):
             raise Exception('lack necessary attribute of Space')

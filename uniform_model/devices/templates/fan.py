@@ -3,29 +3,32 @@ import logging
 from .base import Template
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
-logger = logging.getLogger('uniform_model.devices.templates.chassis')
+logger = logging.getLogger('uniform_model.devices.templates.fan')
 logger.setLevel(logging.DEBUG)
 
 
-class ChassisTemplate(Template):
-    name = 'chassis'
+class FanTemplate(Template):
+    name = 'fan'
     device_vals = {
         'sku': False,
         'serial_number': False,
         'part_number': False,
         'spare_part_number': False,
         'indicator_led': False,
-        'height_mm': False,
-        'width_mm': False,
-        'depth_mm': False,
-        'weight_kg': False,
+        'reading_units': False,
+        'physical_context': False,
+        'member_id': False,
     }
     model_vals = {
         'manufacturer': False,
-        'chassis_type': False,
+        'lower_threshold_fatal': False,
+        'lower_threshold_critical': False,
+        'lower_threshold_non_critical': False,
+        'upper_threshold_fatal': False,
+        'upper_threshold_critical': False,
+        'upper_threshold_non_critical': False,
     }
     status_vals = {
         'health_rollup': False,
-        'power_state': False,
     }
     inner_rules = tuple()

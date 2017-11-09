@@ -1,6 +1,7 @@
 import logging
 
 from uniform_model.devices.link import Link
+from uniform_model.utils import check_necessary, fill_value
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.devices.device')
@@ -15,7 +16,15 @@ class Device:
     从属性上来说，device含有设备数据库中的model，device，wire，part，space和status的所有信息。
     """
     # vals定义约束的共有属性。key表示属性名，value表示是否必须
-    vals = {'id': True, 'uuid': True, 'name': True, 'model_type': True}
+    vals = {
+        'id': True,
+        'uuid': True,
+        'name': True,
+        'model_type': True,
+        'asset_id': False,
+        'data_center': False,
+        'description': False
+    }
     # 内部规则，若需要对值类型检查，可在此添加规则
     inner_rules = tuple()
 
@@ -25,24 +34,29 @@ class Device:
         :param args:
         :param kwargs:
         """
-        self._entities = dict(this=dict())  # 用于保存基本属性
+        self._entities = dict()  # 用于保存基本属性
         self.model = None
         self.space = None
         self.status = None
-        self.links = []         # 为实现检查，故需实现接口
+        self.parent_id = None
+        self.children_id = []
+        self.links = []  # 为实现检查，故需实现接口
         self.functions = []
 
-        # val check
-        if not all(val in kwargs for val in self.vals if self.vals[val]):
-            raise KeyError('lack necessary attribute of device')
-
-        # fill vals
-        for key in self.vals: self._entities[key] = kwargs[key]
+        # 1.val check
+        if not check_necessary(kwargs, self.vals):
+            raise Exception(f'lack necessary attribute of {type(self)}')
+        # 2.fill vals
+        fill_value(self._entities, kwargs, self.vals)
+        # check inner rules
         if not (self._inner_check()): raise Exception('内部检查失败')
 
     def _inner_check(self):
         # inner check
         return all(rule.apply(self, None) for rule in self.inner_rules)
+
+    def get_entities(self):
+        return self._entities
 
     def to_json(self):
         json = {}

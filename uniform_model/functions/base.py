@@ -1,4 +1,5 @@
 from uniform_model.functions.utils import render
+from uniform_model.utils import check_necessary, fill_value
 
 
 class Function:
@@ -28,10 +29,12 @@ class Function:
         # 2.推断缺失属性
         kwargs = self._infer_value(**kwargs)
         # 3.val check
-        if not all(val in kwargs for val in self.vals if self.vals[val]): raise Exception()
+        if not check_necessary(kwargs, self.vals):
+            raise Exception(f'lack necessary attribute in {self.name} function')
 
         # 4.fill vals
-        for key in self.vals: self._entities['this'][key] = kwargs[key]
+        fill_value(self._entities['this'], kwargs, self.vals)
+
         # 5.inner check
         if not (self._inner_check()): raise Exception('内部检查失败')
 

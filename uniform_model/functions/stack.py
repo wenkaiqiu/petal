@@ -36,7 +36,7 @@ class FunctionStack(Function):
         new_kwargs = kwargs
         for key in filter(lambda x: x not in new_kwargs, self.vals):
             if key == 'member_id':
-                new_kwargs.update({'member_id': kwargs['device'].slot_id[0]})
+                new_kwargs.update({'member_id': kwargs['device'].space.serial})
             elif key == 'priority':
                 new_kwargs.update({'priority': 100})
         return new_kwargs
@@ -50,7 +50,8 @@ def main():
     class A: pass
 
     a = A()
-    a.slot_id = '32'
+    a.space = A()
+    a.space.serial = '32'
     a.interface = '32'
     function_stack = FunctionStack(device=a, domain_id=12, priority=123,
                                    stack_port=[{'port_id': '32', 'physical_port': '32'}])
@@ -59,7 +60,8 @@ def main():
     print(conf)
     print(function_stack.generate_revoke_conf())
     b = A()
-    b.slot_id = '33'
+    b.space = A()
+    b.space.serial = '32'
     b.interface = '33'
     function_stack_b = FunctionStack(device=b, domain_id=12, priority=123,  stack_port=[{'port_id': '32', 'physical_port': '32'}])
     res = function_stack.intra_check(function_stack_b)

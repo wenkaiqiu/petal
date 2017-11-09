@@ -20,9 +20,6 @@ project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
 # 配置文件路径集合
 conf_path = {
     "database": project_path + "\\conf\\database.json",
-    "device": project_path + "\\conf\\device.json",
-    "interface": project_path + "\\conf\\interface.json",
-    "model": project_path + "\\conf\\model.json",
     "parser": project_path + "\\conf\\parser.json",
     "visualization": project_path + "\\conf\\visualization.json",
 }
@@ -53,36 +50,6 @@ def configure_parser():
         parser = Parser(parser_conf)
     logger.info("configure <parser> end")
     return parser
-
-
-def configure_template():
-    """
-    配置ModelManager
-    :return: None
-    """
-    logger.info("configure <ModelManager> start")
-    with open(conf_path["model"], "r") as model_conf_json:
-        model_conf = json.load(model_conf_json)
-        TemplateManager.set_conf(model_conf)
-    logger.info("configure <ModelManager> end")
-
-
-def configure_device():
-    # 配置Model
-    logger.info("configure <Model> start")
-    with open(conf_path["device"], "r") as device_conf_json:
-        device_conf = json.load(device_conf_json)
-        Template.set_device_conf(device_conf)
-    logger.info("configure <Model> end")
-
-
-def configure_interface():
-    # 配置Interface
-    logger.info("configure <Interface> start")
-    with open(conf_path["interface"], "r") as interface_conf_json:
-        interface_conf = json.load(interface_conf_json)
-        InterfaceManager.set_conf(interface_conf)
-    logger.info("configure <Interface> end")
 
 
 def parse_input(parser, input_path):

@@ -1,9 +1,0 @@
-{
-  "type": true,
-  "interface_type": true,
-  "name": true,
-  "speed": true,
-  "subcard_number": true,
-  "port_number": true,
-  "count": true
-}
