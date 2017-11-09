@@ -75,7 +75,7 @@ class Parser:
         3. 映射为内部字段名
 
         程序会在遍历过程中将错误收到error_list中，推迟到遍历完成后统一处理。遍历完成后，程序raise所有错误，并在configure_process.py中打印
-
+        三部分的内容分别在_parse_devices(),_parse_links()和_parse_operations()方法中进行解析
         :param planning_table: 规划表，dict格式
         :return: 解析后的设备信息，连接信息和配置信息
         """
@@ -94,6 +94,12 @@ class Parser:
         return devices, links, operations
 
     def _check_necessary(self, info, conf_type):
+        """
+        检查必要字段是否存在
+        :param info: 规划表信息
+        :param conf_type: 信息类型：device, link或operation
+        :return:
+        """
         conf = None
         if conf_type == 'device':
             conf = self.device_conf
