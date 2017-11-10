@@ -1,16 +1,13 @@
 import logging
-from functools import reduce
 
-from app.factories.base import Factory
-from uniform_model import group, DeviceGroup, op
-from uniform_model.functions.function_factory import FunctionFactory
+from uniform_model import op, FunctionFactory
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.actions.operation_factory')
 logger.setLevel(logging.DEBUG)
 
 
-class OperationFactory(Factory):
+class OperationFactory:
     """
     生成op函数,流程如下：
     1. 根据配置参数中的设备ID获取设备实例,并检查是否存在

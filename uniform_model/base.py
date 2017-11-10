@@ -2,11 +2,22 @@ class RuleBase:
     def apply(self, a, b): raise NotImplementedError()
 
 
+class Rule(RuleBase):
+    def __init__(self, msg, sub: RuleBase):
+        sub.msg = msg
+        self.sub = sub
+
+    def apply(self, a, b):
+        self.sub.apply(a, b)
+
+
 class Statement(RuleBase):
     def __init__(self, statement):
         self.statement = statement
+        self.msg = None
 
-    def apply(self, a, b): return self.statement
+    def apply(self, a, b):
+        return self.statement
 
 
 class When(RuleBase):
@@ -42,3 +53,8 @@ class Entity:
             # TODO: more precise checks
             all(func in dir(obj) for func in self.funcs),
         ))
+
+
+if __name__ == '__main__':
+    class A: pass
+    Rule('hello', Statement(True)).apply(A(), None)

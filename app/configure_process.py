@@ -1,13 +1,13 @@
 import json
 import logging
 
-from app.factories import DeviceFactory, LinkFactory, OperationFactory
 from app.generator import ConfigurationGenerator
 from app.validators import OperationValidator
 from db import DatabaseFactory
-from uniform_model import TemplateManager
-from uniform_model.devices.templates import InterfaceManager
-from uniform_model.devices.templates import Template
+from uniform_model.actions.link_factory import LinkFactory
+from uniform_model.actions.operation_factory import OperationFactory
+from uniform_model.devices.device_factory import DeviceFactory
+from uniform_model.devices.link import Link
 from .parser import Parser
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
@@ -63,69 +63,89 @@ def parse_input(parser, input_path):
     return devices_info, links_info, operations_info
 
 
-def instantiate_device(devices_info, database, tag):
-    # 设备实例化
+def instantiate_device(devices_info, database):
+    """
+    读取数据库，实例化设备信息,连接信息和配置信息
+    :param devices_info: 规划表中的设备信息
+    :param database: 数据库
+    :return: 设备实例列表
+    """
     logger.info("init device instances")
-    device_factory = DeviceFactory(database, tag)
+    device_factory = DeviceFactory()
     devices = {}
-    devices_failure = []
+
     for device_info in devices_info:
-        device, failure = device_factory.generate(device_info)
+        # 从数据库获取设备信息
+        device_detail = database.get_device_all_info(device_info["id"])
+        device_info.update(**device_detail)
+        device = device_factory.generate(device_info)
         if device is not None:
             devices.update({device.id: device})
-        if failure is not None:
-            devices_failure.append(failure)
+
+    # 由于连接依赖设备实例，故单独处理
+    links_info = database.get_links()
+    for link_info in links_info:
+        device_a = devices.get(link_info['device_id_a'])
+        device_b = devices.get(link_info['device_id_b'])
+        link_info.update({'device_a': device_a, 'device_b': device_b})
+        new_link = Link(**link_info)
+        device_a.links.append(new_link)
+        device_b.links.append(new_link)
+
     return devices
 
 
 def instantiate_link(links_info, devices):
+    """
+    根据连接信息，实例化连接，并进行连接操作
+    :param links_info:
+    :param devices:
+    :return: None
+    """
     link_factory = LinkFactory()
-    links = []
-    links_failure = []
     for link_info in links_info:
-        link, failure = link_factory.generate(link_info, devices)
+        link = link_factory.generate(link_info, devices)
         if link is not None:
-            links.append(link)
-            failure = link()  # 执行连接接操作, 错误在下面一起处理
-        if failure is not None:
-            links_failure.append(failure)
-    return links
+            link()
+        else:
+            raise Exception(f'link() is None. {link_info}')
 
 
 def instantiate_op(operations_info, devices):
     operation_factory = OperationFactory()
     operations = []
-    operations_failure = []
     for operation_info in operations_info:
-        operation, failure = operation_factory.generate(operation_info, devices)
+        operation = operation_factory.generate(operation_info, devices)
         if operation is not None:
             operations.append(operation)
-        if failure is not None:
-            operations_failure.append(failure)
+        else:
+            raise Exception(f'op() is None. {operation_info}')
     return operations
 
+
 def validate_op(operations):
-    operation_validator = OperationValidator()
-    op_failure = operation_validator.validate(operations)
+    OperationValidator.validate(operations)
 
 
 def generate_configuration(devices):
+    logger.info('generate configuration')
     generator = ConfigurationGenerator()
     configs = generator.generate(devices.values())
     for config in configs:
         # print(config)
-        for name, content in config.items():
+        for device_name, content in config.items():
             # print(content)
-            with open(project_path + f"\output\config-{name}", "w") as output:
+            with open(project_path + f'\output\config-{device_name}', 'w') as output:
                 if not content:
                     output.close()
                 else:
                     for item in content:
                         # print(item)
                         # res = map(lambda a: a + "\n", reduce(lambda x, y: x + y, item.values()))
-                        for line in item:
-                            output.write(line)
+                        output.write(item)
+                        output.write('\n')
                 output.close()
+
 
 def generate_topo(devices):
     generator = ConfigurationGenerator()
@@ -152,13 +172,10 @@ def processor(input_path, tag=False):
         for item in e.args[1]:
             logger.error(item)
         raise
-    # configure_template()
-    # configure_device()
-    # configure_interface()
-    # devices = instantiate_device(devices_info, database, tag)
-    # print("current registed device: " + str(DeviceManager.list_all_registered()))
-    # links = instantiate_link(links_info, devices)
-    # operations = instantiate_op(operations_info, devices)
-    # validate_op(operations)
-    # generate_configuration(devices)
-    # generate_topo(devices)
+    devices = instantiate_device(devices_info, database)
+    print("current registed device: " + str(devices))
+    instantiate_link(links_info, devices)
+    operations = instantiate_op(operations_info, devices)
+    validate_op(operations)
+    generate_configuration(devices)
+    generate_topo(devices)

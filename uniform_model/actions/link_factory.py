@@ -1,6 +1,5 @@
 import logging
 
-from app.factories.base import Factory
 from uniform_model import link
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
@@ -8,7 +7,7 @@ logger = logging.getLogger('uniform_model.actions.link_factory')
 logger.setLevel(logging.DEBUG)
 
 
-class LinkFactory(Factory):
+class LinkFactory:
     """
     生成link函数，流程如下：
     1.根据连接参数中的设备ID获取设备实例，并检查是否存在

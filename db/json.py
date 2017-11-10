@@ -17,9 +17,13 @@ class JSON(Database):
     """
     # 目前仅用于mock，故固定文件路径，而不是从conf文件读取
     json_path = {
-        "models": project_path + "\contrib\mock\models.json",
-        "devices": project_path + "\contrib\mock\devices.json",
-        "operations": project_path + "\contrib\mock\operations.json",
+        "model": project_path + "\contrib\mock\model.json",
+        "device": project_path + "\contrib\mock\device.json",
+        "configuration": project_path + "\contrib\mock\configuration.json",
+        "part": project_path + "\contrib\mock\part.json",
+        "space": project_path + "\contrib\mock\space.json",
+        "wire": project_path + "\contrib\mock\wire.json",
+        "status": project_path + "\contrib\mock\status.json",
     }
 
     @classmethod

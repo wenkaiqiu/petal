@@ -11,12 +11,12 @@ class Space:
     """
     vals = {
         'space_type': True,     # 空间类型
-        'name': True,           # 空间名称
-        'direction': True,      # 设备在此空间中的方位
+        'name': False,           # 空间名称
+        'direction': False,      # 设备在此空间中的方位
         'serial': False,        # 槽位号等
-        'x': True,              # 相对于父设备的x坐标
-        'y': True,              # 相对于父设备的y坐标
-        'z': True,              # 相对于父设备的z坐标
+        'x': False,              # 相对于父设备的x坐标
+        'y': False,              # 相对于父设备的y坐标
+        'z': False,              # 相对于父设备的z坐标
         'data_center': False,    # 数据中心
     }
     inner_rules = tuple()

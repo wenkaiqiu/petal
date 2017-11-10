@@ -1,0 +1,58 @@
+[
+  {
+    "model_type": "E9000",
+    "name": "E9000",
+    "category": "chasis",
+    "vendor": "HUAWEI"
+  },
+  {
+    "model_type": "CX311",
+    "name": "CX311",
+    "category": "switch"
+  },
+  {
+    "model_type": "10GE",
+    "name": "10GE",
+    "category": "port"
+  },
+  {
+    "model_type": "GE",
+    "name": "GE",
+    "category": "port"
+  },
+  {
+    "model_type": "40GE",
+    "name": "40GE",
+    "category": "port"
+  },
+  {
+    "model_type": "G5500",
+    "name": "G5500",
+    "category": "chasis"
+  },
+    {
+    "model_type": "IO",
+    "name": "IO",
+    "category": "other"
+  },
+  {
+    "model_type": "CPU",
+    "name": "CPU",
+    "category": "processor"
+  },
+  {
+    "model_type": "GPU",
+    "name": "GPU",
+    "category": "processor"
+  },
+  {
+    "model_type": "Flash",
+    "name": "Flash",
+    "category": "storage"
+  },
+  {
+    "model_type": "PCIe_SW",
+    "name": "PCIe_SW",
+    "category": "other"
+  }
+]

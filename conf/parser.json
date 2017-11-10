@@ -6,6 +6,7 @@
     "description": true,
     "model_type": true,
     "parent_id": true,
+    "children_id": false,
     "space": false,
     "status": false,
     "manager": false

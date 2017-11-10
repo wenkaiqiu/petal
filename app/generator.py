@@ -2,6 +2,9 @@ from functools import reduce
 
 
 class ConfigurationGenerator:
+    """
+    用于生成配置及拓扑信息
+    """
     def __init__(self):
         pass
 

@@ -1,0 +1,687 @@
+[
+  {
+    "device_id": "2",
+    "parent_id": "1",
+    "space_id": "1"
+  },
+  {
+    "device_id": "20101",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20102",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20201",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20202",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20301",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20302",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20401",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20402",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20501",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20502",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20601",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20602",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20701",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20702",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20801",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20802",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20901",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "20902",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21001",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21002",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21101",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21102",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21201",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21202",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21301",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21302",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21401",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21402",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21501",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21502",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21601",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21602",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21701",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21702",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21703",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21704",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21705",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21706",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21707",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21708",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21709",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21710",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21711",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21712",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21713",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21714",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21715",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21716",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21801",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21901",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "21902",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22001",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22002",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22003",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22004",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22005",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22006",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22007",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "22008",
+    "parent_id": "2",
+    "space_id": ""
+  },
+  {
+    "device_id": "3",
+    "parent_id": "1",
+    "space_id": "2"
+  },
+  {
+    "device_id": "30101",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30102",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30201",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30202",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30301",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30302",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30401",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30402",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30501",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30502",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30601",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30602",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30701",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30702",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30801",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30802",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30901",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "30902",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31001",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31002",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31101",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31102",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31201",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31202",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31301",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31302",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31401",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31402",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31501",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31502",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31601",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31602",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31701",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31702",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31703",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31704",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31705",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31706",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31707",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31708",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31709",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31710",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31711",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31712",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31713",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31714",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31715",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31716",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31801",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31901",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "31902",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32001",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32002",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32003",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32004",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32005",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32006",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32007",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "32008",
+    "parent_id": "3",
+    "space_id": ""
+  },
+  {
+    "device_id": "11",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "12",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "13",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "14",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "15",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "16",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "17",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "18",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "19",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "20",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "21",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "22",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "23",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "24",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "25",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "26",
+    "parent_id": "10",
+    "space_id": ""
+  },
+  {
+    "device_id": "27",
+    "parent_id": "10",
+    "space_id": ""
+  }
+]
