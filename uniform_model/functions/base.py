@@ -16,6 +16,7 @@ class Function:
 
     def __init__(self, *args, **kwargs):
         self.id = kwargs['id'] if 'id' in kwargs else None
+        self.enable = kwargs['enable'] if 'enable' in kwargs else True
         self.tag = False    # 用于撤销配置
         self._entities = dict(this=dict())  # 用于存放属性
         # 1.entity check, entity可用于推断缺失属性
@@ -53,11 +54,17 @@ class Function:
         except KeyError: return self._entities['this'].get(name)
 
     def to_database(self):
+        if self.tag:
+            self.enable = False
         json = {
             'device_id': self.device.id,
             'type': self.name,
-            'params': self._entities
+            'params': self._entities['this'],
+            'enable': self.enable
         }
         if self.id:
             json.update({'id': self.id})
         return json
+
+    def update(self, params):
+        fill_value(self._entities['this'], params, self.vals)

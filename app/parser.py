@@ -37,7 +37,9 @@ _map_link = {
 _map_operation = {
     'type': 'type',
     'devices': 'devices',
-    'params': 'params'
+    'params': 'params',
+    'id': 'id',
+    'enable': 'enable'
 }
 
 

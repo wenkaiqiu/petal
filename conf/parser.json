@@ -27,7 +27,9 @@
   "T_Operation": {
     "type": true,
     "devices": true,
-    "params": true
+    "params": true,
+    "id": false,
+    "enable": false
   }
 
 }

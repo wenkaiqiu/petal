@@ -35,8 +35,8 @@ def op(func, *arith_list, **kwargs):
         new_func = func(**params[index])
         # 3. 检查与设备内的其他功能的依赖冲突
         for device_func in p.functions:
-            logger.info(f'<op> check {type(new_func)} and {type(func)}')
-            res = new_func.intra_check(func)
+            logger.info(f'<op> check {type(new_func)} and {type(device_func)}')
+            res = new_func.intra_check(device_func)
             logger.info(f'<op> check result is {res}')
             if not res:
                 logger.warning(f'<op> There is a conflict between {new_func.__dict__} and {func.__dict__}')

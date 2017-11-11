@@ -90,6 +90,7 @@ def instantiate_device(devices_info, database):
         device_b = devices.get(link_info['device_id_b'])
         link_info.update({'device_a': device_a, 'device_b': device_b})
         new_link = Link(**link_info)
+        LinkManager.regist_link(new_link)
         device_a.links.append(new_link)
         device_b.links.append(new_link)
 
@@ -167,7 +168,6 @@ def update_database(devices, links, database):
                 database.add_configuration(func.to_database())
     # 写入或更新连接信息
     for link in links:
-        print(link.__dict__)
         if link.id:
             database.update_link(link.id, link.to_database())
         else:

@@ -51,7 +51,7 @@ class JSON(Database):
         device_info.update({'manager': cls.get_manager(device_id)})
         device_info.update({'functions': cls.get_device_configurations(device_id)})
 
-        #定制修改
+        # 定制修改
         device_info.update({'model_type': model_info['category'] if model_info else 'other'})
         return device_info
 
@@ -162,7 +162,6 @@ class JSON(Database):
         # 先添加space记录
         with open(cls.json_path['space'], 'r') as space_json:
             spaces = json.load(space_json)
-            print(spaces)
         with open(cls.json_path['space'], 'w') as space_json:
             space_id = int(spaces[-1]['id']) if spaces else 0
             params.update({'id': str(space_id + 1)})
@@ -173,7 +172,7 @@ class JSON(Database):
             cls.update_parent(device_id, {'space_id': params['id']})
         else:
             cls.add_parent(device_id, '')
-        return  space_id
+        return space_id
 
     @classmethod
     def update_space(cls, space_id, params):

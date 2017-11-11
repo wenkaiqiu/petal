@@ -24,10 +24,12 @@ def link(device_a: Device, device_b: Device, link_info):
 
     # 检查连接是否重复，由于对称，故只需检查device_a即可
     check_item = ('device_id_a', 'device_id_b', 'port_a', 'port_b')
-    if device_a.links and all((new_link.get(item) in l) for item in check_item
-        for l in map(lambda x: (x.device_id_a, x.device_id_b, x.port_a, x.port_b), device_a.links)):
-        logger.error(f'repeat link {link_info}')
-        raise ValueError(f'repeat link {link_info}')
+    if device_a.links:
+        for loc_link in device_a.links:
+            if all(getattr(new_link,item) in (loc_link.device_id_a, loc_link.device_id_b, loc_link.port_a, loc_link.port_b) for item in check_item):
+                loc_link.update(link_info)
+                # logger.error(f'repeat link {link_info}')
+                # raise ValueError(f'repeat link {link_info}')
     else:
         device_a.links.append(new_link)
         device_b.links.append(new_link)

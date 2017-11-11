@@ -46,6 +46,7 @@ class DeviceFactory:
         # 若设备含有功能，则对其配置功能
         if hasattr(device, 'support_functions') and device_info['functions']:
             for item in device_info['functions']:
-                item['params'].update({'device': device})
+                item['params'].update({'device': device, 'id': item['id']})
+                print(item['params'])
                 device.functions.append(FunctionFactory().generate(item['type'], item['params']))
         return device

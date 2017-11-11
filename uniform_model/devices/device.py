@@ -63,6 +63,7 @@ class Device:
     def to_database(self):
         device_info = {'properties': {}}
         self._entities['model_type'] = self.model.model_type
+
         for item in self._entities:
             if item in self.vals:
                 device_info.update({item: self._entities[item]})

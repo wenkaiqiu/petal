@@ -1,0 +1,1 @@
+[{"name": "2<->3", "device_id_a": "2", "device_id_b": "3", "port_a": "40GE2/18/1", "port_b": "40GE3/18/1", "link_type": "Optical", "usage": "Trunk", "id": "1"}]

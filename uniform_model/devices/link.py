@@ -49,6 +49,13 @@ class Link:
         try: return self.__dict__[name]
         except KeyError: return self._entities.get(name, None)
 
+    def update(self, link_info):
+        for key in self.vals:
+            if key in link_info:
+                self._entities.update({key: link_info[key]})
+        print("link-update")
+        print(self.__dict__)
+
     def to_database(self):
         link_info = {}
         for item in self._entities:
