@@ -1,3 +1,14 @@
 [
-
+  {
+    "id": "1",
+    "device_id": "1",
+    "status_type": "State",
+    "status_value": "Enable"
+  },
+  {
+    "id": "1",
+    "device_id": "1",
+    "status_type": "Health",
+    "status_value": "OK"
+  }
 ]

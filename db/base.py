@@ -193,7 +193,7 @@ class Database(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractclassmethod
-    def add_configuration(cls, device_id, params):
+    def add_configuration(cls, params):
         """
         添加设备的所有配置
         :param device_id: 设备ID

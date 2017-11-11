@@ -4,7 +4,8 @@
     "uuid": "E9000",
     "name": "E9000",
     "model_type": "E9000",
-    "description": "E9000"
+    "description": "E9000",
+    "properties": {}
   },
   {
     "id": "2",
@@ -12,71 +13,73 @@
     "name": "CX311_2X",
     "model_type": "CX311",
     "description": "CX311",
-    "support_functions": [
-      "stack",
-      "trunk"
-    ],
-    "ports": [
-      "20101",
-      "20102",
-      "20201",
-      "20202",
-      "20301",
-      "20302",
-      "20401",
-      "20402",
-      "20501",
-      "20502",
-      "20601",
-      "20602",
-      "20701",
-      "20702",
-      "20801",
-      "20802",
-      "20901",
-      "20902",
-      "21001",
-      "21002",
-      "21101",
-      "21102",
-      "21201",
-      "21202",
-      "21301",
-      "21302",
-      "21401",
-      "21402",
-      "21501",
-      "21502",
-      "21601",
-      "21602",
-      "21701",
-      "21702",
-      "21703",
-      "21704",
-      "21705",
-      "21706",
-      "21707",
-      "21708",
-      "21709",
-      "21710",
-      "21711",
-      "21712",
-      "21713",
-      "21714",
-      "21715",
-      "21716",
-      "21801",
-      "21901",
-      "21902",
-      "22001",
-      "22002",
-      "22003",
-      "22004",
-      "22005",
-      "22006",
-      "22007",
-      "22008"
-    ]
+    "properties": {
+      "support_functions": [
+        "stack",
+        "trunk"
+      ],
+      "ports": [
+        "20101",
+        "20102",
+        "20201",
+        "20202",
+        "20301",
+        "20302",
+        "20401",
+        "20402",
+        "20501",
+        "20502",
+        "20601",
+        "20602",
+        "20701",
+        "20702",
+        "20801",
+        "20802",
+        "20901",
+        "20902",
+        "21001",
+        "21002",
+        "21101",
+        "21102",
+        "21201",
+        "21202",
+        "21301",
+        "21302",
+        "21401",
+        "21402",
+        "21501",
+        "21502",
+        "21601",
+        "21602",
+        "21701",
+        "21702",
+        "21703",
+        "21704",
+        "21705",
+        "21706",
+        "21707",
+        "21708",
+        "21709",
+        "21710",
+        "21711",
+        "21712",
+        "21713",
+        "21714",
+        "21715",
+        "21716",
+        "21801",
+        "21901",
+        "21902",
+        "22001",
+        "22002",
+        "22003",
+        "22004",
+        "22005",
+        "22006",
+        "22007",
+        "22008"
+      ]
+    }
   },
   {
     "id": "20101",
@@ -84,12 +87,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 1,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 1,
+      "port_number": 1
+    }
   },
   {
     "id": "20102",
@@ -97,12 +102,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 1,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 1,
+      "port_number": 2
+    }
   },
   {
     "id": "20201",
@@ -110,12 +117,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 2,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 2,
+      "port_number": 1
+    }
   },
   {
     "id": "20202",
@@ -123,12 +132,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 2,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 2,
+      "port_number": 2
+    }
   },
   {
     "id": "20301",
@@ -136,12 +147,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 3,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 3,
+      "port_number": 1
+    }
   },
   {
     "id": "20302",
@@ -149,12 +162,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 3,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 3,
+      "port_number": 2
+    }
   },
   {
     "id": "20401",
@@ -162,12 +177,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 4,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 4,
+      "port_number": 1
+    }
   },
   {
     "id": "20402",
@@ -175,12 +192,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 4,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 4,
+      "port_number": 2
+    }
   },
   {
     "id": "20501",
@@ -188,12 +207,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 5,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 5,
+      "port_number": 1
+    }
   },
   {
     "id": "20502",
@@ -201,12 +222,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 5,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 5,
+      "port_number": 2
+    }
   },
   {
     "id": "20601",
@@ -214,12 +237,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 6,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 6,
+      "port_number": 1
+    }
   },
   {
     "id": "20602",
@@ -227,12 +252,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 6,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 6,
+      "port_number": 2
+    }
   },
   {
     "id": "20701",
@@ -240,12 +267,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 7,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 7,
+      "port_number": 1
+    }
   },
   {
     "id": "20702",
@@ -253,12 +282,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 7,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 7,
+      "port_number": 2
+    }
   },
   {
     "id": "20801",
@@ -266,12 +297,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 8,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 8,
+      "port_number": 1
+    }
   },
   {
     "id": "20802",
@@ -279,12 +312,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 8,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 8,
+      "port_number": 2
+    }
   },
   {
     "id": "20901",
@@ -292,12 +327,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 9,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 9,
+      "port_number": 1
+    }
   },
   {
     "id": "20902",
@@ -305,12 +342,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 9,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 9,
+      "port_number": 2
+    }
   },
   {
     "id": "21001",
@@ -318,12 +357,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 10,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 10,
+      "port_number": 1
+    }
   },
   {
     "id": "21002",
@@ -331,12 +372,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 10,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 10,
+      "port_number": 2
+    }
   },
   {
     "id": "21101",
@@ -344,12 +387,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 11,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 11,
+      "port_number": 1
+    }
   },
   {
     "id": "21102",
@@ -357,12 +402,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 11,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 11,
+      "port_number": 2
+    }
   },
   {
     "id": "21201",
@@ -370,12 +417,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 12,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 12,
+      "port_number": 1
+    }
   },
   {
     "id": "21202",
@@ -383,12 +432,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 12,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 12,
+      "port_number": 2
+    }
   },
   {
     "id": "21301",
@@ -396,12 +447,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 13,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 13,
+      "port_number": 1
+    }
   },
   {
     "id": "21302",
@@ -409,12 +462,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 13,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 13,
+      "port_number": 2
+    }
   },
   {
     "id": "21401",
@@ -422,12 +477,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 14,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 14,
+      "port_number": 1
+    }
   },
   {
     "id": "21402",
@@ -435,12 +492,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 14,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 14,
+      "port_number": 2
+    }
   },
   {
     "id": "21501",
@@ -448,12 +507,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 15,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 15,
+      "port_number": 1
+    }
   },
   {
     "id": "21502",
@@ -461,12 +522,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 15,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 15,
+      "port_number": 2
+    }
   },
   {
     "id": "21601",
@@ -474,12 +537,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 16,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 16,
+      "port_number": 1
+    }
   },
   {
     "id": "21602",
@@ -487,12 +552,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 16,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 16,
+      "port_number": 2
+    }
   },
   {
     "id": "21701",
@@ -500,12 +567,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 1
+    }
   },
   {
     "id": "21702",
@@ -513,12 +582,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 2
+    }
   },
   {
     "id": "21703",
@@ -526,12 +597,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 3
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 3
+    }
   },
   {
     "id": "21704",
@@ -539,12 +612,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 4
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 4
+    }
   },
   {
     "id": "21705",
@@ -552,12 +627,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 5
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 5
+    }
   },
   {
     "id": "21706",
@@ -565,12 +642,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 6
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 6
+    }
   },
   {
     "id": "21707",
@@ -578,12 +657,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 7
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 7
+    }
   },
   {
     "id": "21708",
@@ -591,12 +672,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 8
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 8
+    }
   },
   {
     "id": "21709",
@@ -604,12 +687,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 9
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 9
+    }
   },
   {
     "id": "21710",
@@ -617,12 +702,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 10
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 10
+    }
   },
   {
     "id": "21711",
@@ -630,12 +717,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 11
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 11
+    }
   },
   {
     "id": "21712",
@@ -643,12 +732,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 12
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 12
+    }
   },
   {
     "id": "21713",
@@ -656,12 +747,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 13
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 13
+    }
   },
   {
     "id": "21714",
@@ -669,12 +762,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 14
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 14
+    }
   },
   {
     "id": "21715",
@@ -682,12 +777,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 15
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 15
+    }
   },
   {
     "id": "21716",
@@ -695,12 +792,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 16
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 16
+    }
   },
   {
     "id": "21801",
@@ -708,12 +807,14 @@
     "name": "40GE",
     "model_type": "40GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "40",
-    "unit": "GE",
-    "subcard_number": 18,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "40",
+      "unit": "GE",
+      "subcard_number": 18,
+      "port_number": 1
+    }
   },
   {
     "id": "21901",
@@ -721,12 +822,14 @@
     "name": "GE",
     "model_type": "GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "1",
-    "unit": "GE",
-    "subcard_number": 19,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "1",
+      "unit": "GE",
+      "subcard_number": 19,
+      "port_number": 1
+    }
   },
   {
     "id": "21902",
@@ -734,12 +837,14 @@
     "name": "GE",
     "model_type": "GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "1",
-    "unit": "GE",
-    "subcard_number": 19,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "1",
+      "unit": "GE",
+      "subcard_number": 19,
+      "port_number": 2
+    }
   },
   {
     "id": "22001",
@@ -747,12 +852,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 1
+    }
   },
   {
     "id": "22002",
@@ -760,12 +867,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 2
+    }
   },
   {
     "id": "22003",
@@ -773,12 +882,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 3
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 3
+    }
   },
   {
     "id": "22004",
@@ -786,12 +897,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 4
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 4
+    }
   },
   {
     "id": "22005",
@@ -799,12 +912,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 5
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 5
+    }
   },
   {
     "id": "22006",
@@ -812,12 +927,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 6
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 6
+    }
   },
   {
     "id": "22007",
@@ -825,12 +942,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 7
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 7
+    }
   },
   {
     "id": "22008",
@@ -838,85 +957,89 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 8
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 8
+    }
   },
   {
     "id": "3",
-    "slot_id": "3X",
     "uuid": "CX311_3X",
     "name": "CX311_3X",
     "model_type": "CX311",
     "description": "CX311",
-    "support_functions": [
-      "stack",
-      "trunk"
-    ],
-    "ports": [
-      "30101",
-      "30102",
-      "30201",
-      "30202",
-      "30301",
-      "30302",
-      "30401",
-      "30402",
-      "30501",
-      "30502",
-      "30601",
-      "30602",
-      "30701",
-      "30702",
-      "30801",
-      "30802",
-      "30901",
-      "30902",
-      "31001",
-      "31002",
-      "31101",
-      "31102",
-      "31201",
-      "31202",
-      "31301",
-      "31302",
-      "31401",
-      "31402",
-      "31501",
-      "31502",
-      "31601",
-      "31602",
-      "31701",
-      "31702",
-      "31703",
-      "31704",
-      "31705",
-      "31706",
-      "31707",
-      "31708",
-      "31709",
-      "31710",
-      "31711",
-      "31712",
-      "31713",
-      "31714",
-      "31715",
-      "31716",
-      "31801",
-      "31901",
-      "31902",
-      "32001",
-      "32002",
-      "32003",
-      "32004",
-      "32005",
-      "32006",
-      "32007",
-      "32008"
-    ]
+    "properties": {
+      "support_functions": [
+        "stack",
+        "trunk"
+      ],
+      "ports": [
+        "30101",
+        "30102",
+        "30201",
+        "30202",
+        "30301",
+        "30302",
+        "30401",
+        "30402",
+        "30501",
+        "30502",
+        "30601",
+        "30602",
+        "30701",
+        "30702",
+        "30801",
+        "30802",
+        "30901",
+        "30902",
+        "31001",
+        "31002",
+        "31101",
+        "31102",
+        "31201",
+        "31202",
+        "31301",
+        "31302",
+        "31401",
+        "31402",
+        "31501",
+        "31502",
+        "31601",
+        "31602",
+        "31701",
+        "31702",
+        "31703",
+        "31704",
+        "31705",
+        "31706",
+        "31707",
+        "31708",
+        "31709",
+        "31710",
+        "31711",
+        "31712",
+        "31713",
+        "31714",
+        "31715",
+        "31716",
+        "31801",
+        "31901",
+        "31902",
+        "32001",
+        "32002",
+        "32003",
+        "32004",
+        "32005",
+        "32006",
+        "32007",
+        "32008"
+      ],
+      "slot_id": "3X"
+    }
   },
   {
     "id": "30101",
@@ -924,12 +1047,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 1,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 1,
+      "port_number": 1
+    }
   },
   {
     "id": "30102",
@@ -937,12 +1062,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 1,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 1,
+      "port_number": 2
+    }
   },
   {
     "id": "30201",
@@ -950,12 +1077,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 2,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 2,
+      "port_number": 1
+    }
   },
   {
     "id": "30202",
@@ -963,12 +1092,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 2,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 2,
+      "port_number": 2
+    }
   },
   {
     "id": "30301",
@@ -976,12 +1107,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 3,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 3,
+      "port_number": 1
+    }
   },
   {
     "id": "30302",
@@ -989,12 +1122,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 3,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 3,
+      "port_number": 2
+    }
   },
   {
     "id": "30401",
@@ -1002,12 +1137,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 4,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 4,
+      "port_number": 1
+    }
   },
   {
     "id": "30402",
@@ -1015,12 +1152,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 4,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 4,
+      "port_number": 2
+    }
   },
   {
     "id": "30501",
@@ -1028,12 +1167,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 5,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 5,
+      "port_number": 1
+    }
   },
   {
     "id": "30502",
@@ -1041,12 +1182,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 5,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 5,
+      "port_number": 2
+    }
   },
   {
     "id": "30601",
@@ -1054,12 +1197,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 6,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 6,
+      "port_number": 1
+    }
   },
   {
     "id": "30602",
@@ -1067,12 +1212,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 6,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 6,
+      "port_number": 2
+    }
   },
   {
     "id": "30701",
@@ -1080,12 +1227,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 7,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 7,
+      "port_number": 1
+    }
   },
   {
     "id": "30702",
@@ -1093,12 +1242,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 7,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 7,
+      "port_number": 2
+    }
   },
   {
     "id": "30801",
@@ -1106,12 +1257,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 8,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 8,
+      "port_number": 1
+    }
   },
   {
     "id": "30802",
@@ -1119,12 +1272,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 8,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 8,
+      "port_number": 2
+    }
   },
   {
     "id": "30901",
@@ -1132,12 +1287,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 9,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 9,
+      "port_number": 1
+    }
   },
   {
     "id": "30902",
@@ -1145,12 +1302,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 9,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 9,
+      "port_number": 2
+    }
   },
   {
     "id": "31001",
@@ -1158,12 +1317,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 10,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 10,
+      "port_number": 1
+    }
   },
   {
     "id": "31002",
@@ -1171,12 +1332,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 10,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 10,
+      "port_number": 2
+    }
   },
   {
     "id": "31101",
@@ -1184,12 +1347,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 11,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 11,
+      "port_number": 1
+    }
   },
   {
     "id": "31102",
@@ -1197,12 +1362,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 11,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 11,
+      "port_number": 2
+    }
   },
   {
     "id": "31201",
@@ -1210,12 +1377,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 12,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 12,
+      "port_number": 1
+    }
   },
   {
     "id": "31202",
@@ -1223,12 +1392,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 12,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 12,
+      "port_number": 2
+    }
   },
   {
     "id": "31301",
@@ -1236,12 +1407,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 13,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 13,
+      "port_number": 1
+    }
   },
   {
     "id": "31302",
@@ -1249,12 +1422,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 13,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 13,
+      "port_number": 2
+    }
   },
   {
     "id": "31401",
@@ -1262,12 +1437,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 14,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 14,
+      "port_number": 1
+    }
   },
   {
     "id": "31402",
@@ -1275,12 +1452,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 14,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 14,
+      "port_number": 2
+    }
   },
   {
     "id": "31501",
@@ -1288,12 +1467,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 15,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 15,
+      "port_number": 1
+    }
   },
   {
     "id": "31502",
@@ -1301,12 +1482,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 15,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 15,
+      "port_number": 2
+    }
   },
   {
     "id": "31601",
@@ -1314,12 +1497,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 16,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 16,
+      "port_number": 1
+    }
   },
   {
     "id": "31602",
@@ -1327,12 +1512,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 16,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 16,
+      "port_number": 2
+    }
   },
   {
     "id": "31701",
@@ -1340,12 +1527,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 1
+    }
   },
   {
     "id": "31702",
@@ -1353,12 +1542,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 2
+    }
   },
   {
     "id": "31703",
@@ -1366,12 +1557,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 3
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 3
+    }
   },
   {
     "id": "31704",
@@ -1379,12 +1572,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 4
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 4
+    }
   },
   {
     "id": "31705",
@@ -1392,12 +1587,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 5
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 5
+    }
   },
   {
     "id": "31706",
@@ -1405,12 +1602,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 6
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 6
+    }
   },
   {
     "id": "31707",
@@ -1418,12 +1617,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 7
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 7
+    }
   },
   {
     "id": "31708",
@@ -1431,12 +1632,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 8
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 8
+    }
   },
   {
     "id": "31709",
@@ -1444,12 +1647,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 9
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 9
+    }
   },
   {
     "id": "31710",
@@ -1457,12 +1662,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 10
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 10
+    }
   },
   {
     "id": "31711",
@@ -1470,12 +1677,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 11
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 11
+    }
   },
   {
     "id": "31712",
@@ -1483,12 +1692,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 12
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 12
+    }
   },
   {
     "id": "31713",
@@ -1496,12 +1707,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 13
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 13
+    }
   },
   {
     "id": "31714",
@@ -1509,12 +1722,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 14
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 14
+    }
   },
   {
     "id": "31715",
@@ -1522,12 +1737,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 15
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 15
+    }
   },
   {
     "id": "31716",
@@ -1535,12 +1752,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "SFPP",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": "17",
-    "port_number": 16
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "SFPP",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": "17",
+      "port_number": 16
+    }
   },
   {
     "id": "31801",
@@ -1548,12 +1767,14 @@
     "name": "40GE",
     "model_type": "40GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "40",
-    "unit": "GE",
-    "subcard_number": 18,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "40",
+      "unit": "GE",
+      "subcard_number": 18,
+      "port_number": 1
+    }
   },
   {
     "id": "31901",
@@ -1561,12 +1782,14 @@
     "name": "GE",
     "model_type": "GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "1",
-    "unit": "GE",
-    "subcard_number": 19,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "1",
+      "unit": "GE",
+      "subcard_number": 19,
+      "port_number": 1
+    }
   },
   {
     "id": "31902",
@@ -1574,12 +1797,14 @@
     "name": "GE",
     "model_type": "GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "1",
-    "unit": "GE",
-    "subcard_number": 19,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "1",
+      "unit": "GE",
+      "subcard_number": 19,
+      "port_number": 2
+    }
   },
   {
     "id": "32001",
@@ -1587,12 +1812,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 1
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 1
+    }
   },
   {
     "id": "32002",
@@ -1600,12 +1827,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 2
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 2
+    }
   },
   {
     "id": "32003",
@@ -1613,12 +1842,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 3
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 3
+    }
   },
   {
     "id": "32004",
@@ -1626,12 +1857,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 4
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 4
+    }
   },
   {
     "id": "32005",
@@ -1639,12 +1872,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 5
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 5
+    }
   },
   {
     "id": "32006",
@@ -1652,12 +1887,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 6
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 6
+    }
   },
   {
     "id": "32007",
@@ -1665,12 +1902,14 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 7
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 7
+    }
   },
   {
     "id": "32008",
@@ -1678,137 +1917,157 @@
     "name": "10GE",
     "model_type": "10GE",
     "description": "",
-    "type": "Ethernet",
-    "interface_type": "internal",
-    "speed": "10",
-    "unit": "GE",
-    "subcard_number": 20,
-    "port_number": 8
+    "properties": {
+      "type": "Ethernet",
+      "interface_type": "internal",
+      "speed": "10",
+      "unit": "GE",
+      "subcard_number": 20,
+      "port_number": 8
+    }
   },
   {
     "id": "10",
     "uuid": "G5500",
     "name": "G5500",
     "model_type": "G5500",
-    "description": "G5500"
+    "description": "G5500",
+    "properties": {}
   },
   {
     "id": "11",
     "uuid": "IO_1",
     "name": "IO_1",
     "model_type": "IO",
-    "description": "IO"
+    "description": "IO",
+    "properties": {}
   },
   {
     "id": "12",
     "uuid": "CPU_1",
     "name": "CPU_1",
     "model_type": "CPU",
-    "description": "CPU"
+    "description": "CPU",
+    "properties": {}
   },
   {
     "id": "13",
     "uuid": "CPU_2",
     "name": "CPU_2",
     "model_type": "CPU",
-    "description": "CPU"
+    "description": "CPU",
+    "properties": {}
   },
   {
     "id": "14",
     "uuid": "IOH",
     "name": "IOH",
     "model_type": "IO",
-    "description": "IO"
+    "description": "IO",
+    "properties": {}
   },
   {
     "id": "15",
     "uuid": "IO_3",
     "name": "IO_3",
     "model_type": "IO",
-    "description": "IO"
+    "description": "IO",
+    "properties": {}
   },
   {
     "id": "16",
     "uuid": "IO_4",
     "name": "IO_4",
     "model_type": "IO",
-    "description": "IO"
+    "description": "IO",
+    "properties": {}
   },
   {
     "id": "17",
     "uuid": "Flash",
     "name": "Flash",
     "model_type": "Flash",
-    "description": "Flash"
+    "description": "Flash",
+    "properties": {}
   },
   {
     "id": "18",
     "uuid": "PCIe_SW_1",
     "name": "PCIe_SW_1",
     "model_type": "PCIe_SW",
-    "description": "PCIe_SW"
+    "description": "PCIe_SW",
+    "properties": {}
   },
   {
     "id": "19",
     "uuid": "PCIe_SW_2",
     "name": "PCIe_SW_2",
     "model_type": "PCIe_SW",
-    "description": "PCIe_SW"
+    "description": "PCIe_SW",
+    "properties": {}
   },
   {
     "id": "20",
     "uuid": "GPU_1",
     "name": "GPU_1",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "21",
     "uuid": "GPU_2",
     "name": "GPU_2",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "22",
     "uuid": "GPU_3",
     "name": "GPU_3",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "23",
     "uuid": "GPU_4",
     "name": "GPU_4",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "24",
     "uuid": "GPU_5",
     "name": "GPU_5",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "25",
     "uuid": "GPU_6",
     "name": "GPU_6",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "26",
     "uuid": "GPU_7",
     "name": "GPU_7",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   },
   {
     "id": "27",
     "uuid": "GPU_8",
     "name": "GPU_8",
     "model_type": "GPU",
-    "description": "GPU"
+    "description": "GPU",
+    "properties": {}
   }
 ]
