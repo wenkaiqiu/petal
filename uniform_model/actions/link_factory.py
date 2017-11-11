@@ -1,6 +1,6 @@
 import logging
 
-from uniform_model import link
+from uniform_model.actions import link
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.actions.link_factory')

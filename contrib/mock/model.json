@@ -2,7 +2,7 @@
   {
     "model_type": "E9000",
     "name": "E9000",
-    "category": "chasis",
+    "category": "chassis",
     "vendor": "HUAWEI"
   },
   {
@@ -28,7 +28,7 @@
   {
     "model_type": "G5500",
     "name": "G5500",
-    "category": "chasis"
+    "category": "chassis"
   },
     {
     "model_type": "IO",

@@ -15,6 +15,7 @@ class Function:
     sort_rules = tuple()
 
     def __init__(self, *args, **kwargs):
+        self.id = kwargs['id'] if 'id' in kwargs else None
         self.tag = False    # 用于撤销配置
         self._entities = dict(this=dict())  # 用于存放属性
         # 1.entity check, entity可用于推断缺失属性
@@ -25,7 +26,7 @@ class Function:
                     if entity.required),
         )): raise Exception()
 
-        self._entities['this']['device'] = kwargs['device']
+        self.device = kwargs['device']
         # 2.推断缺失属性
         kwargs = self._infer_value(**kwargs)
         # 3.val check
@@ -50,3 +51,13 @@ class Function:
     def __getattr__(self, name):
         try: return self.__dict__[name]
         except KeyError: return self._entities['this'].get(name)
+
+    def to_database(self):
+        json = {
+            'device_id': self.device.id,
+            'type': self.name,
+            'params': self._entities
+        }
+        if self.id:
+            json.update({'id': self.id})
+        return json

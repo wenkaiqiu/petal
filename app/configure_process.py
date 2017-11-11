@@ -8,6 +8,7 @@ from uniform_model.actions.link_factory import LinkFactory
 from uniform_model.actions.operation_factory import OperationFactory
 from uniform_model.devices.device_factory import DeviceFactory
 from uniform_model.devices.link import Link
+from uniform_model.devices.link_manager import LinkManager
 from .parser import Parser
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
@@ -104,9 +105,9 @@ def instantiate_link(links_info, devices):
     """
     link_factory = LinkFactory()
     for link_info in links_info:
-        link = link_factory.generate(link_info, devices)
-        if link is not None:
-            link()
+        loc_link = link_factory.generate(link_info, devices)
+        if loc_link is not None:
+            loc_link()
         else:
             raise Exception(f'link() is None. {link_info}')
 
@@ -130,21 +131,14 @@ def validate_op(operations):
 def generate_configuration(devices):
     logger.info('generate configuration')
     generator = ConfigurationGenerator()
-    configs = generator.generate(devices.values())
-    for config in configs:
-        # print(config)
-        for device_name, content in config.items():
-            # print(content)
-            with open(project_path + f'\output\config-{device_name}', 'w') as output:
-                if not content:
-                    output.close()
-                else:
-                    for item in content:
-                        # print(item)
-                        # res = map(lambda a: a + "\n", reduce(lambda x, y: x + y, item.values()))
-                        output.write(item)
-                        output.write('\n')
-                output.close()
+    configs = generator.generate(devices.values())  # 字典:{设备id：配置命令数组，每项为一个功能的配置}
+    for device_name, content in configs.items():
+        with open(project_path + f'\output\config-{device_name}', 'w') as output:
+            if content:
+                for item in content:
+                    output.write(item)
+                    output.write('\n')
+            output.close()
 
 
 def generate_topo(devices):
@@ -162,7 +156,25 @@ def generate_topo(devices):
     # webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
 
 
-def processor(input_path, tag=False):
+def update_database(devices, links, database):
+    # 写入或更新设备信息和配置信息
+    for device in devices.values():
+        database.update_device_all_info(device.id, device.to_database())
+        for func in device.functions:
+            if func.id:
+                database.update_configuration(func.id, func.to_database())
+            else:
+                database.add_configuration(func.to_database())
+    # 写入或更新连接信息
+    for link in links:
+        print(link.__dict__)
+        if link.id:
+            database.update_link(link.id, link.to_database())
+        else:
+            database.add_link(link.to_database())
+
+
+def processor(input_path):
     database = configure_database()
     parser = configure_parser()
     try:
@@ -177,5 +189,7 @@ def processor(input_path, tag=False):
     instantiate_link(links_info, devices)
     operations = instantiate_op(operations_info, devices)
     validate_op(operations)
-    generate_configuration(devices)
-    generate_topo(devices)
+    # generate_configuration(devices)
+    links = LinkManager.get_registed_links()
+    update_database(devices, links, database)
+    # generate_topo(devices)

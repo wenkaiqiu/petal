@@ -8,7 +8,6 @@ logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s'
 logger = logging.getLogger('uniform_model.devices.device_factory')
 logger.setLevel(logging.DEBUG)
 
-
 # 注册已有设备模型
 __global_register = {
     'board': BoardTemplate,
@@ -42,12 +41,11 @@ class DeviceFactory:
         :param device_info:
         :return:
         """
-        logger.info("<DeviceFactory> generate device instance")
-        device_info['model_type'] = device_info['model']['category']
-        device = _get_model_type(device_info['model_type'])(**device_info)
+        logger.info(f'<DeviceFactory> generate device instance with info {device_info}')
+        device = _get_model_type(device_info['model_type']).generate(device_info)
         # 若设备含有功能，则对其配置功能
-        if hasattr(device, "support_functions") and device_info['functions']:
+        if hasattr(device, 'support_functions') and device_info['functions']:
             for item in device_info['functions']:
-                item['params'].update({"device": device})
+                item['params'].update({'device': device})
                 device.functions.append(FunctionFactory().generate(item['type'], item['params']))
         return device

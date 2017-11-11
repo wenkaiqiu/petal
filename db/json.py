@@ -37,18 +37,38 @@ class JSON(Database):
 
     @classmethod
     def get_device_all_info(cls, device_id):
+        # 补全信息
         device_info = cls.get_device_info(device_id)
-        device_info.update({'model': cls.get_model(device_info['model_type'])})
+        if 'properties' in device_info:
+            properties = device_info.pop('properties')
+            device_info.update(properties)
+        model_info = cls.get_model(device_info['model_type']) if device_info['model_type'] else None
+        device_info.update({'model': model_info})
         device_info.update({'status': cls.get_status(device_id)})
-        device_info.update({'parent_id': cls.get_parent(device_id)['parent_id']})
+        part_info = cls.get_parent(device_id)
+        device_info.update({'parent_id': part_info['parent_id'] if part_info else None})
         device_info.update({'space': cls.get_space(device_id)})
         device_info.update({'manager': cls.get_manager(device_id)})
         device_info.update({'functions': cls.get_device_configurations(device_id)})
+
+        #定制修改
+        device_info.update({'model_type': model_info['category'] if model_info else 'other'})
         return device_info
 
     @classmethod
     def update_device_all_info(cls, device_id, params):
-        raise NotImplementedError
+        logger.info(f' update device all info: {params}')
+        cls.update_device_info(device_id, params['device'])
+        if 'part' in params:
+            if cls.get_parent(device_id):
+                cls.update_parent(device_id, params['part'])
+            else:
+                cls.add_parent(device_id, params['part']['parent_id'])
+        if 'space' in params:
+            if 'id' in params['space']:
+                cls.update_space(params['space']['id'], params['space'])
+            else:
+                cls.add_space(device_id, params['space'])
 
     @classmethod
     def get_device_info(cls, device_id):
@@ -83,7 +103,7 @@ class JSON(Database):
     def get_links(cls):
         with open(cls.json_path["wire"]) as link_json:
             links = json.load(link_json)
-            links = links if links else None
+            links = links
         logger.info(f"get links_info of: {links}")
         return links
 
@@ -116,18 +136,23 @@ class JSON(Database):
         status_info = list(filter(lambda x: x['device_id'] == device_id, status))
         status_info = status_info if status_info else None
         logger.info(f"get status_info of {device_id}: {status_info}")
-        return status_info
+        # 转成程序所需格式
+        converted_status = {}
+        if status_info is not None:
+            for item in status_info:
+                converted_status.update({item['status_type'].lower(): item['status_value']})
+        return converted_status
 
     @classmethod
     def get_space(cls, device_id):
         part_info = cls.get_parent(device_id)
-        space_id = part_info['space_id']
-        if space_id == '':
+        space_id = part_info['space_id'] if part_info else None
+        if not space_id:
             return None
         with open(cls.json_path["space"]) as space_json:
             spaces = json.load(space_json)
         space_info = list(filter(lambda x: x['id'] == space_id, spaces))
-        # space_info = space_info[0] if space_info else None
+        space_info = space_info[0] if space_info else None
         logger.info(f"get space_info of {device_id}: {space_info}")
         return space_info
 
@@ -144,7 +169,11 @@ class JSON(Database):
             spaces.append(params)
             json.dump(spaces, space_json)
         # 再处理part中的space_id
-        cls.update_parent(device_id, {'space_id': params['id']})
+        if cls.get_parent(device_id):
+            cls.update_parent(device_id, {'space_id': params['id']})
+        else:
+            cls.add_parent(device_id, '')
+        return  space_id
 
     @classmethod
     def update_space(cls, space_id, params):

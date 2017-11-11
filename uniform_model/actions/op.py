@@ -34,13 +34,13 @@ def op(func, *arith_list, **kwargs):
         # 2. 实例化function
         new_func = func(**params[index])
         # 3. 检查与设备内的其他功能的依赖冲突
-        for func in p.functions_list:
+        for device_func in p.functions:
             logger.info(f'<op> check {type(new_func)} and {type(func)}')
             res = new_func.intra_check(func)
             logger.info(f'<op> check result is {res}')
             if not res:
                 logger.warning(f'<op> There is a conflict between {new_func.__dict__} and {func.__dict__}')
-                func.tag = True
+                device_func.tag = True
         # 4. 将实例化function添加到设备功能列表
         p.functions.append(new_func)
         logger.info('<op> end op')

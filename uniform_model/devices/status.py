@@ -18,11 +18,11 @@ class Status:
     inner_rules = tuple()
 
     def __init__(self, **kwargs):
-        logger.info('<Status> init Status object')
+        logger.info(f'<Status> init Status object with {kwargs}')
         self._entities = dict()
         # 1.val check
         if not check_necessary(kwargs, self.vals):
-            raise Exception(f'lack necessary attribute of {type(self)}')
+            raise Exception(f'lack necessary attribute of {self.__name__}')
         # 2.fill vals
         fill_value(self._entities, kwargs, self.vals)
         # 3.inner check
@@ -37,5 +37,16 @@ class Status:
         return self._entities
 
     def __getattr__(self, name):
-        try: return self.__dict__[name]
-        except KeyError: return self._entities.get(name)
+        try:
+            return self.__dict__[name]
+        except KeyError:
+            return self._entities.get(name)
+
+    def to_database(self):
+        json = []
+        for k, v in self._entities.items():
+            json.append({
+                'status_type': k,
+                'status_value': v
+            })
+        return json

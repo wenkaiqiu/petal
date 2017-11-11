@@ -34,6 +34,7 @@ class Device:
         :param args:
         :param kwargs:
         """
+        logger.info('<Device> init Device object')
         self._entities = dict()  # 用于保存基本属性
         self.model = None
         self.space = None
@@ -52,11 +53,28 @@ class Device:
         if not (self._inner_check()): raise Exception('内部检查失败')
 
     def _inner_check(self):
+        logger.info('<Device> inner check')
         # inner check
         return all(rule.apply(self, None) for rule in self.inner_rules)
 
     def get_entities(self):
         return self._entities
+
+    def to_database(self):
+        device_info = {'properties': {}}
+        self._entities['model_type'] = self.model.model_type
+        for item in self._entities:
+            if item in self.vals:
+                device_info.update({item: self._entities[item]})
+            else:
+                device_info['properties'].update({item: self._entities[item]})
+        json = {
+            'device': device_info,
+        }
+        if self.space: json.update({'space': self.space.to_database() if self.space else None})
+        if self.parent_id: json.update({'part': {'parent_id': self.parent_id if self.parent_id else None}})
+
+        return json
 
     def to_json(self):
         json = {}

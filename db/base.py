@@ -40,9 +40,10 @@ class Database(metaclass=abc.ABCMeta):
     def update_device_all_info(cls, device_id, params):
         """
         更新设备所有信息，包括基本信息，连接信息，位置信息，组成信息，配置信息。
-        型号信息，状态信息，管理者信息在我们的设计中无更改能力和需求，故不进行更新。
+        目前，型号信息，状态信息，管理者信息在我们的设计中无更改能力和需求，故不进行更新。
+        连接信息和配置信息单独更新。
         :param device_id: 设备ID
-        :param params: 要更新的信息
+        :param params: 要更新的信息，包括基本信息，位置信息，组成信息
         :return: None
         """
         raise NotImplementedError

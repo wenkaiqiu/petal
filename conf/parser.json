@@ -12,7 +12,7 @@
     "manager": false
   },
   "T_Link": {
-    "id": true,
+    "id": false,
     "name": true,
     "device_id_a": true,
     "device_id_b": true,

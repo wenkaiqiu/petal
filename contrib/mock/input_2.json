@@ -29,7 +29,6 @@
   ],
   "links": [
     {
-      "id": "1",
       "name": "2<->3",
       "device_id_a": "2",
       "device_id_b": "3",

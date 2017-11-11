@@ -12,11 +12,9 @@ class Link:
     用于存放连接信息
     """
     vals = {
-        'id': True,
+        'id': False,
         'name': True,
-        'device_a': True,
         'device_id_a': True,
-        'device_b': True,
         'device_id_b': True,
         'port_a': True,
         'port_b': True,
@@ -39,6 +37,9 @@ class Link:
         # 3.inner check
         if not (self._inner_check()): raise Exception('内部检查失败')
 
+        self.device_a = kwargs['device_a']
+        self.device_b = kwargs['device_b']
+
     def _inner_check(self):
         logger.info('<Link> inner check')
         # inner check
@@ -46,4 +47,11 @@ class Link:
 
     def __getattr__(self, name):
         try: return self.__dict__[name]
-        except KeyError: return self._entities.get(name)
+        except KeyError: return self._entities.get(name, None)
+
+    def to_database(self):
+        link_info = {}
+        for item in self._entities:
+            if item in self.vals:
+                link_info.update({item: self._entities[item]})
+        return link_info

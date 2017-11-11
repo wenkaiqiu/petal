@@ -1,5 +1,7 @@
 import logging
 
+from uniform_model.utils import fill_value
+
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('uniform_model.devices.space')
 logger.setLevel(logging.DEBUG)
@@ -10,6 +12,7 @@ class Space:
     与数据库中的space表对应
     """
     vals = {
+        'id': False,
         'space_type': True,     # 空间类型
         'name': False,           # 空间名称
         'direction': False,      # 设备在此空间中的方位
@@ -28,7 +31,7 @@ class Space:
         if not all(val in kwargs for val in self.vals if self.vals[val]):
             raise Exception('lack necessary attribute of Space')
         # 2.fill vals
-        for key in self.vals: self._entities[key] = kwargs[key]
+        fill_value(self._entities, kwargs, self.vals)
         # 3.inner check
         if not (self._inner_check()): raise Exception('内部检查失败')
 
@@ -40,3 +43,6 @@ class Space:
     def __getattr__(self, name):
         try: return self.__dict__[name]
         except KeyError: return self._entities.get(name)
+
+    def to_database(self):
+        return self._entities

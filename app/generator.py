@@ -18,7 +18,7 @@ class ConfigurationGenerator:
             return True
 
     def generate(self, devices):
-        output = []  # 存放全部设备的配置信息
+        output = {}  # 存放全部设备的配置信息
         for device in devices:
             print(device.id)
             loc_output = []  # 存放单个设备的配置信息
@@ -65,7 +65,7 @@ class ConfigurationGenerator:
             #                     loc_output.append({func: func_instance.generate_conf()})
             #         else:
             #             loc_output.append({func: func_instance.generate_conf()})
-            output.append({device.name: loc_output})
+            output.update({device.name: loc_output})
         # print("1111111111111111111111")
         # print(output)
         return output

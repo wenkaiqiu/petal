@@ -13,7 +13,7 @@ _map_device = {
     'uuid': 'uuid',
     'name': 'name',
     'description': 'description',
-    'model_type': 'model_name',
+    'model_type': 'model_type',
     'parent_id': 'parent_id',
     'space': 'space',
     'status': 'status',
