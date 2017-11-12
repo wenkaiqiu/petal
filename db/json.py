@@ -113,10 +113,11 @@ class JSON(Database):
         with open(cls.json_path["wire"], 'r') as link_json:
             links = json.load(link_json)
         with open(cls.json_path["wire"], 'w') as link_json:
-            conf_id = int(links[-1]['id']) if links else 0
-            params.update({'id': str(conf_id + 1)})
+            link_id = int(links[-1]['id']) if links else 0
+            params.update({'id': str(link_id + 1)})
             links.append(params)
             json.dump(links, link_json)
+        return link_id
 
     @classmethod
     def update_link(cls, link_id, params):
@@ -244,6 +245,7 @@ class JSON(Database):
             params.update({'id': str(conf_id + 1)})
             configurations.append(params)
             json.dump(configurations, configuration_json)
+        return conf_id
 
     @classmethod
     def update_configuration(cls, conf_id, params):

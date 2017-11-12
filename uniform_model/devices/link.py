@@ -62,3 +62,6 @@ class Link:
             if item in self.vals:
                 link_info.update({item: self._entities[item]})
         return link_info
+
+    def to_json(self):
+        return self._entities

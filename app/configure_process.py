@@ -132,7 +132,7 @@ def validate_op(operations):
 def generate_configuration(devices):
     logger.info('generate configuration')
     generator = ConfigurationGenerator()
-    configs = generator.generate(devices.values())  # 字典:{设备id：配置命令数组，每项为一个功能的配置}
+    configs = generator.generate_conf(devices.values())  # 字典:{设备id：配置命令数组，每项为一个功能的配置}
     for device_name, content in configs.items():
         with open(project_path + f'\output\config-{device_name}', 'w') as output:
             if content:
@@ -147,14 +147,14 @@ def generate_topo(devices):
     post_r = generator.genarate_topo(devices.values())
     print(post_r)
 
-    # import requests
-    # with open(conf_path["visualization"], "r") as path_file:
-    #     path = json.load(path_file)["base_url"]
-    # r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
-    # print(r.text)
-    #
-    # import webbrowser
-    # webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
+    import requests
+    with open(conf_path["visualization"], "r") as path_file:
+        path = json.load(path_file)["base_url"]
+    r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
+    print(r.text)
+
+    import webbrowser
+    webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
 
 
 def update_database(devices, links, database):
@@ -165,13 +165,13 @@ def update_database(devices, links, database):
             if func.id:
                 database.update_configuration(func.id, func.to_database())
             else:
-                database.add_configuration(func.to_database())
+                func.id = database.add_configuration(func.to_database())
     # 写入或更新连接信息
     for link in links:
         if link.id:
             database.update_link(link.id, link.to_database())
         else:
-            database.add_link(link.to_database())
+            link.id = database.add_link(link.to_database())
 
 
 def processor(input_path):
@@ -189,7 +189,7 @@ def processor(input_path):
     instantiate_link(links_info, devices)
     operations = instantiate_op(operations_info, devices)
     validate_op(operations)
-    # generate_configuration(devices)
+    generate_configuration(devices)
     links = LinkManager.get_registed_links()
-    update_database(devices, links, database)
-    # generate_topo(devices)
+    # update_database(devices, links, database)
+    generate_topo(devices)

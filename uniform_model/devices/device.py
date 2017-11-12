@@ -84,7 +84,7 @@ class Device:
             'id': self.id,
             'uuid': self.uuid,
             'name': self.name,
-            'model_type': self.model_type
+            'model_type': self.model.model_type
         })
         # 添加接口属性
         interfaces = getattr(self, 'interfaces', None)
