@@ -88,11 +88,12 @@ def instantiate_device(devices_info, database):
     for link_info in links_info:
         device_a = devices.get(link_info['device_id_a'])
         device_b = devices.get(link_info['device_id_b'])
-        link_info.update({'device_a': device_a, 'device_b': device_b})
-        new_link = Link(**link_info)
-        LinkManager.regist_link(new_link)
-        device_a.links.append(new_link)
-        device_b.links.append(new_link)
+        if device_a and device_b:
+            link_info.update({'device_a': device_a, 'device_b': device_b})
+            new_link = Link(**link_info)
+            LinkManager.regist_link(new_link)
+            device_a.links.append(new_link)
+            device_b.links.append(new_link)
 
     return devices
 
@@ -191,5 +192,5 @@ def processor(input_path):
     validate_op(operations)
     generate_configuration(devices)
     links = LinkManager.get_registed_links()
-    # update_database(devices, links, database)
+    update_database(devices, links, database)
     generate_topo(devices)

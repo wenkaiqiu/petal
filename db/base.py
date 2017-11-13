@@ -100,7 +100,7 @@ class Database(metaclass=abc.ABCMeta):
     def update_link(cls, link_id, params):
         """
         更新设备的连接信息
-        :param device_id: 设备ID
+        :param link_id: 设备ID
         :param params: 要添加的连接信息
                         dict('id', 'name', 'device_id_a', 'device_id_b', 'port_a', 'port_b', 'link_type', 'usage',
                          'bandwidth', 'unit', 'length')
@@ -197,7 +197,6 @@ class Database(metaclass=abc.ABCMeta):
     def add_configuration(cls, params):
         """
         添加设备的所有配置
-        :param device_id: 设备ID
         :param params: dict('device_id', 'type', 'params')
         :return: None
         """

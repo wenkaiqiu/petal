@@ -11,9 +11,6 @@ logger.setLevel(logging.DEBUG)
 project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
 
 
-# print(project_path)
-
-
 class JSON(Database):
     """
     用于访问JSON文件的数据库类，实现抽象父类Database定义的接口

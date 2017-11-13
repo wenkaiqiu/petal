@@ -1,7 +1,7 @@
 {
   "devices": [
     {
-      "id": "G5500",
+      "id": "10",
       "uuid": "G5500",
       "name": "G5500",
       "model_type": "G5500",
@@ -81,7 +81,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "110",
+      "id": "20",
       "uuid": "GPU_1",
       "name": "GPU_1",
       "model_type": "GPU",
@@ -89,7 +89,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "111",
+      "id": "21",
       "uuid": "GPU_2",
       "name": "GPU_2",
       "model_type": "GPU",
@@ -97,7 +97,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "112",
+      "id": "22",
       "uuid": "GPU_3",
       "name": "GPU_3",
       "model_type": "GPU",
@@ -105,7 +105,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "113",
+      "id": "23",
       "uuid": "GPU_4",
       "name": "GPU_4",
       "model_type": "GPU",
@@ -113,7 +113,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "114",
+      "id": "24",
       "uuid": "GPU_5",
       "name": "GPU_5",
       "model_type": "GPU",
@@ -121,7 +121,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "115",
+      "id": "25",
       "uuid": "GPU_6",
       "name": "GPU_6",
       "model_type": "GPU",
@@ -129,7 +129,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "116",
+      "id": "26",
       "uuid": "GPU_7",
       "name": "GPU_7",
       "model_type": "GPU",
@@ -137,7 +137,7 @@
       "parent_id": "G5500"
     },
     {
-      "id": "117",
+      "id": "27",
       "uuid": "GPU_8",
       "name": "GPU_8",
       "model_type": "GPU",
@@ -147,7 +147,6 @@
   ],
   "links": [
     {
-      "id": "11",
       "name": "11<->12",
       "device_id_a": "11",
       "device_id_b": "12",
@@ -157,7 +156,6 @@
       "link_width": "4"
     },
     {
-      "id": "12",
       "name": "12<->13",
       "device_id_a": "12",
       "device_id_b": "13",
@@ -167,7 +165,6 @@
       "link_width": "16"
     },
     {
-      "id": "13",
       "name": "12<->14",
       "device_id_a": "12",
       "device_id_b": "14",
@@ -177,7 +174,6 @@
       "link_width": "4"
     },
     {
-      "id": "14",
       "name": "14<->17",
       "device_id_a": "14",
       "device_id_b": "17",
@@ -187,7 +183,6 @@
       "link_width": "1"
     },
     {
-      "id": "15",
       "name": "13<->15",
       "device_id_a": "13",
       "device_id_b": "15",
@@ -197,7 +192,6 @@
       "link_width": "8"
     },
     {
-      "id": "16",
       "name": "12<->18",
       "device_id_a": "12",
       "device_id_b": "18",
@@ -207,7 +201,6 @@
       "link_width": "8"
     },
     {
-      "id": "17",
       "name": "18<->19",
       "device_id_a": "18",
       "device_id_b": "19",
@@ -217,7 +210,6 @@
       "link_width": "8"
     },
     {
-      "id": "18",
       "name": "16<->19",
       "device_id_a": "16",
       "device_id_b": "19",
@@ -227,85 +219,77 @@
       "link_width": "8"
     },
     {
-      "id": "19",
-      "name": "18<->110",
+      "name": "18<->20",
       "device_id_a": "18",
-      "device_id_b": "110",
+      "device_id_b": "20",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "110",
-      "name": "18<->111",
+      "name": "18<->21",
       "device_id_a": "18",
-      "device_id_b": "111",
+      "device_id_b": "21",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "111",
-      "name": "18<->112",
+      "name": "18<->22",
       "device_id_a": "18",
-      "device_id_b": "112",
+      "device_id_b": "22",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "112",
-      "name": "18<->113",
+      "name": "18<->23",
       "device_id_a": "18",
-      "device_id_b": "113",
+      "device_id_b": "23",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "113",
-      "name": "19<->114",
+      "name": "19<->24",
       "device_id_a": "19",
-      "device_id_b": "114",
+      "device_id_b": "24",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "114",
-      "name": "19<->115",
+      "name": "19<->25",
       "device_id_a": "19",
-      "device_id_b": "115",
+      "device_id_b": "25",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "115",
-      "name": "19<->116",
+      "name": "19<->26",
       "device_id_a": "19",
-      "device_id_b": "116",
+      "device_id_b": "26",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     },
     {
-      "id": "116",
-      "name": "19<->117",
+      "name": "19<->27",
       "device_id_a": "19",
-      "device_id_b": "117",
+      "device_id_b": "27",
       "link_type": "PCIE",
       "link_protocol": "PCIE",
       "link_protocol_version": "3",
       "link_width": "4"
     }
   ],
-  "operations":[]
+  "operations": []
 }

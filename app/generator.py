@@ -48,7 +48,6 @@ class ConfigurationGenerator:
         for device in devices:
             logger.info(f'generate topo json of {device.id}')
             loc_json = json['devices']
-            # todo: 还需要拓扑排序,树搜索
             if device.parent_id:
                 logger.info(f'find parent {device.parent_id} of {device.id}')
                 loc_json = self._find_node_in_json(device.parent_id, json['devices'])

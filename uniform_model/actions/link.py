@@ -30,6 +30,10 @@ def link(device_a: Device, device_b: Device, link_info):
                 loc_link.update(link_info)
                 # logger.error(f'repeat link {link_info}')
                 # raise ValueError(f'repeat link {link_info}')
+            else:
+                device_a.links.append(new_link)
+                device_b.links.append(new_link)
+                LinkManager.regist_link(new_link)
     else:
         device_a.links.append(new_link)
         device_b.links.append(new_link)

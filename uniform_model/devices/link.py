@@ -16,10 +16,10 @@ class Link:
         'name': True,
         'device_id_a': True,
         'device_id_b': True,
-        'port_a': True,
-        'port_b': True,
+        'port_a': False,
+        'port_b': False,
         'link_type': True,
-        'usage': True,
+        'usage': False,
         'bandwidth': False,
         'unit': False,
         'length': False
