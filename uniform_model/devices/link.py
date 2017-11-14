@@ -13,12 +13,12 @@ class Link:
     """
     vals = {
         'id': False,
-        'name': True,
+        'name': False,
         'device_id_a': True,
         'device_id_b': True,
         'port_a': False,
         'port_b': False,
-        'link_type': True,
+        'link_type': False,
         'usage': False,
         'bandwidth': False,
         'unit': False,
@@ -27,7 +27,7 @@ class Link:
     inner_rules = tuple()
 
     def __init__(self, **kwargs):
-        logger.info('<Link> init Link object')
+        logger.info(f'<Link> init Link object {kwargs}')
         self._entities = dict()
         # 1.val check
         if not check_necessary(kwargs, self.vals):
@@ -64,4 +64,9 @@ class Link:
         return link_info
 
     def to_json(self):
-        return self._entities
+        json = self._entities.copy()
+        if self.bandwidth and int(self.bandwidth) < 10:
+            json.update({'tag': True})
+        else:
+            json.update({'tag': False})
+        return json

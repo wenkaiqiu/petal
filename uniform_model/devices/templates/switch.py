@@ -10,8 +10,8 @@ logger.setLevel(logging.DEBUG)
 class SwitchTemplate(Template):
     name = 'switch'
     device_vals = {
-        'support_functions': True,
-        'ports': True,
+        'support_functions': False,
+        'ports': False,
     }
     model_vals = dict()
     status_vals = dict()

@@ -17,7 +17,7 @@ class FunctionVLAN(Function):
         'entity': Entity('device', ('interface',), ()),
     }
     inner_rules = (
-        Need('a.vlan_id in range(1, 4094)'),
+        Need('int(a.vlan_id) in range(1, 4094)'),
     )
     intra_rules = ()
 

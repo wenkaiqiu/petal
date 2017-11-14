@@ -2,7 +2,7 @@ import logging
 
 from db.postgresql import PostgreSQL
 from db.json import JSON
-
+from db.restful import RESTFul
 
 logging.basicConfig(format='%(asctime)s <%(name)s> [%(levelname)s]: %(message)s')
 logger = logging.getLogger('db.database_factory')
@@ -16,8 +16,6 @@ class DatabaseFactory:
     @staticmethod
     def get_database(**kwargs):
         conf = kwargs["conf"]
-        # todo: 为测试方便，强制使用json
-        conf["db_type"] = "json"
         logger.info(f'Use {conf["db_type"]} as Database')
 
         if conf["db_type"] == "postgresql":
@@ -26,3 +24,6 @@ class DatabaseFactory:
         elif conf["db_type"] == "json":
             JSON.set_conf(conf)
             return JSON
+        elif conf['db_type'] == 'RESTFul':
+            RESTFul.set_conf(conf)
+            return RESTFul

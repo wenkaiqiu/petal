@@ -298,7 +298,7 @@ raid_map = {
 
 server_map = {
     'model': {
-        'model': 'Model',
+        'model_type': 'Model',
         'manufacturer': 'Manufacturer',
         'trusted_modules': 'TrustedModules',
     },

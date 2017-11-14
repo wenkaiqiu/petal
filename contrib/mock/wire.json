@@ -1,1 +1,84 @@
-[]
+[
+  {
+    "name": "2<->3",
+    "device_id_a": "2",
+    "device_id_b": "3",
+    "port_a": "40GE2/18/1",
+    "port_b": "40GE3/18/1",
+    "link_type": "Optical",
+    "usage": "Stack",
+    "id": "1"
+  },
+  {
+    "device_id_a": "A",
+    "port_a": "A1",
+    "device_id_b": "C",
+    "port_b": "C1",
+    "bandwidth": "10",
+    "id": "2"
+  },
+  {
+    "device_id_a": "A",
+    "port_a": "A2",
+    "device_id_b": "D",
+    "port_b": "D1",
+    "bandwidth": "10",
+    "id": "3"
+  },
+  {
+    "device_id_a": "B",
+    "port_a": "B1",
+    "device_id_b": "C",
+    "port_b": "C2",
+    "bandwidth": "10",
+    "id": "4"
+  },
+  {
+    "device_id_a": "B",
+    "port_a": "B2",
+    "device_id_b": "D",
+    "port_b": "D2",
+    "bandwidth": "10",
+    "id": "5"
+  },
+  {
+    "device_id_a": "C",
+    "port_a": "C5",
+    "device_id_b": "D",
+    "port_b": "D5",
+    "bandwidth": "10",
+    "id": "6"
+  },
+  {
+    "device_id_a": "C",
+    "port_a": "C3",
+    "device_id_b": "E",
+    "port_b": "E1",
+    "bandwidth": "5",
+    "id": "7"
+  },
+  {
+    "device_id_a": "C",
+    "port_a": "C4",
+    "device_id_b": "E",
+    "port_b": "E2",
+    "bandwidth": "5",
+    "id": "8"
+  },
+  {
+    "device_id_a": "D",
+    "port_a": "D3",
+    "device_id_b": "E",
+    "port_b": "E3",
+    "bandwidth": "5",
+    "id": "9"
+  },
+  {
+    "device_id_a": "D",
+    "port_a": "D4",
+    "device_id_b": "E",
+    "port_b": "E4",
+    "bandwidth": "5",
+    "id": "10"
+  }
+]

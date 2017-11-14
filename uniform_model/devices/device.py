@@ -71,6 +71,7 @@ class Device:
                 device_info['properties'].update({item: self._entities[item]})
         json = {
             'device': device_info,
+            'model': self.model.category
         }
         if self.space: json.update({'space': self.space.to_database() if self.space else None})
         if self.parent_id: json.update({'part': {'parent_id': self.parent_id if self.parent_id else None}})
@@ -86,12 +87,15 @@ class Device:
             'name': self.name,
             'model_type': self.model.model_type
         })
+        if self.functions:
+            for item in self.functions:
+                json.update({item.name: item.to_json()})
         # 添加接口属性
-        interfaces = getattr(self, 'interfaces', None)
+        interfaces = getattr(self, 'ports', None)
         if interfaces:
-            json.update({'interfaces': []})
+            json.update({'ports': []})
             for interface in interfaces.values():
-                json['interfaces'].append(interface.name)
+                json['ports'].append(interface.name)
         return json
 
     def __getattr__(self, name):

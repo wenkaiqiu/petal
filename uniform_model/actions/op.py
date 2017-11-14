@@ -27,8 +27,8 @@ def op(func, *arith_list, **kwargs):
     for index, p in enumerate(arith_list):
         # 1. 验证设备是否支持该功能
         logger.info('check function support')
-        if kwargs['type'] not in p.support_functions:
-            raise Exception(f'Device {p} is not support function {kwargs["type"]}')
+        # if kwargs['type'] not in p.support_functions:
+        #     raise Exception(f'Device {p} is not support function {kwargs["type"]}')
         logger.info(f'<op> configure function <{kwargs["type"]} in {p.model.category} device {p.id}>')
         params[index].update({'device': p})
         # 2. 实例化function

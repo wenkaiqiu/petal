@@ -20,7 +20,7 @@ class FunctionTrunk(Function):
         'device': Entity('device', ('interface',), ()),
     }
     inner_rules = (
-        Need('a.mode in ["manual"]'),  # 检查负载分担模式
+        When('a.mode', Need('a.mode in ["manual"]'), Statement(True)),  # 检查负载分担模式
         Need('a._check_id_range()'),  # 检查trunk-id取值范围
     )
     intra_rules = (
@@ -47,6 +47,8 @@ class FunctionTrunk(Function):
         #         raise ConflictError(**{'conflict_function': b})
 
     def _infer_value(self, **kwargs):
+        if not self.number:
+            self.number = 64
         return kwargs
 
     def __init__(self, *args, **kwargs):

@@ -1,1 +1,274 @@
-[]
+[
+  {
+    "device_id": "2",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 2,
+      "priority": 150,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE2/18/1"
+          ]
+        }
+      ]
+    },
+    "enable": false,
+    "id": "1"
+  },
+  {
+    "device_id": "3",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 3,
+      "priority": 100,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE3/18/1"
+          ]
+        }
+      ]
+    },
+    "enable": false,
+    "id": "2"
+  },
+  {
+    "device_id": "2",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 2,
+      "priority": 150,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE2/18/1"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "3"
+  },
+  {
+    "device_id": "3",
+    "type": "stack",
+    "params": {
+      "domain_id": 10,
+      "member_id": 3,
+      "priority": 100,
+      "stack_port": [
+        {
+          "port_id": "1",
+          "physical_port": [
+            "40GE3/18/1"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "4"
+  },
+  {
+    "device_id": "A",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "A1",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "5"
+  },
+  {
+    "device_id": "C",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "C1",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "6"
+  },
+  {
+    "device_id": "C",
+    "type": "trunk",
+    "params": {
+      "trunk_port": [
+        {
+          "trunk_id": "1",
+          "physical_port": [
+            "C3",
+            "C4"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "7"
+  },
+  {
+    "device_id": "C",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "8"
+  },
+  {
+    "device_id": "E",
+    "type": "trunk",
+    "params": {
+      "trunk_port": [
+        {
+          "trunk_id": "1",
+          "physical_port": [
+            "E1",
+            "E2"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "9"
+  },
+  {
+    "device_id": "E",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "10"
+  },
+  {
+    "device_id": "A",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "A1",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "11"
+  },
+  {
+    "device_id": "C",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "C1",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "12"
+  },
+  {
+    "device_id": "C",
+    "type": "trunk",
+    "params": {
+      "trunk_port": [
+        {
+          "trunk_id": "1",
+          "physical_port": [
+            "C3",
+            "C4"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "13"
+  },
+  {
+    "device_id": "C",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "14"
+  },
+  {
+    "device_id": "E",
+    "type": "trunk",
+    "params": {
+      "trunk_port": [
+        {
+          "trunk_id": "1",
+          "physical_port": [
+            "E1",
+            "E2"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "15"
+  },
+  {
+    "device_id": "E",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "16"
+  }
+]

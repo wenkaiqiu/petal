@@ -2068,5 +2068,60 @@
     "model_type": "GPU",
     "description": "GPU",
     "properties": {}
+  },
+  {
+    "id": "A",
+    "uuid": "A",
+    "name": "A",
+    "model_type": "blade",
+    "description": "blade 1",
+    "properties": {}
+  },
+  {
+    "id": "B",
+    "uuid": "B",
+    "name": "B",
+    "model_type": "blade",
+    "description": "blade 2",
+    "properties": {}
+  },
+  {
+    "id": "C",
+    "uuid": "C",
+    "name": "C",
+    "model_type": "switch",
+    "description": "switch 1",
+    "properties": {
+      "support_functions": [
+        "trunk",
+        "vlan"
+      ]
+    }
+  },
+  {
+    "id": "D",
+    "uuid": "D",
+    "name": "D",
+    "model_type": "switch",
+    "description": "switch 2",
+    "properties": {
+      "support_functions": [
+        "trunk",
+        "vlan"
+      ]
+    }
+  },
+  {
+    "id": "E",
+    "uuid": "E",
+    "name": "E",
+    "model_type": "switch",
+    "description": "switch 3",
+    "properties": {
+      "support_functions": [
+        "trunk",
+        "vlan"
+      ]
+    }
   }
 ]

@@ -16,6 +16,7 @@ logger = logging.getLogger('app.configure_process')
 logger.setLevel(logging.DEBUG)
 
 import os
+
 project_path = os.path.join(os.getcwd().split("petal")[0], "petal")
 
 # 配置文件路径集合
@@ -190,6 +191,137 @@ def processor(input_path):
     instantiate_link(links_info, devices)
     operations = instantiate_op(operations_info, devices)
     validate_op(operations)
+    generate_configuration(devices)
+    links = LinkManager.get_registed_links()
+    update_database(devices, links, database)
+    generate_topo(devices)
+
+
+def processor2(src_device_id, des_device_id, conditions, params):
+    min_bandwidth = conditions['bandwidth']
+    # database = configure_database()
+    # paths = database.get_paths(src_device_id, des_device_id)
+    from contrib.mock.paths import paths
+    devices = []
+    device_path = []
+    botten = {}
+    for index, path in enumerate(paths):
+        device_path.append([])
+        for line in path:
+            device_a = line['DeviceIdA']
+            device_b = line['DeviceIdB']
+            if device_a not in devices:
+                devices.append(device_a)
+            if device_b not in devices:
+                devices.append(device_b)
+            device_path[index].append((device_a, device_b))
+            port_a = line['PortIdA']
+            port_b = line['PortIdB']
+            a_to_b = (device_a, device_b)
+            b_to_a = (device_b, device_a)
+            # 瓶颈参数获取
+            loc = None
+            loc_port = None
+            if a_to_b in botten:
+                loc = botten[a_to_b]
+                loc_port = (port_a, port_b)
+            elif b_to_a in botten:
+                loc = botten[b_to_a]
+                loc_port = (port_b, port_a)
+            else:
+                botten.update({a_to_b: {}})
+                loc = botten[a_to_b]
+                loc_port = (port_a, port_b)
+
+            if loc_port not in loc:
+                # wire_info = database.get_wire(device_a, port_a, device_b, port_b)
+                # loc.append({loc_port: wire_info})
+                loc.update({loc_port: {'bandwidth': '10'}})
+                if loc_port == ('C3', 'E1'):
+                    loc.update({loc_port: {'bandwidth': '5'}})
+                if loc_port == ('C4', 'E2'):
+                    loc.update({loc_port: {'bandwidth': '5'}})
+    print(botten)
+    print(devices)
+    new_device_path = []
+    for item in device_path:
+        if item not in new_device_path:
+            new_device_path.append(item)
+    new_device_path.sort(key=lambda d: len(d))
+    print(new_device_path)
+
+    # 选取待配置设备,并生成配置项
+    operations = []
+    for i in range(len(new_device_path)):
+        for line in new_device_path[i]:
+            tag = True
+            count = 0
+            ports_collection = {line[0]: [], line[1]: []}
+            for j in botten[line]:
+                # print(int(botten[line][j]['bandwidth']))
+                if int(botten[line][j]['bandwidth']) >= int(min_bandwidth):
+                    tag = True
+                    vlan_id = params['params']['vlan_id']
+                    operations.append({
+                        'devices': list(line),
+                        'type': params['type'],
+                        'params': [
+                            {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': j[0], 'link_type': 'access'}]},
+                            {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': j[1], 'link_type': 'access'}]}
+                        ]
+                    })
+                    break
+                else:
+                    count += int(botten[line][j]['bandwidth'])
+                    print(count)
+                    ports_collection[line[0]].append(j[0])
+                    ports_collection[line[1]].append(j[1])
+                    if count >= int(min_bandwidth):
+                        tag = True
+                        operations.append({
+                            'devices': list(line),
+                            'type': 'trunk',
+                            'params': [
+                                {
+                                    "trunk_port": [
+                                        {
+                                            "trunk_id": "1",
+                                            "physical_port": ports_collection[line[0]]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "trunk_port": [
+                                        {
+                                            "trunk_id": "1",
+                                            "physical_port": ports_collection[line[1]]
+                                        }
+                                    ]
+                                }
+                            ]})
+                        operations.append({
+                            'devices': list(line),
+                            'type': params['type'],
+                            'params': [
+                                {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]},
+                                {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]}
+                            ]
+                        })
+                        break
+
+                tag = False
+        if tag:
+            break
+    print(operations)
+
+    devices_info = list(map(lambda x: {'id':x}, devices))
+    print(devices_info)
+
+    database = configure_database()
+    devices = instantiate_device(devices_info, database)
+    print("current registed device: " + str(devices))
+    operations2 = instantiate_op(operations, devices)
+    validate_op(operations2)
     generate_configuration(devices)
     links = LinkManager.get_registed_links()
     update_database(devices, links, database)

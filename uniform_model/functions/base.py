@@ -68,3 +68,6 @@ class Function:
 
     def update(self, params):
         fill_value(self._entities['this'], params, self.vals)
+
+    def to_json(self):
+        return self._entities['this']
