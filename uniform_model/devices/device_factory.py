@@ -12,7 +12,7 @@ logger.setLevel(logging.DEBUG)
 __global_register = {
     'board': BoardTemplate,
     'chassis': ChassisTemplate,
-    'ethernet_interface': EthernetInterfaceTemplate,
+    'ethernetInterface': EthernetInterfaceTemplate,
     'fan': FanTemplate,
     'manager': ManagerTemplate,
     'memory': MemoryTemplate,
@@ -44,9 +44,8 @@ class DeviceFactory:
         logger.info(f'<DeviceFactory> generate device instance with info {device_info}')
         device = _get_model_type(device_info['model_type']).generate(device_info)
         # 若设备含有功能，则对其配置功能
-        if hasattr(device, 'support_functions') and device_info['functions']:
+        if hasattr(device, 'support_functions') and 'functions' in device_info:
             for item in device_info['functions']:
                 item['params'].update({'device': device, 'id': item['id']})
-                print(item['params'])
                 device.functions.append(FunctionFactory().generate(item['type'], item['params']))
         return device

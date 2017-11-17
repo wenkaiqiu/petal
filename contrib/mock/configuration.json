@@ -1,54 +1,46 @@
 [
   {
-    "device_id": "2",
-    "type": "stack",
+    "device_id": "aacd1583-f880-4fbe-8a32-548ddf420a85",
+    "type": "vlan",
     "params": {
-      "domain_id": 10,
-      "member_id": 2,
-      "priority": 150,
-      "stack_port": [
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
         {
-          "port_id": "1",
-          "physical_port": [
-            "40GE2/18/1"
-          ]
+          "port_id": "7c765079-4198-4121-a9ce-5cda9e78d040",
+          "link_type": "access"
         }
       ]
     },
-    "enable": false,
+    "enable": true,
     "id": "1"
   },
   {
-    "device_id": "3",
-    "type": "stack",
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
+    "type": "vlan",
     "params": {
-      "domain_id": 10,
-      "member_id": 3,
-      "priority": 100,
-      "stack_port": [
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
         {
-          "port_id": "1",
-          "physical_port": [
-            "40GE3/18/1"
-          ]
+          "port_id": "3bb76028-7341-4894-969b-fcd62a988ecf",
+          "link_type": "access"
         }
       ]
     },
-    "enable": false,
+    "enable": true,
     "id": "2"
   },
   {
-    "device_id": "2",
-    "type": "stack",
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
+    "type": "trunk",
     "params": {
-      "domain_id": 10,
-      "member_id": 2,
-      "priority": 150,
-      "stack_port": [
+      "trunk_port": [
         {
-          "port_id": "1",
+          "trunk_id": "1",
           "physical_port": [
-            "40GE2/18/1"
+            "955f14c6-adfb-43ac-9a44-90c446c6abfe",
+            "52a22123-cc82-4d71-afe7-496424dd2d81"
           ]
         }
       ]
@@ -57,75 +49,7 @@
     "id": "3"
   },
   {
-    "device_id": "3",
-    "type": "stack",
-    "params": {
-      "domain_id": 10,
-      "member_id": 3,
-      "priority": 100,
-      "stack_port": [
-        {
-          "port_id": "1",
-          "physical_port": [
-            "40GE3/18/1"
-          ]
-        }
-      ]
-    },
-    "enable": true,
-    "id": "4"
-  },
-  {
-    "device_id": "A",
-    "type": "vlan",
-    "params": {
-      "vlan_id": "10",
-      "vlan_type": "interface",
-      "ports": [
-        {
-          "port_id": "A1",
-          "link_type": "access"
-        }
-      ]
-    },
-    "enable": true,
-    "id": "5"
-  },
-  {
-    "device_id": "C",
-    "type": "vlan",
-    "params": {
-      "vlan_id": "10",
-      "vlan_type": "interface",
-      "ports": [
-        {
-          "port_id": "C1",
-          "link_type": "access"
-        }
-      ]
-    },
-    "enable": true,
-    "id": "6"
-  },
-  {
-    "device_id": "C",
-    "type": "trunk",
-    "params": {
-      "trunk_port": [
-        {
-          "trunk_id": "1",
-          "physical_port": [
-            "C3",
-            "C4"
-          ]
-        }
-      ]
-    },
-    "enable": true,
-    "id": "7"
-  },
-  {
-    "device_id": "C",
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
     "type": "vlan",
     "params": {
       "vlan_id": "10",
@@ -138,18 +62,83 @@
       ]
     },
     "enable": true,
-    "id": "8"
+    "id": "4"
   },
   {
-    "device_id": "E",
+    "device_id": "168f6ef7-cbea-4ba6-bd83-ff4253d4435f",
     "type": "trunk",
     "params": {
       "trunk_port": [
         {
           "trunk_id": "1",
           "physical_port": [
-            "E1",
-            "E2"
+            "869ac1a0-9e7d-40d1-bd33-a3370fbd8a77",
+            "ea365cc1-3b37-4036-8d4c-3c99d04a4f62"
+          ]
+        }
+      ]
+    },
+    "enable": true,
+    "id": "5"
+  },
+  {
+    "device_id": "168f6ef7-cbea-4ba6-bd83-ff4253d4435f",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "6"
+  },
+  {
+    "device_id": "aacd1583-f880-4fbe-8a32-548ddf420a85",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "7c765079-4198-4121-a9ce-5cda9e78d040",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "7"
+  },
+  {
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
+    "type": "vlan",
+    "params": {
+      "vlan_id": "10",
+      "vlan_type": "interface",
+      "ports": [
+        {
+          "port_id": "3bb76028-7341-4894-969b-fcd62a988ecf",
+          "link_type": "access"
+        }
+      ]
+    },
+    "enable": true,
+    "id": "8"
+  },
+  {
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
+    "type": "trunk",
+    "params": {
+      "trunk_port": [
+        {
+          "trunk_id": "1",
+          "physical_port": [
+            "955f14c6-adfb-43ac-9a44-90c446c6abfe",
+            "52a22123-cc82-4d71-afe7-496424dd2d81"
           ]
         }
       ]
@@ -158,7 +147,7 @@
     "id": "9"
   },
   {
-    "device_id": "E",
+    "device_id": "abceaae7-f7e9-4309-8354-8479944e5780",
     "type": "vlan",
     "params": {
       "vlan_id": "10",
@@ -174,15 +163,16 @@
     "id": "10"
   },
   {
-    "device_id": "A",
-    "type": "vlan",
+    "device_id": "168f6ef7-cbea-4ba6-bd83-ff4253d4435f",
+    "type": "trunk",
     "params": {
-      "vlan_id": "10",
-      "vlan_type": "interface",
-      "ports": [
+      "trunk_port": [
         {
-          "port_id": "A1",
-          "link_type": "access"
+          "trunk_id": "1",
+          "physical_port": [
+            "869ac1a0-9e7d-40d1-bd33-a3370fbd8a77",
+            "ea365cc1-3b37-4036-8d4c-3c99d04a4f62"
+          ]
         }
       ]
     },
@@ -190,85 +180,19 @@
     "id": "11"
   },
   {
-    "device_id": "C",
+    "device_id": "168f6ef7-cbea-4ba6-bd83-ff4253d4435f",
     "type": "vlan",
     "params": {
       "vlan_id": "10",
       "vlan_type": "interface",
       "ports": [
         {
-          "port_id": "C1",
-          "link_type": "access"
+          "port_id": "eth-trunk 1",
+          "link_type": "trunk"
         }
       ]
     },
     "enable": true,
     "id": "12"
-  },
-  {
-    "device_id": "C",
-    "type": "trunk",
-    "params": {
-      "trunk_port": [
-        {
-          "trunk_id": "1",
-          "physical_port": [
-            "C3",
-            "C4"
-          ]
-        }
-      ]
-    },
-    "enable": true,
-    "id": "13"
-  },
-  {
-    "device_id": "C",
-    "type": "vlan",
-    "params": {
-      "vlan_id": "10",
-      "vlan_type": "interface",
-      "ports": [
-        {
-          "port_id": "eth-trunk 1",
-          "link_type": "trunk"
-        }
-      ]
-    },
-    "enable": true,
-    "id": "14"
-  },
-  {
-    "device_id": "E",
-    "type": "trunk",
-    "params": {
-      "trunk_port": [
-        {
-          "trunk_id": "1",
-          "physical_port": [
-            "E1",
-            "E2"
-          ]
-        }
-      ]
-    },
-    "enable": true,
-    "id": "15"
-  },
-  {
-    "device_id": "E",
-    "type": "vlan",
-    "params": {
-      "vlan_id": "10",
-      "vlan_type": "interface",
-      "ports": [
-        {
-          "port_id": "eth-trunk 1",
-          "link_type": "trunk"
-        }
-      ]
-    },
-    "enable": true,
-    "id": "16"
   }
 ]

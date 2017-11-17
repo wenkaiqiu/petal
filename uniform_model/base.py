@@ -50,7 +50,6 @@ class Entity:
         return all((
             obj or (self.required and not obj),
             all(attr in dir(obj) for attr in self.attrs),
-            # TODO: more precise checks
             all(func in dir(obj) for func in self.funcs),
         ))
 

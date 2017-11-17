@@ -12,6 +12,7 @@ class ConfigurationGenerator:
     """
     用于生成配置及拓扑信息
     """
+
     def __init__(self):
         pass
 
@@ -83,3 +84,28 @@ class ConfigurationGenerator:
                 return True
             else:
                 return False
+
+    def generate_routes(self):
+        """
+        {
+            'routers:[
+                [
+                    {
+                        'device_id_a': '',
+                        'device_name_a': '',
+                        'port_id_a':'',
+                        'port_name_a':'',
+                        'device_id_b': '',
+                        'device_name_b': '',
+                        'port_id_b':'',
+                        'port_name_b':'',
+                        'tag': true
+                    },
+                    ...
+                ],
+                [],
+                ...
+            ]
+        }
+        :return:
+        """

@@ -19,4 +19,5 @@ if __name__ == "__main__":
     # else:
     #     print("Error: param can't be None")
     #     exit()
-    processor2("A", "D", {'bandwidth': '10'}, {"type": "vlan","params": {"vlan_id": "10"}})
+    processor2("aacd1583-f880-4fbe-8a32-548ddf420a85", "168f6ef7-cbea-4ba6-bd83-ff4253d4435f",
+               {'bandwidth': '10'}, {"type": "vlan","params": {"vlan_id": "10"}})

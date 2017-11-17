@@ -48,7 +48,6 @@ def op(func, *arith_list, **kwargs):
 
 
 def _check_link(*lst):
-    # todo: 是否需要检查连接或路径，待确认
     logger.info("<op> check link")
     device_1 = lst[0]
     device_2 = lst[1]

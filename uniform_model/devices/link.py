@@ -53,8 +53,8 @@ class Link:
         for key in self.vals:
             if key in link_info:
                 self._entities.update({key: link_info[key]})
-        print("link-update")
-        print(self.__dict__)
+        # print("link-update")
+        # print(self.__dict__)
 
     def to_database(self):
         link_info = {}

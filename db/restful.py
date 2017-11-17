@@ -39,6 +39,7 @@ space_map = {
 }
 
 link_map = {
+    'Id': 'id',
     'DeviceIdA': 'device_id_a',
     'PortA': 'port_a',
     'DeviceIdB': 'device_id_b',
@@ -46,7 +47,9 @@ link_map = {
     'Protocol': 'usage',
     'ProVersion': 'pro_version',
     'BandWidth': 'bandwidth',
-    'Unit': 'unit'
+    'Unit': 'unit',
+    'CreateTime': 'create_time',
+    'UpdateTime': 'update_time'
 }
 
 
@@ -63,21 +66,23 @@ class RESTFul(Database):
 
     @classmethod
     def get_device_all_info(cls, device_id):
+        logger.info(f'get all device info')
         device_info = cls.get_device_info(device_id)
         parent_space_info = cls.get_parent_and_space(device_id)
         device_info.update(parent_space_info)
         logger.info(f'get all device info of {device_id}: {device_info}')
+
         return device_info
 
     @classmethod
     def update_device_all_info(cls, device_id, params):
         logger.info(f' update device all info: {params}')
-        cls.update_device_info(device_id, params)
-        if 'part' in params and 'space' in params:
-            if 'id' in params['space']:
-                cls.update_parent_and_space(device_id, params['part']['parent_id'], params['space'])
-            else:
-                cls.add_parent_and_space(device_id, params['part']['parent_id'], params['space'])
+        # cls.update_device_info(device_id, params)
+        # if 'part' in params and 'space' in params:
+        #     if 'id' in params['space']:
+        #         cls.update_parent_and_space(device_id, params['part']['parent_id'], params['space'])
+        #     else:
+        #         cls.add_parent_and_space(device_id, params['part']['parent_id'], params['space'])
 
     @classmethod
     def get_device_info(cls, device_id):
@@ -94,13 +99,36 @@ class RESTFul(Database):
         for k, v in loc_map['device'].items():
             if v in res:
                 info.update({k: res[v]})
-        info.update({'model_type': info['model']['model_type']})
         for k, v in loc_map['status'].items():
             if v in res:
                 info['status'].update({k: res[v]})
-            if v in res['Status']:
+            if 'Status' in res and v in res['Status']:
                 info['status'].update({k: res['Status'][v]})
+        # 定制修改
+        category = cls.get_category(device_id)
+        if category == 'switchPlane':
+            category = 'switch'
+            info['model'].update({'model_type': 'switchPlane'})
+        if category == 'switchPort':
+            category = 'port'
+            info['model'].update({'model_type': 'switchPort'})
+        if category == 'server':
+            info.update({'id': device_id})
+        info.update({'model_type': category})
+        info['model'].update({'category': category})
+        # 填充Name
+        if 'name' not in info:
+            if 'PlaneName' in res:
+                info.update({'name': res['PlaneName']})
+            if 'PortName' in res:
+                info.update({'name': res['PortName']})
         return info
+
+    @classmethod
+    def get_category(cls, device_id):
+        logger.info(f'get category of {device_id}')
+        uri = f'{cls.prefix}/redfish/v1/rich/inventory/zhongkeyuan/001?id={device_id}'
+        return requests.get(uri).json()['Category']
 
     @classmethod
     def update_device_info(cls, device_id, params):
@@ -108,21 +136,59 @@ class RESTFul(Database):
         uri = f'{cls.prefix}/redfish/v1/rich/inventory/{device_id}'
         category = params['model']
         loc_map = restful_map[category]
-        info = {'Status':{}}
+        info = {'Status': {}}
         for item in params['device']:
             if not item == 'model_type':
                 info.update({loc_map['device'][item]: params['device'][item]})
         for item in params['status']:
             info['Status'].update({loc_map['status'][item]: params['status'][item]})
         request_info = {'DeviceInfo': info}
-        print(request_info)
         res = requests.patch(uri, json.dumps(request_info))
-        print(res)
         return res
 
     @classmethod
+    def get_wire(cls, device_a, port_a, device_b, port_b):
+        logger.info(f'get wire of {(device_a, port_a, device_b, port_b)}')
+        uri = f'{cls.prefix}/redfish/v1/rich/inventory/zhongkeyuan/002'
+        request_info = {
+            "DeviceIdA": device_a,
+            "DeviceIdB": device_b,
+            "PortA": port_a,
+            "PortB": port_b
+        }
+        res = requests.post(uri, json.dumps(request_info)).json()['WireInfo']
+        re = {}
+        for item in res:
+            re.update({link_map[item]: res[item]})
+        return re
+
+    @classmethod
     def get_links(cls):
-        raise NotImplementedError
+        uri = cls.prefix + '/redfish/v1/rich/inventory/zhongkeyuan/003'
+        request_info = {
+            "Filter": {
+                "Protocol": "vlan",
+                "BandWidth": [0, 13]
+            },
+            "Skip": 0,
+            "Top": 10
+        }
+        res = requests.post(uri, json.dumps(request_info)).json()['Wires']
+        re = []
+        for item in res:
+            re.append({
+                'bandwidth': item['BandWidth'],
+                'device_id_a': item['DeviceIdA'],
+                'device_id_b': item['DeviceIdB'],
+                'port_a': item['PortIdA'],
+                'port_b': item['PortIdB'],
+                'pro_version': item['ProVersion'],
+                'protocol': item['Protocol'],
+                'unit': item['Unit']
+            })
+
+        logger.info(f'get links: {re}')
+        return re
 
     @classmethod
     def add_link(cls, params):
@@ -165,6 +231,12 @@ class RESTFul(Database):
         res = requests.patch(uri, json.dumps(link_info))
 
     @classmethod
+    def get_paths(cls, src, des):
+        logger.info(f'get routes from {src} to {des}')
+        uri = f'{cls.prefix}/redfish/v1/rich/inventory/wire/router/routers?deviceida={src}&deviceidb={des}'
+        res = requests.get(uri).json()['Routers']
+        return res
+    @classmethod
     def get_parent_and_space(cls, device_id):
         uri = f'{cls.prefix}/redfish/v1/rich/inventory/{device_id}/space'
         res = requests.get(uri).json()["DeviceSpace"]
@@ -199,7 +271,6 @@ class RESTFul(Database):
             ]
         }
         res = requests.post(uri, json.dumps(request_info))
-        print(res.json())
 
     @classmethod
     def update_parent_and_space(cls, device_id, parent_id, space_info):
@@ -220,7 +291,6 @@ class RESTFul(Database):
             ]
         }
         res = requests.patch(uri, json.dumps(request_info))
-        print(res.json())
 
     @classmethod
     def get_manager(cls, device_id):

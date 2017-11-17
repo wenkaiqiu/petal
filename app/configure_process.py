@@ -32,7 +32,6 @@ def configure_database():
     配置数据库基础信息,使用不同的接口。
     :return: database
     """
-    # todo: Maybe：Restful API或直接操作数据库
     logger.info("configure <database> start")
     with open(conf_path["database"], "r") as database_conf_file:
         database_conf = json.load(database_conf_file)
@@ -86,6 +85,7 @@ def instantiate_device(devices_info, database):
 
     # 由于连接依赖设备实例，故单独处理
     links_info = database.get_links()
+    # print(links_info)
     for link_info in links_info:
         device_a = devices.get(link_info['device_id_a'])
         device_b = devices.get(link_info['device_id_b'])
@@ -198,14 +198,13 @@ def processor(input_path):
 
 
 def processor2(src_device_id, des_device_id, conditions, params):
+    database = configure_database()
     min_bandwidth = conditions['bandwidth']
-    # database = configure_database()
-    # paths = database.get_paths(src_device_id, des_device_id)
-    from contrib.mock.paths import paths
+    routes = database.get_paths(src_device_id, des_device_id)
     devices = []
     device_path = []
     botten = {}
-    for index, path in enumerate(paths):
+    for index, path in enumerate(routes):
         device_path.append([])
         for line in path:
             device_a = line['DeviceIdA']
@@ -234,31 +233,32 @@ def processor2(src_device_id, des_device_id, conditions, params):
                 loc_port = (port_a, port_b)
 
             if loc_port not in loc:
-                # wire_info = database.get_wire(device_a, port_a, device_b, port_b)
-                # loc.append({loc_port: wire_info})
-                loc.update({loc_port: {'bandwidth': '10'}})
-                if loc_port == ('C3', 'E1'):
-                    loc.update({loc_port: {'bandwidth': '5'}})
-                if loc_port == ('C4', 'E2'):
-                    loc.update({loc_port: {'bandwidth': '5'}})
-    print(botten)
-    print(devices)
+                wire_info = database.get_wire(device_a, port_a, device_b, port_b)
+                loc.update({loc_port: wire_info})
+                # loc.update({loc_port: {'bandwidth': '10'}})
+                # if loc_port == ('C3', 'E1'):
+                #     loc.update({loc_port: {'bandwidth': '5'}})
+                # if loc_port == ('C4', 'E2'):
+                #     loc.update({loc_port: {'bandwidth': '5'}})
     new_device_path = []
     for item in device_path:
         if item not in new_device_path:
             new_device_path.append(item)
     new_device_path.sort(key=lambda d: len(d))
-    print(new_device_path)
 
+    print(new_device_path)
+    print(botten)
+    selected_routes = []
     # 选取待配置设备,并生成配置项
     operations = []
     for i in range(len(new_device_path)):
+        tag = True
         for line in new_device_path[i]:
             tag = True
             count = 0
             ports_collection = {line[0]: [], line[1]: []}
             for j in botten[line]:
-                # print(int(botten[line][j]['bandwidth']))
+                selected_routes.append(botten[line][j])
                 if int(botten[line][j]['bandwidth']) >= int(min_bandwidth):
                     tag = True
                     vlan_id = params['params']['vlan_id']
@@ -273,9 +273,9 @@ def processor2(src_device_id, des_device_id, conditions, params):
                     break
                 else:
                     count += int(botten[line][j]['bandwidth'])
-                    print(count)
                     ports_collection[line[0]].append(j[0])
                     ports_collection[line[1]].append(j[1])
+                    selected_routes.append(botten[line][j])
                     if count >= int(min_bandwidth):
                         tag = True
                         operations.append({
@@ -312,16 +312,17 @@ def processor2(src_device_id, des_device_id, conditions, params):
                 tag = False
         if tag:
             break
-    print(operations)
 
-    devices_info = list(map(lambda x: {'id':x}, devices))
-    print(devices_info)
+    with open('contrib/mock/input_4.json') as file:
+        devices_info = json.load(file)
+    # devices_info = list(map(lambda x: {'id': x}, devices))
+    # print(devices_info)
 
-    database = configure_database()
     devices = instantiate_device(devices_info, database)
     print("current registed device: " + str(devices))
     operations2 = instantiate_op(operations, devices)
     validate_op(operations2)
+    print(selected_routes)
     generate_configuration(devices)
     links = LinkManager.get_registed_links()
     update_database(devices, links, database)

@@ -1,7 +1,7 @@
 {
-  "db_version": "2017.11.10",
+  "db_version": "2017.11.15",
   "db_host": "127.0.0.1",
   "db_port": "8081",
   "db_protocol": "http",
-  "db_type": "json"
+  "db_type": "RESTFul"
 }

@@ -12,8 +12,8 @@ class Model:
     与数据库中的model表对应
     """
     vals = {
-        'model_type': True,
-        'name': True,
+        'model_type': False,
+        'name': False,
         'category': True,
         'vendor': False,
         'description': False,
@@ -21,7 +21,7 @@ class Model:
     inner_rules = tuple()
 
     def __init__(self, **kwargs):
-        logger.info('<Model> init Model object')
+        logger.info(f'<Model> init Model object {kwargs}')
         self._entities = dict()
         # 1.val check
         if not check_necessary(kwargs, self.vals):

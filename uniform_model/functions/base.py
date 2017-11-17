@@ -21,7 +21,6 @@ class Function:
         self._entities = dict(this=dict())  # 用于存放属性
         # 1.entity check, entity可用于推断缺失属性
         if not all((
-                # TODO: check not required
                 all(name in kwargs and entity.validate(kwargs[name])
                     for name, entity in self.entities.items()
                     if entity.required),
@@ -70,4 +69,5 @@ class Function:
         fill_value(self._entities['this'], params, self.vals)
 
     def to_json(self):
-        return self._entities['this']
+        import json
+        return json.dumps(self._entities['this'])

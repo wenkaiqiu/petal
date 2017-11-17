@@ -8,7 +8,6 @@ logger.setLevel(logging.DEBUG)
 class OperationValidator:
     @staticmethod
     def validate(operations: list):
-        # todo: 完善处理规则
         logger.info('start validator')
         while operations:
             operation = operations.pop(0)

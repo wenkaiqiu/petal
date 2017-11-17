@@ -6,10 +6,8 @@
 #
 # @compatible(FunctionIP, FunctionVLAN, FunctionTrunk, FunctionStack)
 # class CX310(Model):
-#     # todo: 该设备中rj45接口仅用于管理，暂时忽略
 #     # rj45 = InterfaceRJ45(count=2, downlink=True)
 #
-#     # todo: 调查uplink&downlink是否有存在必要
 #     """
 #     描述某一类型的接口，一类接口可能有多个物理或逻辑接口
 #     """

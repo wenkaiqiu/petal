@@ -10,7 +10,6 @@ logger = logging.getLogger('uniform_model.functions.trunk')
 logger.setLevel(logging.DEBUG)
 
 
-# todo: 暂时实现手工负载负担模式
 class FunctionTrunk(Function):
     name = 'trunk'
     vals = {'number': False, 'mode': False, 'trunk_port': True}
@@ -31,12 +30,11 @@ class FunctionTrunk(Function):
              Statement(True)),
     )
 
-    # todo: 检验规则
     def _check_id_range(self):
         return all(int(port['trunk_id']) in range(0, int(self.number)) for port in self.trunk_port)
 
     def _check_conflict_function(self, b):
-        # 返回是协议配置端口否冲突。todo: 规则检查无法检测具体是哪条规则冲突，待解决。包括intra_rules和inner_rules
+        # 返回是协议配置端口否冲突。
         return all(
             bool(set(x['physical_port']).intersection(set(y['physical_port'])))
             for x, y in product(self.trunk_port, b.stack_port))

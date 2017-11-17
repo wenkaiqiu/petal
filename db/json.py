@@ -262,3 +262,30 @@ class JSON(Database):
                 return item
         else:
             return None
+
+
+a = [
+    'aacd1583-f880-4fbe-8a32-548ddf420a85',  # b1
+    'b1882889-ce4e-4c9b-b4b7-1d6d967302a0',
+    '8b8052f9-3043-43f2-9467-05b25e2ba014',  # p1
+    '7c765079-4198-4121-a9ce-5cda9e78d040',
+    '624b11de-f6dc-4fab-90de-d68293a2dd70',
+    '09235d67-c095-4f60-96c2-208cb9a9ec70',
+    '2f61a572-29b3-49ab-b2ea-7ac1be207dc7',  # s1p1
+    '82424730-27af-4c9c-8c6a-cbc78fe0b79c',
+    '8a08f17f-3df8-4b0e-81e2-b7902932e12e',
+    '4bb4715d-6edb-4310-9476-0e4345090099',
+    'bf758cb1-2381-4795-b5b9-b5811c75ab73',
+    '3bb76028-7341-4894-969b-fcd62a988ecf',  # s2p1
+    'c9a01ad1-eb7a-41cd-968b-4b8e763ad334',
+    '52a22123-cc82-4d71-afe7-496424dd2d81',
+    '955f14c6-adfb-43ac-9a44-90c446c6abfe',
+    '8573b826-9ca2-499f-9a7f-3101c9e3bff9',
+    '66d9b0d1-9646-4e70-b8d7-b2f22c736a36',  # s3p1
+    '7959638a-6962-4610-9b62-bb5bd1b0cf17',
+    'ea365cc1-3b37-4036-8d4c-3c99d04a4f62',
+    '869ac1a0-9e7d-40d1-bd33-a3370fbd8a77',
+    '24b5650c-c745-41ef-81c3-44abcb6ae6d2',  # s1
+    'abceaae7-f7e9-4309-8354-8479944e5780',
+    '168f6ef7-cbea-4ba6-bd83-ff4253d4435f'
+]

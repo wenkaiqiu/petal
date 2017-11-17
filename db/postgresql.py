@@ -37,5 +37,3 @@ class PostgreSQL(Database):
             logger.warning("<Database> connect failed")
             cls._conn.close()
             print(e)
-
-    # todo: 实现抽象类Database的相应方法

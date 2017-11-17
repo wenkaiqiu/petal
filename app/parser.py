@@ -219,7 +219,7 @@ if __name__ == '__main__':
     parser = Parser(test_conf)
     try:
         devices_info, links_info, operations_info = parser.parse_input(test_input)
-        print(devices_info, links_info, operations_info)
+        # print(devices_info, links_info, operations_info)
     except Exception as e:
         logger.error(e.args[0] + ' Details:')
         for item in e.args[1]:

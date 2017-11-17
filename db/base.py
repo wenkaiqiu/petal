@@ -211,5 +211,3 @@ class Database(metaclass=abc.ABCMeta):
         :return: None
         """
         raise NotImplementedError
-
-    # todo:添加其他需要的接口
