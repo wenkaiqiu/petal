@@ -17,12 +17,14 @@ class Link:
         'device_id_a': True,
         'device_id_b': True,
         'port_a': False,
+        'port_name_a': False,
         'port_b': False,
+        'port_name_b': False,
         'link_type': False,
         'usage': False,
         'bandwidth': False,
         'unit': False,
-        'length': False
+        'length': False,
     }
     inner_rules = tuple()
 
@@ -39,6 +41,7 @@ class Link:
 
         self.device_a = kwargs['device_a']
         self.device_b = kwargs['device_b']
+        self.selected = kwargs['selected']
 
     def _inner_check(self):
         logger.info('<Link> inner check')
@@ -53,8 +56,6 @@ class Link:
         for key in self.vals:
             if key in link_info:
                 self._entities.update({key: link_info[key]})
-        # print("link-update")
-        # print(self.__dict__)
 
     def to_database(self):
         link_info = {}
@@ -65,8 +66,5 @@ class Link:
 
     def to_json(self):
         json = self._entities.copy()
-        if self.bandwidth and int(self.bandwidth) < 10:
-            json.update({'tag': True})
-        else:
-            json.update({'tag': False})
+        json.update({'selected': self.selected})
         return json

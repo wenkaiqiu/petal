@@ -64,7 +64,7 @@ def parse_input(parser, input_path):
     return devices_info, links_info, operations_info
 
 
-def instantiate_device(devices_info, database):
+def instantiate_device(devices_info, database, links):
     """
     读取数据库，实例化设备信息,连接信息和配置信息
     :param devices_info: 规划表中的设备信息
@@ -85,12 +85,20 @@ def instantiate_device(devices_info, database):
 
     # 由于连接依赖设备实例，故单独处理
     links_info = database.get_links()
-    # print(links_info)
     for link_info in links_info:
+        if links:
+            res = filter(
+                lambda x: x['port_a'] == link_info['port_a'] and x['port_b'] == link_info['port_b'], links)
+            if list(res):
+                link_info.update({'selected': True})
+            else:
+                link_info.update({'selected': False})
         device_a = devices.get(link_info['device_id_a'])
         device_b = devices.get(link_info['device_id_b'])
         if device_a and device_b:
             link_info.update({'device_a': device_a, 'device_b': device_b})
+            link_info.update({'port_name_a': database.get_device_info(link_info['port_a'])['name'],
+                              'port_name_b': database.get_device_info(link_info['port_b'])['name']})
             new_link = Link(**link_info)
             LinkManager.regist_link(new_link)
             device_a.links.append(new_link)
@@ -144,16 +152,19 @@ def generate_configuration(devices):
             output.close()
 
 
-def generate_topo(devices):
+def generate_topo(devices, routes):
     generator = ConfigurationGenerator()
     post_r = generator.genarate_topo(devices.values())
     print(post_r)
+    print(routes)
 
     import requests
     with open(conf_path["visualization"], "r") as path_file:
         path = json.load(path_file)["base_url"]
     r = requests.post(path + "request", data={"topo_json": json.dumps(post_r)})
+    r2 = requests.post(path + "request_routes", data={"routes_json": json.dumps(routes)})
     print(r.text)
+    print(r2.text)
 
     import webbrowser
     webbrowser.open(path + "render/" + str(json.loads(r.text)["result"]))
@@ -197,16 +208,33 @@ def processor(input_path):
     generate_topo(devices)
 
 
+def translate(line):
+    return {
+        'device_id_a': line['DeviceIdA'],
+        'device_id_b': line['DeviceIdB'],
+        'device_name_a': line['DeviceNameA'],
+        'device_name_b': line['DeviceNameB'],
+        'port_id_a': line['PortIdA'],
+        'port_id_b': line['PortIdB'],
+        'port_name_a': line['PortNameA'],
+        'port_name_b': line['PortNameB'],
+    }
+
+
 def processor2(src_device_id, des_device_id, conditions, params):
     database = configure_database()
     min_bandwidth = conditions['bandwidth']
     routes = database.get_paths(src_device_id, des_device_id)
+    routes_json = []
     devices = []
     device_path = []
     botten = {}
     for index, path in enumerate(routes):
         device_path.append([])
+        routes_json.append([])
         for line in path:
+            route_data = translate(line)
+
             device_a = line['DeviceIdA']
             device_b = line['DeviceIdB']
             if device_a not in devices:
@@ -235,19 +263,17 @@ def processor2(src_device_id, des_device_id, conditions, params):
             if loc_port not in loc:
                 wire_info = database.get_wire(device_a, port_a, device_b, port_b)
                 loc.update({loc_port: wire_info})
-                # loc.update({loc_port: {'bandwidth': '10'}})
-                # if loc_port == ('C3', 'E1'):
-                #     loc.update({loc_port: {'bandwidth': '5'}})
-                # if loc_port == ('C4', 'E2'):
-                #     loc.update({loc_port: {'bandwidth': '5'}})
+            if int(loc[loc_port]['bandwidth']) < int(min_bandwidth):
+                route_data.update({'tag': True})
+            else:
+                route_data.update({'tag': False})
+            routes_json[index].append(route_data)
     new_device_path = []
     for item in device_path:
         if item not in new_device_path:
             new_device_path.append(item)
     new_device_path.sort(key=lambda d: len(d))
 
-    print(new_device_path)
-    print(botten)
     selected_routes = []
     # 选取待配置设备,并生成配置项
     operations = []
@@ -266,8 +292,10 @@ def processor2(src_device_id, des_device_id, conditions, params):
                         'devices': list(line),
                         'type': params['type'],
                         'params': [
-                            {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': j[0], 'link_type': 'access'}]},
-                            {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': j[1], 'link_type': 'access'}]}
+                            {'vlan_id': vlan_id, 'vlan_type': 'interface',
+                             'ports': [{'port_id': j[0], 'link_type': 'access'}]},
+                            {'vlan_id': vlan_id, 'vlan_type': 'interface',
+                             'ports': [{'port_id': j[1], 'link_type': 'access'}]}
                         ]
                     })
                     break
@@ -303,8 +331,10 @@ def processor2(src_device_id, des_device_id, conditions, params):
                             'devices': list(line),
                             'type': params['type'],
                             'params': [
-                                {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]},
-                                {'vlan_id': vlan_id, 'vlan_type': 'interface', 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]}
+                                {'vlan_id': vlan_id, 'vlan_type': 'interface',
+                                 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]},
+                                {'vlan_id': vlan_id, 'vlan_type': 'interface',
+                                 'ports': [{'port_id': 'eth-trunk 1', 'link_type': 'trunk'}]}
                             ]
                         })
                         break
@@ -316,14 +346,12 @@ def processor2(src_device_id, des_device_id, conditions, params):
     with open('contrib/mock/input_4.json') as file:
         devices_info = json.load(file)
     # devices_info = list(map(lambda x: {'id': x}, devices))
-    # print(devices_info)
 
-    devices = instantiate_device(devices_info, database)
+    devices = instantiate_device(devices_info, database, selected_routes)
     print("current registed device: " + str(devices))
     operations2 = instantiate_op(operations, devices)
     validate_op(operations2)
-    print(selected_routes)
     generate_configuration(devices)
     links = LinkManager.get_registed_links()
     update_database(devices, links, database)
-    generate_topo(devices)
+    generate_topo(devices, routes_json)

@@ -43,7 +43,7 @@ link_map = {
     'DeviceIdA': 'device_id_a',
     'PortA': 'port_a',
     'DeviceIdB': 'device_id_b',
-    'PortB': 'device_b',
+    'PortB': 'port_b',
     'Protocol': 'usage',
     'ProVersion': 'pro_version',
     'BandWidth': 'bandwidth',

@@ -46,7 +46,14 @@ class ConfigurationGenerator:
     def genarate_topo(self, devices):
         logger.info('generate topo json')
         json = {"devices": [], "connections": []}
+        json['devices'].append({
+                "id": '0',
+                "type": 'chassis',
+                "name": 'E9000',
+                "attrs": {}
+            })
         for device in devices:
+            device.parent_id = '0'
             logger.info(f'generate topo json of {device.id}')
             loc_json = json['devices']
             if device.parent_id:
@@ -55,6 +62,7 @@ class ConfigurationGenerator:
             loc_json.append({
                 "id": device.id,
                 "type": device.model.category,
+                "name": device.name,
                 "attrs": device.to_json(),
             })
         for link in LinkManager.get_registed_links():
